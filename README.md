@@ -6,3 +6,4 @@
 
 ## Team Members
 ### Ifeanyi Emeka
+I am a senior majoring in Cybersecurity with a previous educational background in Computer Science. My interests include cybersecurity, technology, physical fitness, soccer, and leadership. For this project, I will work with my team to apply the knowledge and technical skills we have gained throughout the cybersecurity program.
