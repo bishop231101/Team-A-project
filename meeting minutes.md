@@ -5,6 +5,8 @@ Location: online
 
 ### Attendants
  Ifeanyi Emeka
+ Henry Smith
+ Tristan Koch
 
 ### Tasks
  Create GitHub accounts.
