@@ -9,6 +9,7 @@
 I am a senior majoring in Cybersecurity with a previous educational background in Computer Science. My interests include cybersecurity, technology, physical fitness, soccer, and leadership. For this project, I will work with my team to apply the knowledge and technical skills we have gained throughout the cybersecurity program.
 
 ### Henry Smith
+I am an undergraduate student pursuing a degree in Cyber Security. I am also currently serving in the military (Army) with over 20 years of service, so I am approaching retirement. My interests include spending time with my family, traveling, golfing, fishing, and watching college football. I am excited for this semester and look forward to learning with each of you.
 I am an undergraduate student pursuing a degree in Cyber Security. I am also currently serving in the military (Army) with over 20 years of service, so retirement is on the horizon. My interests include spending time with my family, traveling, golfing, fishing, and watching college football. I am excited for this semester and look forward to learning with each of you.
 
 ### Tristan Koch
