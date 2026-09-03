@@ -1,0 +1,42 @@
+[
+  {
+    "name": "initial greeting",
+    "cover_text": "Visible cover text.",
+    "secret": "Hello"
+  },
+  {
+    "name": "course identifier",
+    "cover_text": "Visible cover text.",
+    "secret": "CS481"
+  },
+  {
+    "name": "team identifier",
+    "cover_text": "Visible cover text.",
+    "secret": "Team A"
+  },
+  {
+    "name": "zero-width phrase",
+    "cover_text": "Visible cover text.",
+    "secret": "Zero Width Test"
+  },
+  {
+    "name": "empty payload",
+    "cover_text": "Cover",
+    "secret": ""
+  },
+  {
+    "name": "accented payload",
+    "cover_text": "Cover",
+    "secret": "Café"
+  },
+  {
+    "name": "multilingual payload",
+    "cover_text": "Cover",
+    "secret": "Hello, 世界"
+  },
+  {
+    "name": "emoji payload",
+    "cover_text": "Cover",
+    "secret": "🔐 unicode payload"
+  }
+]

@@ -14,3 +14,16 @@ I am an undergraduate student pursuing a degree in Cyber Security. I am also cur
 
 ### Tristan Koch
 I am a senior majoring in Cyber Security. My interests include gaming, music, and painting. I am looking forward to working with my team and applying the knowledge and skills I have accumumlated throughout this program to complete this capstone project.
+
+## Week 3 local prototype
+
+The initial Python codec hides a UTF-8 secret in ordinary cover text using
+zero-width Unicode characters. Run its local automated tests from the
+repository root with:
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+The implementation is in `code/zero_width_codec.py`; the draft binary format
+is documented in `docs/codec_format.md`.
