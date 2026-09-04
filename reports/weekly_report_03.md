@@ -60,3 +60,7 @@ The successful test results showed that the initial zero-width Unicode codec can
 ## Plan for Week 4
 
 During Week 4, the team will continue according to the semester project plan and begin expanding platform testing. The team will use the Week 3 codec and testing results as the baseline for evaluating how encoded messages behave when transferred through different platforms. Testing results and evidence will continue to be documented in the repository.
+
+## Progress Compared to Project Plan
+
+The team is progressing according to the semester project plan. During Week 3, we completed the initial encoder/decoder implementation and testing as planned. The successful results provide the baseline needed to begin expanded platform testing during Week 4. No major adjustment to the semester plan is required at this time.
