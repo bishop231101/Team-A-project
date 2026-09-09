@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import struct
 import zlib
+from collections import Counter
 
 
 ZERO = "\u200b"  # ZERO WIDTH SPACE
@@ -24,6 +25,10 @@ _CODEC_CHARACTERS = frozenset((ZERO, ONE, SEPARATOR))
 
 class DecodeError(ValueError):
     """Raised when an invisible frame is missing, malformed, or damaged."""
+
+
+class EmbedError(ValueError):
+    """Raised when a cover text cannot safely receive another payload."""
 
 
 def encode_secret(secret: str) -> str:
@@ -51,6 +56,11 @@ def embed_secret(cover_text: str, secret: str) -> str:
     """
     if not isinstance(cover_text, str):
         raise TypeError("cover_text must be a string")
+    if contains_codec_characters(cover_text):
+        raise EmbedError(
+            "cover text already contains project zero-width characters; "
+            "repeated embedding is not supported"
+        )
     return cover_text + encode_secret(secret)
 
 
@@ -97,6 +107,31 @@ def extract_secret(stego_text: str) -> str:
         return frame[_HEADER_LENGTH:-_CHECKSUM_LENGTH].decode("utf-8")
     except UnicodeDecodeError as error:
         raise DecodeError("payload is not valid UTF-8") from error
+
+
+def contains_codec_characters(text: str) -> bool:
+    """Return whether ``text`` contains one of this project's codec symbols."""
+    if not isinstance(text, str):
+        raise TypeError("text must be a string")
+    return any(character in _CODEC_CHARACTERS for character in text)
+
+
+def count_codec_characters(text: str) -> dict[str, int]:
+    """Count codec symbols for repeatable platform-survival measurements.
+
+    The returned mapping uses Unicode code-point labels so a test runner can
+    record sent and recovered symbol totals without depending on invisible text
+    rendering in a terminal or platform UI.
+    """
+    if not isinstance(text, str):
+        raise TypeError("text must be a string")
+    counts = Counter(character for character in text if character in _CODEC_CHARACTERS)
+    return {
+        "U+200B": counts[ZERO],
+        "U+200C": counts[ONE],
+        "U+200D": counts[SEPARATOR],
+        "total": sum(counts.values()),
+    }
 
 
 def _encode_byte(value: int) -> str:

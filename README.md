@@ -27,3 +27,7 @@ python -m unittest discover -s tests -v
 
 The implementation is in `code/zero_width_codec.py`; the draft binary format
 is documented in `docs/codec_format.md`.
+
+For platform testing, `count_codec_characters(stego_text)` returns sent or
+recovered totals for `U+200B`, `U+200C`, and `U+200D` without requiring the
+tester to visually inspect invisible characters.
