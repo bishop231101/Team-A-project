@@ -28,3 +28,15 @@ This is a local baseline, not an error-correction implementation. It appends
 the payload to the cover text and assumes the cover text does not already use
 the three project zero-width characters. Platform robustness and redundancy are
 scheduled for later weeks.
+
+## Week 4 validation behavior
+
+- The decoder rejects incomplete byte blocks, incorrect frame lengths, unknown
+  frame markers, checksum failures, and invalid UTF-8 instead of returning an
+  unverified secret.
+- The encoder rejects repeated embedding into a string that already contains a
+  project codec character. This prevents two adjacent frames from being treated
+  as one ambiguous payload.
+- `count_codec_characters()` reports each project character and the total. The
+  platform-testing process can use those counts to calculate character-survival
+  rates before and after a transfer.
