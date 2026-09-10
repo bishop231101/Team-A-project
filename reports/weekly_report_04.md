@@ -57,6 +57,20 @@ The team also had to carefully organize screenshots, test results, and documenta
 - Continued improving codec validation and testing.
 - Maintained individual weekly journals and team documentation.
 
+## Detailed Testing Evidence
+
+Week 4 platform robustness testing used the nine test messages developed during Week 3. Each message was encoded using the zero-width Unicode encoder, transferred through the selected platform, retrieved, and decoded. The original and recovered payloads were then compared to determine character survival and successful recovery.
+
+A total of 27 tests were completed across Gmail, Discord, and Microsoft Word. Screenshots were captured during testing to document the platform behavior, encoded payloads, and resulting output. The detailed testing procedure, results, and screenshot evidence are available in the `week4_testing/` folder of the repository.
+
+## Lessons Learned
+
+The team learned that successful local encoding and decoding does not guarantee successful recovery after the message passes through another platform. Discord preserved the tested zero-width characters, while Gmail and Microsoft Word removed or altered a significant portion of them. This showed that platform-specific Unicode processing is a major factor in the reliability of zero-width steganography.
+
+## Progress Compared to Project Plan
+
+The team completed the planned Week 4 platform testing, documentation, integration, and weekly reporting activities. The project remains aligned with the semester project plan. Based on the Week 4 results, Week 5 will focus on additional platform compatibility testing and methods for improving payload recovery when zero-width characters are removed or altered.
+
 ## Next Steps
 
 During Week 5, the team will review the Week 4 results and determine the next testing and development priorities. The team will continue investigating platform compatibility and methods for improving payload recovery when zero-width characters are removed or altered.
