@@ -1,0 +1,71 @@
+## Testing Procedure
+
+For each test, a known plaintext message was encoded using the team's
+zero-width Unicode steganography codec. The encoded message was then
+transferred through the platform being tested. The recovered text was
+copied back into the Python testing environment, where the number of
+zero-width characters that survived was measured and the payload was
+decoded. The decoded message was compared with the original plaintext
+to determine whether the test passed or failed.
+
+## Testing Commands Explained
+
+The following terminal commands were used throughout the platform
+testing process.
+
+### 1. Generate the encoded test message
+
+The first command sets the original plaintext message and uses the
+project's `embed_secret()` function to create the steganographic text.
+The encoded text is written to a temporary UTF-8 text file so that it
+can be transferred through the platform without printing invisible
+Unicode characters directly to the terminal.
+
+### 2. Retrieve the transferred message
+
+After the encoded message has been transferred through the platform,
+the recovered text is copied to the clipboard and stored in the
+`ZW_RETRIEVED` environment variable. This allows the recovered text to
+be analyzed by Python without displaying the invisible characters.
+
+### 3. Calculate zero-width character survival
+
+The survival-rate command counts the zero-width Unicode characters in
+both the original encoded message and the recovered message. It then
+calculates how many characters were lost and the percentage that
+survived.
+
+Survival rate = recovered zero-width characters / sent zero-width characters × 100
+
+### 4. Decode the recovered payload
+
+The decoder command passes the recovered text to the project's
+`extract_secret()` function. If the complete payload survived, the
+original secret message should be successfully recovered. The decoded
+message is then compared with the original message to determine
+whether the test passed.
+
+### 5. Test result
+
+A test passes when the recovered zero-width payload can be decoded
+successfully and the decoded message exactly matches the original
+plaintext. A test fails when the payload cannot be decoded or the
+decoded message does not match the original.
+
+## Terminal Testing Workflow
+
+The following annotated screenshot shows the primary terminal commands
+used during platform testing.
+
+![alt text](annotated_terminal.png)
+
+**1 — Generate:** Creates the encoded test message.
+
+**2 — Retrieve:** Stores the recovered platform output for analysis.
+
+**3 — Survival calculation:** Measures zero-width character retention.
+
+**4 — Decode:** Attempts to recover the hidden message.
+
+**5 — Comparison:** Determines whether the recovered message matches
+the original plaintext.
