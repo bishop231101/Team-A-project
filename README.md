@@ -31,3 +31,13 @@ is documented in `docs/codec_format.md`.
 For platform testing, `count_codec_characters(stego_text)` returns sent or
 recovered totals for `U+200B`, `U+200C`, and `U+200D` without requiring the
 tester to visually inspect invisible characters.
+
+The Week 5 recovery experiment can enable three-copy bit repetition:
+
+```python
+stego = embed_secret("Visible cover text", "secret message", recovery_mode=True)
+```
+
+It can correct one removed or changed data symbol in a repeated bit group, but
+it is not a complete solution for platforms that remove separators or every
+zero-width character.

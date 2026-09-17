@@ -100,3 +100,31 @@ class ZeroWidthCodecTests(unittest.TestCase):
         self.assertGreater(counts["U+200D"], 0)
         self.assertTrue(contains_codec_characters(encoded))
         self.assertFalse(contains_codec_characters("Ordinary cover text"))
+
+    def test_recovery_mode_round_trip(self) -> None:
+        stego = embed_secret("Cover", "recoverable secret", recovery_mode=True)
+        self.assertEqual(extract_secret(stego), "recoverable secret")
+
+    def test_recovery_mode_recovers_one_removed_data_symbol(self) -> None:
+        encoded = encode_secret("recover one deletion", recovery_mode=True)
+        first_data_symbol = next(index for index, character in enumerate(encoded) if character in {ZERO, ONE})
+        damaged = encoded[:first_data_symbol] + encoded[first_data_symbol + 1 :]
+        self.assertEqual(extract_secret(damaged), "recover one deletion")
+
+    def test_recovery_mode_recovers_one_altered_data_symbol(self) -> None:
+        encoded = encode_secret("recover one alteration", recovery_mode=True)
+        first_data_symbol = next(index for index, character in enumerate(encoded) if character in {ZERO, ONE})
+        replacement = ONE if encoded[first_data_symbol] == ZERO else ZERO
+        damaged = encoded[:first_data_symbol] + replacement + encoded[first_data_symbol + 1 :]
+        self.assertEqual(extract_secret(damaged), "recover one alteration")
+
+    def test_recovery_mode_detects_removed_separator(self) -> None:
+        encoded = encode_secret("separator damage", recovery_mode=True)
+        separator_index = encoded.find(SEPARATOR, 3)
+        damaged = encoded[:separator_index] + encoded[separator_index + 1 :]
+        with self.assertRaisesRegex(DecodeError, "recovery payload"):
+            extract_secret(damaged)
+
+    def test_recovery_mode_requires_boolean_flag(self) -> None:
+        with self.assertRaises(TypeError):
+            encode_secret("secret", recovery_mode=3)  # type: ignore[arg-type]

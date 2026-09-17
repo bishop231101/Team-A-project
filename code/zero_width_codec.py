@@ -21,6 +21,7 @@ _MAGIC = b"ZWS1"
 _HEADER_LENGTH = 8  # Four magic bytes followed by a four-byte payload length.
 _CHECKSUM_LENGTH = 4
 _CODEC_CHARACTERS = frozenset((ZERO, ONE, SEPARATOR))
+_RECOVERY_PREFIX = SEPARATOR * 3
 
 
 class DecodeError(ValueError):
@@ -31,24 +32,29 @@ class EmbedError(ValueError):
     """Raised when a cover text cannot safely receive another payload."""
 
 
-def encode_secret(secret: str) -> str:
+def encode_secret(secret: str, recovery_mode: bool = False) -> str:
     """Encode ``secret`` into an invisible, self-validating frame.
 
     The frame is UTF-8 payload bytes prefixed with ``ZWS1`` and a big-endian
-    payload length, then suffixed with a CRC-32 checksum. Each source byte is
-    represented by eight zero-width bit characters; byte blocks are separated
-    by ``SEPARATOR``.
+    payload length, then suffixed with a CRC-32 checksum. The default mode
+    encodes each byte as eight zero-width bit characters. ``recovery_mode``
+    uses three copies of every bit so it can recover from one removed or
+    altered data symbol in a group.
     """
     if not isinstance(secret, str):
         raise TypeError("secret must be a string")
+    if not isinstance(recovery_mode, bool):
+        raise TypeError("recovery_mode must be a boolean")
 
     payload = secret.encode("utf-8")
     frame = _MAGIC + struct.pack(">I", len(payload)) + payload
     frame += struct.pack(">I", zlib.crc32(frame) & 0xFFFFFFFF)
+    if recovery_mode:
+        return _encode_with_repetition(frame)
     return SEPARATOR.join(_encode_byte(value) for value in frame)
 
 
-def embed_secret(cover_text: str, secret: str) -> str:
+def embed_secret(cover_text: str, secret: str, recovery_mode: bool = False) -> str:
     """Append an encoded secret to visible ``cover_text``.
 
     Removing the codec's three invisible characters from the returned string
@@ -61,7 +67,7 @@ def embed_secret(cover_text: str, secret: str) -> str:
             "cover text already contains project zero-width characters; "
             "repeated embedding is not supported"
         )
-    return cover_text + encode_secret(secret)
+    return cover_text + encode_secret(secret, recovery_mode=recovery_mode)
 
 
 def extract_secret(stego_text: str) -> str:
@@ -78,14 +84,26 @@ def extract_secret(stego_text: str) -> str:
     if not encoded:
         raise DecodeError("no zero-width payload was found")
 
+    if encoded.startswith(_RECOVERY_PREFIX):
+        frame = _decode_with_repetition(encoded[len(_RECOVERY_PREFIX) :])
+    else:
+        frame = _decode_standard(encoded)
+
+    return _decode_frame(frame)
+
+
+def _decode_standard(encoded: str) -> bytes:
     blocks = encoded.split(SEPARATOR)
     if any(len(block) != 8 for block in blocks):
         raise DecodeError("payload contains an incomplete or malformed byte block")
 
     try:
-        frame = bytes(_decode_byte(block) for block in blocks)
+        return bytes(_decode_byte(block) for block in blocks)
     except ValueError as error:
         raise DecodeError("payload contains an invalid bit value") from error
+
+
+def _decode_frame(frame: bytes) -> str:
 
     minimum_frame_length = _HEADER_LENGTH + _CHECKSUM_LENGTH
     if len(frame) < minimum_frame_length:
@@ -107,6 +125,33 @@ def extract_secret(stego_text: str) -> str:
         return frame[_HEADER_LENGTH:-_CHECKSUM_LENGTH].decode("utf-8")
     except UnicodeDecodeError as error:
         raise DecodeError("payload is not valid UTF-8") from error
+
+
+def _encode_with_repetition(frame: bytes) -> str:
+    repeated_bits = []
+    for value in frame:
+        for bit in f"{value:08b}":
+            symbol = ONE if bit == "1" else ZERO
+            repeated_bits.append(symbol * 3)
+    return _RECOVERY_PREFIX + SEPARATOR.join(repeated_bits)
+
+
+def _decode_with_repetition(encoded: str) -> bytes:
+    groups = encoded.split(SEPARATOR)
+    if not groups or any(len(group) not in (2, 3) for group in groups):
+        raise DecodeError("recovery payload contains a missing or malformed bit group")
+
+    bits = []
+    for group in groups:
+        zero_count = group.count(ZERO)
+        one_count = group.count(ONE)
+        if zero_count == one_count:
+            raise DecodeError("recovery payload has no majority bit value")
+        bits.append("0" if zero_count > one_count else "1")
+
+    if len(bits) % 8 != 0:
+        raise DecodeError("recovery payload does not contain complete bytes")
+    return bytes(int("".join(bits[index : index + 8]), 2) for index in range(0, len(bits), 8))
 
 
 def contains_codec_characters(text: str) -> bool:
