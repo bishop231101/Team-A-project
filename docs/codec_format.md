@@ -40,3 +40,16 @@ scheduled for later weeks.
 - `count_codec_characters()` reports each project character and the total. The
   platform-testing process can use those counts to calculate character-survival
   rates before and after a transfer.
+
+## Week 5 recovery mode
+
+The optional `recovery_mode=True` uses a simple three-copy repetition code for
+each encoded bit. It begins with a reserved three-separator prefix and places a
+separator between every repeated bit group. The decoder takes the majority bit
+from each group, so it can recover from one removed symbol in a three-copy
+group or one symbol changed from `0` to `1` (or the reverse).
+
+This mode has approximately three times the data-symbol overhead of the normal
+codec and does **not** recover when a separator is removed, when multiple
+symbols in one group are damaged, or when a platform removes all zero-width
+characters. Those cases produce a clear decoding error or checksum failure.
