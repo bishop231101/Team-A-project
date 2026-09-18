@@ -5,7 +5,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from code.zero_width_codec import (
+from src.zero_width_codec import (
     DecodeError,
     EmbedError,
     ONE,
