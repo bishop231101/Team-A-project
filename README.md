@@ -25,7 +25,7 @@ repository root with:
 python -m unittest discover -s tests -v
 ```
 
-The implementation is in `code/zero_width_codec.py`; the draft binary format
+The implementation is in `src/zero_width_codec.py`; the draft binary format
 is documented in `docs/codec_format.md`.
 
 For platform testing, `count_codec_characters(stego_text)` returns sent or
@@ -41,3 +41,24 @@ stego = embed_secret("Visible cover text", "secret message", recovery_mode=True)
 It can correct one removed or changed data symbol in a repeated bit group, but
 it is not a complete solution for platforms that remove separators or every
 zero-width character.
+
+## Week 6 stronger recovery mode
+
+Week 6 adds a configurable odd repetition factor. Five-copy encoding can
+correct as many as two removed or altered data symbols in each protected bit
+group while preserving compatibility with Week 5's three-copy messages:
+
+```python
+stego = embed_secret(
+    "Visible cover text",
+    "secret message",
+    recovery_mode=True,
+    repetition_factor=5,
+)
+```
+
+Run Henry's controlled 10%, 20%, and 30% corruption demonstration with:
+
+```powershell
+python tests/week6_testing/run_henry_recovery_demo.py
+```

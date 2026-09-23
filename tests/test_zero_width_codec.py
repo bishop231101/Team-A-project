@@ -128,3 +128,74 @@ class ZeroWidthCodecTests(unittest.TestCase):
     def test_recovery_mode_requires_boolean_flag(self) -> None:
         with self.assertRaises(TypeError):
             encode_secret("secret", recovery_mode=3)  # type: ignore[arg-type]
+
+    def test_five_copy_recovery_mode_round_trip(self) -> None:
+        stego = embed_secret(
+            "Cover",
+            "Week 6 stronger recovery",
+            recovery_mode=True,
+            repetition_factor=5,
+        )
+        self.assertEqual(extract_secret(stego), "Week 6 stronger recovery")
+
+    def test_five_copy_mode_recovers_two_removed_symbols_per_group(self) -> None:
+        encoded = encode_secret("two deletions", recovery_mode=True, repetition_factor=5)
+        groups = encoded[5:].split(SEPARATOR)
+        groups[0] = groups[0][2:]
+        damaged = (SEPARATOR * 5) + SEPARATOR.join(groups)
+        self.assertEqual(extract_secret(damaged), "two deletions")
+
+    def test_five_copy_mode_recovers_two_altered_symbols_per_group(self) -> None:
+        encoded = encode_secret("two alterations", recovery_mode=True, repetition_factor=5)
+        groups = encoded[5:].split(SEPARATOR)
+        replacement = ONE if groups[0][0] == ZERO else ZERO
+        groups[0] = replacement * 2 + groups[0][2:]
+        damaged = (SEPARATOR * 5) + SEPARATOR.join(groups)
+        self.assertEqual(extract_secret(damaged), "two alterations")
+
+    def test_five_copy_mode_recovers_planned_corruption_percentages(self) -> None:
+        secret = "Week 6 percentage recovery test"
+        for corruption_type in ("removal", "alteration"):
+            for percentage in (10, 20, 30):
+                with self.subTest(corruption_type=corruption_type, percentage=percentage):
+                    encoded = encode_secret(secret, recovery_mode=True, repetition_factor=5)
+                    damaged = self._damage_recovery_groups(encoded, percentage, corruption_type)
+                    self.assertEqual(extract_secret(damaged), secret)
+
+    def test_five_copy_mode_recovers_mixed_thirty_percent_corruption(self) -> None:
+        secret = "Week 6 mixed corruption"
+        encoded = encode_secret(secret, recovery_mode=True, repetition_factor=5)
+        damaged = self._damage_recovery_groups(encoded, 30, "mixed")
+        self.assertEqual(extract_secret(damaged), secret)
+
+    def test_repetition_factor_validation(self) -> None:
+        for invalid_factor in (1, 2, 4, 16):
+            with self.subTest(invalid_factor=invalid_factor):
+                with self.assertRaises(ValueError):
+                    encode_secret("secret", recovery_mode=True, repetition_factor=invalid_factor)
+        with self.assertRaises(TypeError):
+            encode_secret("secret", recovery_mode=True, repetition_factor=3.0)  # type: ignore[arg-type]
+
+    @staticmethod
+    def _damage_recovery_groups(encoded: str, percentage: int, corruption_type: str) -> str:
+        repetition_factor = 5
+        groups = [list(group) for group in encoded[repetition_factor:].split(SEPARATOR)]
+        target = round(sum(len(group) for group in groups) * percentage / 100)
+        damaged = 0
+        pass_number = 0
+        while damaged < target:
+            for group_index, group in enumerate(groups):
+                if damaged >= target:
+                    break
+                if pass_number >= 2:
+                    raise AssertionError("test corruption exceeds the five-copy correction limit")
+                if corruption_type == "removal" or (
+                corruption_type == "mixed" and (group_index + pass_number) % 2 == 0
+            ):
+                    group.pop(0)
+                else:
+                    position = len(group) - 1 - pass_number
+                    group[position] = ONE if group[position] == ZERO else ZERO
+                damaged += 1
+            pass_number += 1
+        return (SEPARATOR * repetition_factor) + SEPARATOR.join("".join(group) for group in groups)
