@@ -21,7 +21,9 @@ _MAGIC = b"ZWS1"
 _HEADER_LENGTH = 8  # Four magic bytes followed by a four-byte payload length.
 _CHECKSUM_LENGTH = 4
 _CODEC_CHARACTERS = frozenset((ZERO, ONE, SEPARATOR))
-_RECOVERY_PREFIX = SEPARATOR * 3
+_DEFAULT_REPETITION_FACTOR = 3
+_MIN_REPETITION_FACTOR = 3
+_MAX_REPETITION_FACTOR = 15
 
 
 class DecodeError(ValueError):
@@ -32,29 +34,41 @@ class EmbedError(ValueError):
     """Raised when a cover text cannot safely receive another payload."""
 
 
-def encode_secret(secret: str, recovery_mode: bool = False) -> str:
+def encode_secret(
+    secret: str,
+    recovery_mode: bool = False,
+    repetition_factor: int = _DEFAULT_REPETITION_FACTOR,
+) -> str:
     """Encode ``secret`` into an invisible, self-validating frame.
 
     The frame is UTF-8 payload bytes prefixed with ``ZWS1`` and a big-endian
     payload length, then suffixed with a CRC-32 checksum. The default mode
     encodes each byte as eight zero-width bit characters. ``recovery_mode``
-    uses three copies of every bit so it can recover from one removed or
-    altered data symbol in a group.
+    repeats every bit ``repetition_factor`` times and uses majority voting.
+    The factor must be an odd integer from 3 through 15. The default remains
+    three for compatibility with Week 5; Week 6 testing uses five copies to
+    recover as many as two removed or altered data symbols in each group.
     """
     if not isinstance(secret, str):
         raise TypeError("secret must be a string")
     if not isinstance(recovery_mode, bool):
         raise TypeError("recovery_mode must be a boolean")
+    _validate_repetition_factor(repetition_factor)
 
     payload = secret.encode("utf-8")
     frame = _MAGIC + struct.pack(">I", len(payload)) + payload
     frame += struct.pack(">I", zlib.crc32(frame) & 0xFFFFFFFF)
     if recovery_mode:
-        return _encode_with_repetition(frame)
+        return _encode_with_repetition(frame, repetition_factor)
     return SEPARATOR.join(_encode_byte(value) for value in frame)
 
 
-def embed_secret(cover_text: str, secret: str, recovery_mode: bool = False) -> str:
+def embed_secret(
+    cover_text: str,
+    secret: str,
+    recovery_mode: bool = False,
+    repetition_factor: int = _DEFAULT_REPETITION_FACTOR,
+) -> str:
     """Append an encoded secret to visible ``cover_text``.
 
     Removing the codec's three invisible characters from the returned string
@@ -67,7 +81,11 @@ def embed_secret(cover_text: str, secret: str, recovery_mode: bool = False) -> s
             "cover text already contains project zero-width characters; "
             "repeated embedding is not supported"
         )
-    return cover_text + encode_secret(secret, recovery_mode=recovery_mode)
+    return cover_text + encode_secret(
+        secret,
+        recovery_mode=recovery_mode,
+        repetition_factor=repetition_factor,
+    )
 
 
 def extract_secret(stego_text: str) -> str:
@@ -84,8 +102,9 @@ def extract_secret(stego_text: str) -> str:
     if not encoded:
         raise DecodeError("no zero-width payload was found")
 
-    if encoded.startswith(_RECOVERY_PREFIX):
-        frame = _decode_with_repetition(encoded[len(_RECOVERY_PREFIX) :])
+    repetition_factor = _repetition_factor_from_prefix(encoded)
+    if repetition_factor is not None:
+        frame = _decode_with_repetition(encoded[repetition_factor:], repetition_factor)
     else:
         frame = _decode_standard(encoded)
 
@@ -127,18 +146,41 @@ def _decode_frame(frame: bytes) -> str:
         raise DecodeError("payload is not valid UTF-8") from error
 
 
-def _encode_with_repetition(frame: bytes) -> str:
+def _validate_repetition_factor(repetition_factor: int) -> None:
+    if isinstance(repetition_factor, bool) or not isinstance(repetition_factor, int):
+        raise TypeError("repetition_factor must be an integer")
+    if not _MIN_REPETITION_FACTOR <= repetition_factor <= _MAX_REPETITION_FACTOR:
+        raise ValueError("repetition_factor must be between 3 and 15")
+    if repetition_factor % 2 == 0:
+        raise ValueError("repetition_factor must be odd")
+
+
+def _repetition_factor_from_prefix(encoded: str) -> int | None:
+    prefix_length = len(encoded) - len(encoded.lstrip(SEPARATOR))
+    if prefix_length < _MIN_REPETITION_FACTOR:
+        return None
+    try:
+        _validate_repetition_factor(prefix_length)
+    except (TypeError, ValueError) as error:
+        raise DecodeError("recovery payload has an invalid repetition prefix") from error
+    return prefix_length
+
+
+def _encode_with_repetition(frame: bytes, repetition_factor: int) -> str:
     repeated_bits = []
     for value in frame:
         for bit in f"{value:08b}":
             symbol = ONE if bit == "1" else ZERO
-            repeated_bits.append(symbol * 3)
-    return _RECOVERY_PREFIX + SEPARATOR.join(repeated_bits)
+            repeated_bits.append(symbol * repetition_factor)
+    return (SEPARATOR * repetition_factor) + SEPARATOR.join(repeated_bits)
 
 
-def _decode_with_repetition(encoded: str) -> bytes:
+def _decode_with_repetition(encoded: str, repetition_factor: int) -> bytes:
     groups = encoded.split(SEPARATOR)
-    if not groups or any(len(group) not in (2, 3) for group in groups):
+    minimum_group_length = (repetition_factor // 2) + 1
+    if not groups or any(
+        not minimum_group_length <= len(group) <= repetition_factor for group in groups
+    ):
         raise DecodeError("recovery payload contains a missing or malformed bit group")
 
     bits = []
