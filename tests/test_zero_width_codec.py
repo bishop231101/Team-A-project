@@ -168,6 +168,40 @@ class ZeroWidthCodecTests(unittest.TestCase):
         damaged = self._damage_recovery_groups(encoded, 30, "mixed")
         self.assertEqual(extract_secret(damaged), secret)
 
+    def test_five_copy_mode_recovers_through_forty_percent_corruption(self) -> None:
+        secret = "Week 7 recovery boundary"
+        for corruption_type in ("removal", "alteration", "mixed"):
+            for percentage in (35, 40):
+                with self.subTest(corruption_type=corruption_type, percentage=percentage):
+                    encoded = encode_secret(secret, recovery_mode=True, repetition_factor=5)
+                    damaged = self._damage_recovery_groups(encoded, percentage, corruption_type)
+                    self.assertEqual(extract_secret(damaged), secret)
+
+    def test_five_copy_mode_rejects_corruption_above_forty_percent(self) -> None:
+        secret = "Week 7 safe failure boundary"
+        for corruption_type in ("removal", "alteration", "mixed"):
+            for percentage in (45, 50):
+                with self.subTest(corruption_type=corruption_type, percentage=percentage):
+                    encoded = encode_secret(secret, recovery_mode=True, repetition_factor=5)
+                    damaged = self._damage_recovery_groups(encoded, percentage, corruption_type)
+                    with self.assertRaises(DecodeError):
+                        extract_secret(damaged)
+
+    def test_five_copy_mode_rejects_three_errors_in_one_group(self) -> None:
+        secret = "Week 7 concentrated damage"
+        for corruption_type in ("removal", "alteration"):
+            with self.subTest(corruption_type=corruption_type):
+                encoded = encode_secret(secret, recovery_mode=True, repetition_factor=5)
+                groups = encoded[5:].split(SEPARATOR)
+                if corruption_type == "removal":
+                    groups[0] = groups[0][3:]
+                else:
+                    replacement = ONE if groups[0][0] == ZERO else ZERO
+                    groups[0] = replacement * 3 + groups[0][3:]
+                damaged = (SEPARATOR * 5) + SEPARATOR.join(groups)
+                with self.assertRaises(DecodeError):
+                    extract_secret(damaged)
+
     def test_repetition_factor_validation(self) -> None:
         for invalid_factor in (1, 2, 4, 16):
             with self.subTest(invalid_factor=invalid_factor):
@@ -187,8 +221,8 @@ class ZeroWidthCodecTests(unittest.TestCase):
             for group_index, group in enumerate(groups):
                 if damaged >= target:
                     break
-                if pass_number >= 2:
-                    raise AssertionError("test corruption exceeds the five-copy correction limit")
+                if pass_number >= repetition_factor:
+                    raise AssertionError("test corruption exceeds the available data symbols")
                 if corruption_type == "removal" or (
                 corruption_type == "mixed" and (group_index + pass_number) % 2 == 0
             ):

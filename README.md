@@ -62,3 +62,16 @@ Run Henry's controlled 10%, 20%, and 30% corruption demonstration with:
 ```powershell
 python tests/week6_testing/run_henry_recovery_demo.py
 ```
+
+## Week 7 recovery-limit testing
+
+Week 7 tests the five-copy method at 35%, 40%, 45%, and 50% distributed
+data-symbol corruption. Run Henry's boundary analysis with:
+
+```powershell
+python tests/week7_testing/run_henry_recovery_limit_tests.py
+```
+
+The controlled results establish 40% as the maximum recoverable level. At 45%
+and 50%, the decoder rejects the damaged payload instead of returning an
+unverified secret.
