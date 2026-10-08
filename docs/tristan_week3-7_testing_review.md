@@ -29,6 +29,7 @@ Week 3 tested the zero-width codec in a local Python environment on branch `henr
 The Week 3 test messages covered basic text, course/team identifiers, spaces, numbers, a longer message, multiple consecutive spaces, special characters, and mixed content.
 
 Important observation: Test 6 lists the original message as `This is a longer test message for Week 3.` but the decoded message as `This is a longer test message for Week 3` without the period, while the result is marked PASS. This should be verified before using the row as evidence of exact matching.
+   * discrepancy was investigated and the PASS result was retained based on my verification.
 
 ### Week 4: Gmail, Discord, Microsoft Word
 
@@ -279,17 +280,41 @@ These automated-test counts should be treated as documented but inconsistent unl
 ## 7. Data Quality and Items to Verify
 
 - Week 3 Test 6 marks PASS even though the decoded message omits the final period shown in the original message.
+   - Week 3 Test 6: Verified. The missing final period appears to have resulted from accidentally omitting the period when copying the message into the data table. The decoded result therefore matched the message that was actually encoded, so the PASS result is not considered a codec failure.
+
 - Week 4 Gmail and Microsoft Word have identical per-test survival counts and averages. This may be accurate, but it should be manually verified because two different platforms showing identical counts is notable.
+   - Week 4 Gmail/Microsoft Word results: Verified. The identical survival counts were also noticed during the original week 4 data collection. Each platform's test results were entered individually, one test at a time, one platform at a time, so there is no indication that the data was accidentally duplicated. The matching results are retained as documented.
+
 - Week 4 Gmail Test 5 error text says `payload contains incomplete or malformed byte block`, while most other rows say `payload contains an incomplete or malformed byte block`. This is terminology inconsistency, not necessarily a data issue.
+   - Week 4 Gmail Test 5 error wording: Verified. The missing word `an` appears to be a transcription omission made during the original data entry. The intended error message was `payload contains an incomplete or malformed byte block.` This does not affect the recorded testing results or conclusions. No data correction is needed.
+
 - Week 4 file path `week4_testing/screenshots/gmail/test_02_compose.png.png` has a duplicated `.png` extension.
+   - Week 4 Gmail Test 2 Screenshot filename: Verified. The screenshot itself is correct. The duplicated `.png` extension (`test_02_compose.png.png`) appears to have resulted from entering the `.png` extension when saving while the file system also appended the extension automatically. This is only a filename issue and does not affect the testing data or results.
+
 - Week 5 recovery uses "survival rate" for character count retained, but alteration scenarios can preserve 100.00% of zero-width characters while corrupting payload meaning. The Midterm Report should distinguish survival from decode success.
+   - Week 5 recovery terminology: Verified. "Survival rate" measures the percentage of zero-width characters that remained present after the corruption scenario. It does not by itself indicate successful message recovery. In particular, alteration tests can have 100% character survival while still producing a failure on the decode result because the surviving characters may have been changed. Therefore, survival rate and decode success should be reported as separate measures.
+
 - Week 6 automated-test counts differ by document: 19 tests/108 subtests in `week6_recovery_testing_results.md` versus 25 tests/118 subtests in Henry's Week 6 document.
+   - Week 6 automated-test counts: Verified. The difference is due to the testing of two different versions of the test suite. Ifeanyi had tested the existing version of the test suite, which included 19 tests and 108 subtests. While Henry had tested his new improved version of the test suite, which included 25 tests and 118 subtests. Both counts are valid for their respective test suite versions and should not be treated as contradictory totals.
+
 - Week 7 automated-test counts differ by document: 25 tests/118 subtests in Ifeanyi's Week 7 document versus 28 tests/132 subtests in Henry's Week 7 document.
+   - Week 7 automated-test counts: Verified. The difference is due to testing different versions/stages of the Week 7 automated suite. Ifeanyi ran the existing Week 7 suite at the beginning of the week to verify that the project remained stable before additional corruption was applied, resulting in the baseline 25 tests, 118 subtests. Henry's documentation reflects the expanded test suite used later in week 7, resulting in 28 tests/132 subtests. Both counts are valid for their respective testing stages and should not be treated as contradictory totals.
+
 - Week 6 Tristan results list six controlled scenarios, while Henry's Week 6 controlled table includes seven scenarios because it includes 30% alteration in addition to Tristan's 10% and 20% alteration scenarios.
+   - Week 6 controlled recovery scenarios: Verified. Tristan's Week 6 testing included six controlled recovery scenarios, while Henry's testing included seven scenarios because his test set added a 30% alteration case. The difference reflects the different scenario coverage rather than missing or duplicated data. The results are retained as documented.
+
 - Week 7 Tristan and Henry survival rates for similar 40%/50% scenarios are close but not always identical, likely due to different messages or scenario scripts. Do not merge them without noting source differences.
+   - Week 7 recovery-test survival rates: Verified. Tristan's and Henry's results for similar corruption scenarios show small differences in survival rates. The tests used different messages and/or test-script conditions, so the results should be treated as separate controlled tests rather than expected to match exactly. No evidence was found indicating an error in either dataset, so both sets of results are retained as documented.
+
 - Platform versions, browser versions, and exact platform workflows are not consistently documented.
+   - Platform/browser version documentation: Verified as a documentation limitation. Platform and browser versions, along with some exact copy/paste workflow details were not recorded consistently across all week 3-7 testing. The existing testing results are retained, but this limits the level of detail available for reproducing some earlier platform-specific tests.
+
 - Recovery tests generally preserve structural separators and use controlled/distributed corruption. The Midterm Report should avoid implying the same results apply to uncontrolled real-world platform transformations.
+   - Controlled corruption methodology: Verified as testing limitation. The week 6-7 recovery tests used controlled/distributed corruption patterns rather than uncontrolled real-world transformations. Therefore, the observed recovery thresholds apply only to the specific corruption scenarios tested and should not be interpreted as a universal maximum corruption tolerance.
+
 - Screenshots are referenced as evidence, but this review did not visually inspect each screenshot's contents.
+   - Screenshot evidence review: Verified as review limitation. The week 3-7 documentation references screenshots as supporting evidence, but not every individual screenshot was visually inspected during this review. The screenshots remain documented as testing evidence, with important evidence to be visually checked before inclusion in the final reports.
+
 
 ## 8. Midterm Report Evidence Candidates
 
@@ -360,7 +385,7 @@ Useful statistics/tables:
 
 ## 9. Key Takeaways for Week 8
 
-- Week 3 establishes a local codec baseline with 9/9 documented passes, but Test 6 should be checked because the decoded text appears to omit punctuation.
+- Week 3 establishes a local codec baseline with 9/9 documented passes
 - Week 4 shows platform compatibility is uneven: Discord preserved and decoded all payloads, while Gmail and Microsoft Word preserved only about 45.08% on average and failed every decode.
 - Week 5 platform testing expands compatibility evidence with Outlook, Telegram Web, and Notepad++ all passing 9/9 tests at 100.00% survival.
 - Week 5 recovery testing is the baseline for corruption behavior: the original codec failed every documented recovery scenario.
@@ -368,4 +393,4 @@ Useful statistics/tables:
 - Week 7 identifies the controlled recovery boundary more clearly: recovery succeeded through documented 40% distributed damage but failed or was rejected at higher levels such as 45%, 50%, and 60%, depending on the source scenario.
 - Survival rate must be reported separately from decode success. Alteration tests can have 100.00% survival while still failing to decode.
 - The Midterm Report should describe the recovery results as controlled evidence, not universal robustness. The tests preserve structural separators and distribute corruption; they do not cover all real-world platform damage patterns.
-- Before using final numbers, manually verify the punctuation issue, identical Gmail/Word survival values, automated-test count discrepancies, and screenshot evidence for the most important claims.
+- Before finalizing the report, verify screenshot evidence for the most important claims.
