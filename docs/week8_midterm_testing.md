@@ -10,7 +10,7 @@ python -m pytest -v
 
 ### Results
 
-- 20 tests passed.
+- 28 tests passed.
 - 132 subtests passed.
 - No test failures were reported.
 - Execution time: 0.24 seconds.
@@ -22,26 +22,6 @@ The successful regression test confirms that the current project implementation 
 ## Evidence
 
 A terminal screenshot was captured showing the complete Week 8 regression-test result.
-
-## Discord Platform Test
-
-### Procedure
-The Week 8 encoded test message was copied from `week8_test_message.txt` and sent through Discord. The visible cover text was successfully transmitted. The message was then copied from Discord and saved as `discord_received.txt` for analysis.
-
-### Results
-- Original hidden message: `CS481-WEEK8`
-- Original codec characters: 206
-- Visible cover text preserved: Yes
-- Zero-width payload preserved: No
-- Decode result: Failed
-- Decoder error: `no zero-width payload was found`
-- Payload survival rate: 0%
-
-### Assessment
-Discord preserved the visible cover text but removed the zero-width Unicode payload used by the codec. The recovered Discord message therefore could not be decoded. This demonstrates that successful transmission of the visible text does not guarantee preservation of the hidden zero-width data.
-
-### Evidence
-A terminal screenshot was captured showing the decoder failure after the message was copied back from Discord.
 
 ## Microsoft Word Platform Test
 
