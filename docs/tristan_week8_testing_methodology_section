@@ -1,0 +1,191 @@
+# Tristan Week 8
+# Testing Methodology
+
+## 1. Testing Purpose
+
+The testing was conducted to evaluate the reliability and robustness of the project's zero-width Unicode steganography system. Testing focused on two primary areas:
+
+* Platform compatibility and preservation of zero-width characters.
+* Recovery performance when the encoded payload was subjected to controlled corruption.
+
+- Platform compatibility and preservation of the zero-width characters is an important item to test over the course of this project as it represents real world platform behavior. The results of which are important to see how our encoder and decoder interacts with said uncontrolled corruption values.
+- Recovery performance when the encoded payload is subjected to controlled corruption is important because it allows the team to see the limits of the recovery system in a controlled and repeatable environment.
+---
+
+## 2. Platform Compatibility Testing
+
+### 2.1 Purpose
+
+The platform compatibility tests evaluated whether encoded zero-width Unicode characters remained intact after being transferred through different applications or platforms and whether the hidden message could still be decoded successfully.
+
+### 2.2 Platforms Tested
+
+Over Weeks 4-5 we tested 6 of the 8 candidate platforms the team chose/listed in the `platform_testing.md` document.
+
+The testing included the following platforms:
+
+* Gmail
+* Discord
+* Microsoft Word
+* Microsoft Outlook
+* Telegram Web
+* Notepad++
+
+Moving forward there are still two platforms left to test based on the teams initial plan:
+* WeChat
+* Browser Console
+
+At the end of Week 5, two candidate platforms remained untested based on the teams initial candidate list: WeChat and Browser Console.
+
+Browser console was subsequently tested during Week 8, while WeChat remains untested.
+
+*important note, browser/platform versions were not consistently recorded for all earlier tests*
+
+### 2.3 Platform Testing Procedure
+
+The general testing procedure was:
+
+1. Begin with a known plaintext message.
+2. Encode the message using the project's zero-width Unicode steganography system.
+3. Transfer or paste the encoded text through the platform being tested.
+4. Retrieve the resulting text.
+5. Examine the recovered zero-width characters.
+6. Attempt to decode the hidden message.
+7. Compare the decoded message with the original plaintext.
+8. Record the results and platform behavior.
+
+### 2.4 Platform Testing Measurements
+
+The following information was recorded for platform tests:
+
+* Platform/application
+* Test number
+* Original message
+* Number of encoded zero-width characters
+* Number of zero-width characters recovered
+* Number of characters lost or corrupted
+* Survival rate
+* Decode success or failure
+* If decoding was a failure, what was the error output
+* Notes about platform behavior
+
+---
+
+## 3. Recovery and Corruption Testing
+
+### 3.1 Purpose
+
+Recovery testing was used to evaluate how the improved recovery system performed when the encoded zero-width payload was intentionally subjected to controlled corruption.
+
+### 3.2 Corruption Scenarios
+
+The testing included controlled scenarios involving:
+
+* Zero-width character removal
+* Zero-width character alteration
+* Mixed removal and alteration
+
+In particular the following levels of corruption were applied:
+| Corruption Type | Corruption Levels Tested |
+|---|---|
+| Removal | 10%, 20%, 30%, 40%, 50%, 60% |
+| Alteration | 10%, 20%, 30%, 40%, 50% |
+| Mixed Removal + Alteration | Approximately 20%, 30%, 40% |
+
+### 3.3 Recovery Testing Procedure
+
+The general recovery-testing procedure was:
+
+1. Encode a known plaintext message.
+2. Apply a controlled corruption scenario to the encoded payload.
+3. Pass the corrupted payload to the recovery/decoder system.
+4. Record the number of characters remaining and/or altered.
+5. Attempt to recover the original hidden message.
+6. Record whether decoding succeeded or failed.
+7. Compare the recovered message with the original plaintext.
+8. Record the results and any decoder error messages.
+
+### 3.4 Recovery Testing Measurements
+
+Recovery tests recorded measurements including:
+
+* Original message
+* Type of corruption
+* Target corruption and Actual corruption percentages
+* Original encoded payload size
+* Number of characters remaining
+* Number of characters removed
+* Number of characters altered
+* Survival rate
+* Decode success or failure
+* Recovered message
+* Whether the recovered message matched the original
+* Decoder error information when recovery failed
+
+---
+
+## 4. Testing Metrics
+
+### 4.1 Survival Rate
+
+For this project, survival rate refers to the percentage of encoded zero-width characters that remained present after a test or corruption scenario.
+
+Survival rate was calculated as:
+
+$$
+\text{Survival Rate} =
+\frac{\text{Number of Zero-Width Characters Remaining}}
+{\text{Original Number of Zero-Width Characters}}
+\times 100
+$$
+
+[Important clarification: survival rate does not necessarily indicate successful message recovery.]
+
+### 4.2 Decode Success
+
+Decode success was treated as a separate measurement from character survival. A test was considered successfully recovered when the decoder was able to reconstruct the hidden message and the recovered message matched the original plaintext.
+
+### 4.3 Controlled Corruption Results
+
+The recovery results represent performance under the specific controlled corruption scenarios tested. They should not be interpreted as a universal maximum corruption tolerance for arbitrary real-world corruption or platform transformations.
+
+---
+
+## 5. Evidence Collection
+
+Testing evidence was collected through:
+
+* Test-result files
+* Terminal/output records
+* Screenshots
+* Compatibility tables
+* Recovery statistics
+* Weekly testing documentation
+
+Each week's testing includes relevant documentation and screenshot evidence for the testing performed during that week. Testing results and supporting evidence are organized within the repository according to the project's weekly testing structure.
+
+For example, the Week 7 testing documentation and screenshot evidence can currently be found under:
+
+`tests/week7_testing/`
+
+with screenshot evidence organized within the corresponding screenshots subfolder.
+
+The repository's earlier Week 3–5 testing folders are currently located at the repository root, but these folders may be reorganized as part of the team's ongoing repository cleanup. Therefore, this methodology focuses on the weekly organization of testing evidence rather than relying on fixed paths for earlier testing files.
+
+---
+
+## 6. Testing Limitations
+
+Several limitations were identified during the testing process through Week 3-7:
+
+* Platform and browser/application versions were not recorded consistently for all earlier tests.
+* Some earlier testing workflows were not documented at the same level of detail.
+* Recovery tests used controlled/distributed corruption rather than uncontrolled real-world transformations.
+* Survival rate alone does not indicate whether a hidden message can be successfully decoded.
+* Earlier screenshot evidence was collected, but not every screenshot was independently reviewed during the Week 8 review.
+
+---
+
+## 7. Summary of Methodology
+
+Overall, the testing methodology for this project combined compatibility testing with controlled recovery/corruption testing. The platform tests evaluated whether different applications and environments would preserve the encoded zero-width payload, while the recovery tests evaluated the behavior of the improved recovery system under controlled corruption scenarios. Survival rate and decode success were recorded as separate measurements to distinguish payload preservation from successful message recovery. 
