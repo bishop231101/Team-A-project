@@ -1,9 +1,8 @@
-"""A small, deterministic zero-width Unicode steganography codec.
+"""A deterministic zero-width Unicode steganography codec.
 
-This Week 3 prototype appends an encoded frame to ordinary cover text.  The
-invisible frame uses the character mapping selected by Team A and includes a
-version marker, payload length, and CRC-32 checksum so damaged text is not
-silently treated as a valid secret.
+The codec appends a self-validating invisible frame to ordinary cover text.
+It supports the original byte-oriented format and an optional configurable
+repetition mode that uses majority voting to recover limited symbol damage.
 """
 
 from __future__ import annotations

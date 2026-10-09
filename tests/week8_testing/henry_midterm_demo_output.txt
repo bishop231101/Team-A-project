@@ -1,0 +1,14 @@
+TEAM A - WEEK 8 MIDTERM PROTOTYPE DEMONSTRATION
+==============================================================
+Visible cover: Team A midterm prototype demonstration.
+Synthetic secret: CS481-MIDTERM
+Standard codec characters: 224
+Five-copy codec characters: 1204
+1. Standard encode/decode: PASS
+2. Visible cover unchanged: PASS
+3. Five-copy encode/decode: PASS
+4. Recovery after 40% alteration: PASS
+5. Safe rejection after 45% alteration: PASS
+   Decoder response: payload has an unrecognized format marker
+All demonstration checks passed: True
+Local execution time: 0.004 seconds

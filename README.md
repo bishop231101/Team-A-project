@@ -75,3 +75,15 @@ python tests/week7_testing/run_henry_recovery_limit_tests.py
 The controlled results establish 40% as the maximum recoverable level. At 45%
 and 50%, the decoder rejects the damaged payload instead of returning an
 unverified secret.
+
+## Week 8 midterm demonstration
+
+Run Henry's local, network-independent prototype demonstration with:
+
+```powershell
+python tests/week8_testing/run_henry_midterm_demo.py
+```
+
+The demo verifies normal encoding and decoding, visible-cover preservation,
+five-copy recovery at the supported 40% corruption limit, and safe rejection
+when corruption exceeds that limit.
