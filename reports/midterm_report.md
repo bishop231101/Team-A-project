@@ -63,6 +63,7 @@ The team tested the boundary of five-copy majority recovery. Ifeanyi's group-lev
 **Figure 2 — Week 7 five-copy recovery boundary.** The test distinguishes recoverable one- and two-symbol group corruption from an unrecoverable three-symbol group.
 
 ![Week 7 corruption test screenshot](../tests/week7_testing/screenshots/ifeanyi/week7_corruption_tests.png)
+Note: The FAIL result represents an expected decoding failure when three of five symbols are corrupted. This demonstrates the recovery limit and does not indicate a failure of the automated regression suite.
 
 ### 3.5 Week 8 regression, platform comparison, and prototype
 
