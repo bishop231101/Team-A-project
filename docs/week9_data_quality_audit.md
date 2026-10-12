@@ -78,3 +78,48 @@ No Week 9 production dataset has been audited at the time this document was crea
 **Current verified progress:** Pending review of production trial logs.
 
 **Next Action:** Review Tristan's first production data batch and record validation findings.
+
+## 8. Methodology Review and Production Data Requirements
+
+**Review Date:** October 12, 2026  
+**Reviewed By:** Ifeanyi  
+**Reference:** Tristan's Week 8 Testing Methodology
+
+### Previous Testing Methodology
+
+The team previously evaluated platform compatibility and recovery performance under controlled corruption conditions.
+
+Testing recorded zero-width characters sent and recovered, character survival rates, decoding outcomes, and platform behavior.
+
+### Data Quality Improvements for Week 9
+
+The following requirements will be checked during the production data audit:
+
+- [ ] Record the platform and application/browser version.
+- [ ] Record the exact operation performed during each trial.
+- [ ] Use a unique identifier for each trial.
+- [ ] Record the test message or approved corpus reference.
+- [ ] Verify character counts and survival-rate calculations.
+- [ ] Record exact-match decoding success separately from survival rate.
+- [ ] Document decoder errors and unexpected platform behavior.
+- [ ] Preserve supporting evidence for each trial.
+- [ ] Check for missing fields, duplicate trials, and inconsistent results.
+- [ ] Confirm that the approved frozen protocol was followed.
+
+### Production Dataset Verification
+
+**Frozen testing protocol:** Awaiting confirmation of the approved Week 9 version.
+
+**Balanced test corpus:** Awaiting confirmation of the approved corpus and its test-case distribution.
+
+**Total planned production trials:** Pending.
+
+**Completed production trials:** Pending verification.
+
+**Week 9 milestone:** At least 50% of the planned production dataset completed.
+
+### Audit Status
+
+The Week 8 testing methodology has been reviewed to identify required measurements and previous documentation limitations.
+
+The Week 9 production dataset has not yet been independently validated. Audit findings and completion percentages will be updated after Tristan provides the production trial logs.
