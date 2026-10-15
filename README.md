@@ -87,3 +87,24 @@ python tests/week8_testing/run_henry_midterm_demo.py
 The demo verifies normal encoding and decoding, visible-cover preservation,
 five-copy recovery at the supported 40% corruption limit, and safe rejection
 when corruption exceeds that limit.
+
+## Week 9 production-test validation
+
+Henry's Week 9 verification checks the frozen eight-message corpus against the
+baseline codec configuration:
+
+```powershell
+python tests/week9_testing/verify_henry_codec.py
+```
+
+To analyze a retrieved platform sample, save the original encoded text and the
+retrieved text as UTF-8 files, then run:
+
+```powershell
+python tests/week9_testing/analyze_recovered_sequence.py --sent sent.txt --retrieved retrieved.txt --secret "original secret"
+```
+
+The analysis reports count-based codec-character retention, decoder behavior,
+exact message recovery, and a stable failure category. Character retention is
+`retrieved codec-character total / sent codec-character total × 100`; it is not
+a sequence-match measurement.
