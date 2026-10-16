@@ -19,8 +19,8 @@ Each production trial will be reviewed for the following:
 - [ ] Original message or approved test-case reference is recorded.
 - [ ] Number of zero-width characters sent is recorded.
 - [ ] Number of zero-width characters recovered is recorded.
-- [ ] Number of characters lost or corrupted is recorded.
-- [ ] Character survival rate is calculated correctly.
+- [ ] Number of codec characters removed or added is recorded.
+- [ ] Count-based character retention is calculated correctly.
 - [ ] Exact-match decoding success or failure is recorded.
 - [ ] Platform behavior and anomalies are documented.
 - [ ] Duplicate records are identified.
@@ -31,7 +31,11 @@ Each production trial will be reviewed for the following:
 
 - Character counts must be nonnegative integers.
 - The number of recovered characters cannot exceed the number sent without an explanation of inserted or duplicated characters.
-- Survival rate = (matching zero-width characters recovered / zero-width characters sent) × 100.
+- Count-based character retention = (retrieved codec-character total / sent
+  codec-character total) × 100.
+- Count-based retention does not prove that the retrieved characters match the
+  original sequence. Substitutions, insertions, and ordering changes require
+  separate decoder and exact-match results.
 - Exact-match recovery must be recorded separately from character survival.
 - Any unexpected result must be documented for further review.
 - Zero-length encoded trials require separate handling because the survival-rate denominator would be zero.

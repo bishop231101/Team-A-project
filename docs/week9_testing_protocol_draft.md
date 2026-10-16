@@ -26,6 +26,14 @@ Baseline configuration:
 Henry must confirm the codec commit before production testing begins.
 Record that commit in every trial.
 
+Henry technical confirmation (October 15, 2026):
+- Codec implementation commit: `4134cec1d23be3ae7069440a3718e09069922bdc`
+- Verification checkout: `aa37928f2f026a4d6aa2e48d1c16cb25db40d40e`
+- Pre-change main baseline: 28 tests and 132 subtests passed.
+- Week 9 validation branch: 33 tests and 132 subtests passed.
+- All eight approved corpus messages passed exact local baseline round trips.
+- Detailed evidence: `docs/week9_henry_codec_confirmation.md`
+
 Recovery-mode experiments are separate from this baseline dataset.
 They must record recovery_mode and repetition_factor explicitly.
 
@@ -156,8 +164,9 @@ Retain platform failures as results. Log diagnostic reruns separately.
 Character retention percentage:
 retrieved total / sent total × 100.
 
-This is a count-based retention measurement. It cannot independently
-identify substitutions, insertions, or which original symbols survived.
+This is a count-based retention measurement, not a sequence-match metric. It
+cannot independently identify substitutions, insertions, reordering, or which
+original symbols survived.
 Flag values above 100% for investigation; do not silently cap them.
 
 Exact recovery:

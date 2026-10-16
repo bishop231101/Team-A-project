@@ -1,0 +1,50 @@
+[
+  {
+    "id": "SA01",
+    "category": "short_ascii",
+    "text": "Hello",
+    "sha256": "185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969"
+  },
+  {
+    "id": "SA02",
+    "category": "short_ascii",
+    "text": "Test 123!",
+    "sha256": "ceeabdceb05efa92ac67384d6a1cc84a88e2ba5379f0c03b70f1ff944c61114b"
+  },
+  {
+    "id": "SU01",
+    "category": "short_unicode",
+    "text": "Café",
+    "sha256": "73473dcc12b763085904a5279d048c4d5b3b008c46f1f32443b99de04aa83a14"
+  },
+  {
+    "id": "SU02",
+    "category": "short_unicode",
+    "text": "你好",
+    "sha256": "670d9743542cae3ea7ebe36af56bd53648b0a1126162e78d81a32934a711302e"
+  },
+  {
+    "id": "LA01",
+    "category": "long_ascii",
+    "text": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+    "sha256": "d3080192cb03a076286e7b1fea0bd4bea7789c912acec5df2383fa80ad458781"
+  },
+  {
+    "id": "LA02",
+    "category": "long_ascii",
+    "text": "Team 1 checks message recovery, punctuation, and numbers 12345. Team 1 checks message recovery, punctuation, and numbers 12345. Team 1 checks message recovery, punctuation, and numbers 12345. Team 1 checks message recovery, punctuation, and numbers 12345. ",
+    "sha256": "fe5499973f9271fbb15e7019c4dd49ac3f24f6b008777494a74a5b072b14d763"
+  },
+  {
+    "id": "LU01",
+    "category": "long_unicode",
+    "text": "Café déjà vu — résumé. Café déjà vu — résumé. Café déjà vu — résumé. Café déjà vu — résumé. ",
+    "sha256": "cbd3d6146c230f0492d567fb4e83c4d27a24738f8367b1a7c8e117037dbdb017"
+  },
+  {
+    "id": "LU02",
+    "category": "long_unicode",
+    "text": "你好，世界！こんにちは。 你好，世界！こんにちは。 你好，世界！こんにちは。 你好，世界！こんにちは。 ",
+    "sha256": "7e88f26ea238c1009adc80cba6fc2eb42baa13b20c771751ebe8a0ef3e0219cd"
+  }
+]
