@@ -159,10 +159,7 @@ in project progress and assignment submission.
 
 ### Audit Conclusion
 
-The production testing scope has been authorized
-by the team leader. However, the protocol is not
-fully frozen until the exact eight platform-operation
-assignments are documented.
+The revised production testing scope has been authorized by the team leader. However, the protocol is not fully frozen until the seven approved platform-operation combinations and their exact workflows are documented and verified.
 
 No unverified production trials are counted as
 completed. The 50% milestone remains a target
@@ -170,3 +167,29 @@ until supporting trial records are reviewed.
 
 All future findings will be supported by recorded
 measurements, decoding results, and evidence.
+
+### Revised Production Testing Scope
+
+**Decision:** The team leader approved a revised production testing scope following the Week 9 team meeting.
+
+**Approved platform-operation combinations:** 7
+
+**Test corpus:** 8 approved messages
+
+**Repetitions per message:** 3
+
+**Total planned production trials:** 168 (7 × 8 × 3)
+
+**Week 9 milestone:** Complete at least 50% of the planned production trials (84 trials).
+
+**WeChat status:** Excluded from the current production scope pending access verification.
+
+**Protocol reference:** `docs/week9_testing_protocol_draft.md`, Section 11.
+
+### Verification Status
+
+The revised testing scope has been authorized by the team leader. Final platform workflows and assignments still require verification before production testing begins.
+
+No production trials are reported as completed without supporting trial logs and evidence.
+
+The audit will be updated once Tristan provides the production testing records.
