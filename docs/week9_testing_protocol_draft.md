@@ -189,3 +189,48 @@ Then mark version 1.0 frozen and link it from the Week 9 audit.
 
 Until confirmation, the audit remains pending.
 Changes after freezing require a new version and an explanation.
+
+## 10. Team Leader Decision and Protocol Authorization
+
+**Date:** October 17, 2026
+**Authorized by:** Ifeanyi Emeka, Team Leader
+**Protocol Version:** 1.0
+
+Following the Week 9 team meeting and review of the
+proposed testing methodology, the team leader has
+authorized the production testing plan to move forward.
+
+The following decisions are established:
+
+- Eight platform-operation combinations are approved
+  as the production testing scope.
+- Each combination requires eight corpus messages,
+  repeated three times, for 24 trials.
+- Total planned production trials: 192.
+- Week 9 milestone: Complete at least four approved
+  combinations, representing 96 trials (50%).
+- Browser Console testing will use paste-and-copy-back
+  only.
+- The fixed baseline codec and eight-message corpus
+  will remain unchanged.
+- Production results must be recorded separately
+  from preliminary testing.
+- All trial records must include measurements,
+  decoding results, and supporting evidence.
+
+Henry's codec verification is complete.
+
+Tristan's workflow verification and production trial
+results will be documented as they become available.
+
+This authorization represents a team-leader decision
+following the team meeting. It does not imply that
+all team members individually approved every detail.
+
+Any subsequent changes to the approved testing
+scope or procedure must be documented with a
+version update and explanation.
+
+**Status:** Version 1.0 authorized for production
+testing, subject to recording the exact eight
+platform-operation assignments before trials begin.
