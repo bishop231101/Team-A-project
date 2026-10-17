@@ -234,3 +234,46 @@ version update and explanation.
 **Status:** Version 1.0 authorized for production
 testing, subject to recording the exact eight
 platform-operation assignments before trials begin.
+
+## 11. Final Production Testing Scope Amendment
+
+**Decision Date:** October 17, 2026  
+**Authorized By:** Ifeanyi Emeka, Team Leader  
+**Status:** Revised scope authorized; workflow verification pending
+
+Following further review of platform availability, the team leader has revised the production testing scope from eight proposed platform-operation combinations to seven.
+
+### Approved Platform-Operation Matrix
+
+| Platform | Operation |
+|---|---|
+| Gmail | Send and retrieve message |
+| Discord | Send and retrieve message |
+| Microsoft Word | Save, reopen, and retrieve text |
+| Microsoft Outlook | Send and retrieve message |
+| Telegram Web | Send and retrieve message |
+| Notepad++ | Paste and copy back |
+| Browser Console | Paste and copy back |
+
+WeChat is excluded from the current production testing scope because access has not been verified.
+
+### Revised Trial Requirements
+
+- Approved platform-operation combinations: 7
+- Approved corpus messages: 8
+- Repetitions per message: 3
+- Trials per combination: 24
+- Total planned production trials: 168
+- Week 9 milestone: 96 trials across 4 complete combinations
+
+### Verification and Limitations
+
+Henry's codec verification and eight-message local corpus checks are complete.
+
+Tristan must confirm platform access, exact testing workflows, and the feasibility of the revised trial workload before production collection begins.
+
+The approved matrix and trial count supersede the earlier eight-combination proposal in Section 10.
+
+This amendment records the team leader's decision. It does not imply unanimous approval or completed production testing.
+
+The protocol remains pending final workflow verification. Production results must be supported by actual trial logs and evidence before being reported as completed.
