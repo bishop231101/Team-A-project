@@ -128,3 +128,45 @@ The following requirements will be checked during the production data audit:
 The Week 8 testing methodology has been reviewed to identify required measurements and previous documentation limitations.
 
 The Week 9 production dataset has not yet been independently validated. Audit findings and completion percentages will be updated after Tristan provides the production trial logs.
+
+## 9. Week 9 Leadership Decision and Audit Update
+
+**Decision Date:** October 17, 2026
+**Authorized By:** Ifeanyi Emeka, Team Leader
+**Reference:** docs/week9_testing_protocol_draft.md
+
+Following the team meeting, the team leader authorized
+the Week 9 production testing scope to prevent delays
+in project progress and assignment submission.
+
+### Approved Testing Scope
+
+- Eight platform-operation combinations.
+- Eight approved corpus messages per combination.
+- Three trials per message.
+- Total planned trials: 192.
+- Week 9 target: 96 completed trials (50%).
+- Browser Console: paste-and-copy-back only.
+
+### Verification Status
+
+- Henry's codec verification: Complete.
+- Automated regression: 33 tests and 132 subtests passed.
+- Local corpus verification: 8 of 8 passed.
+- Exact platform-operation matrix: Pending documentation.
+- Tristan's production trial logs: Pending review.
+- Production data-quality audit: Pending trial records.
+
+### Audit Conclusion
+
+The production testing scope has been authorized
+by the team leader. However, the protocol is not
+fully frozen until the exact eight platform-operation
+assignments are documented.
+
+No unverified production trials are counted as
+completed. The 50% milestone remains a target
+until supporting trial records are reviewed.
+
+All future findings will be supported by recorded
+measurements, decoding results, and evidence.
