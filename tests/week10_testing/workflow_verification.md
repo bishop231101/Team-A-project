@@ -1,15 +1,16 @@
 # Week 10 Workflow Verification's
-**Prepared by:** Tristan Koch  
-**Date:** October 20, 2026  
-**Project:** Zero-Width Unicode Steganography with Social-Media Robustness Engineering  
+**Prepared by:** Tristan Koch
+**Date:** October 20, 2026
+**Project:** Zero-Width Unicode Steganography with Social-Media Robustness Engineering
 **Status:** In Progress
 
 # Week 10 Workflow Verification — Gmail
 
-**Platform:** Gmail  
-**Operation:** Send and Retrieve message  
-**Verification status:** Started  
-**Date verified:** 2026-10-20
+**Platform:** Gmail
+**Operation:** Send and Retrieve message
+**Access Status:** Confirmed
+**Verification status:** Pending
+**Date verified:** Pending
 **Tester:** Tristan Koch
 
 
@@ -17,8 +18,8 @@
 
 - **Application/site opened:** Gmail website opened in Google Chrome
 - **Relevant feature accessible:** Compose window opened successfully
-- **Version or environment:** Google Chrome, Version 155.0.8059.85 (Official Build) (64-bit); Windows 11 64-bit
-- **Access limitations:** None Observed during access verification.
+- **Version or environment:** Google Chrome, Version 156.0.8078.48 (Official Build) (64-bit); Windows 11 64-bit
+- **Access limitations:** None Observed during access-only verification; the full encode/send/retrieve/compare/decode workflow has not been tested.
 
 ## 2. Workflow Steps
 
@@ -71,18 +72,19 @@
 
 # Week 10 Workflow Verification — Discord
 
-**Platform:** Discord  
-**Operation:** Send and Retrieve message  
-**Verification status:** not started  
-**Date verified:** 2026-10-20
+**Platform:** Discord
+**Operation:** Send and Retrieve message
+**Access Status:** Confirmed
+**Verification status:** Pending 
+**Date verified:** Pending
 **Tester:** Tristan Koch
 
 ## 1. Access
 
-- **Application/site opened:** [Yes / No]
-- **Relevant feature accessible:** [Yes / No]
-- **Version or environment:** [App/browser version and OS, if available]
-- **Access limitations:** [None / Describe]
+- **Application/site opened:** Discord app opened successfully
+- **Relevant feature accessible:** Text chat accessed successfully
+- **Version or environment:** Discord, Build number 643186; Windows 11 64-bit
+- **Access limitations:** None Observed during access-only verification; the full encode/send/retrieve/compare/decode workflow has not been tested.
 
 ## 2. Workflow Steps
 
@@ -135,18 +137,19 @@
 
 # Week 10 Workflow Verification — Microsoft Word
 
-**Platform:** Microsoft Word  
-**Operation:** Save, Reopen, and retrieve text  
-**Verification status:** not started  
-**Date verified:** 2026-10-20
+**Platform:** Microsoft Word
+**Operation:** Save, Reopen, and retrieve text
+**Access Status:** Confirmed
+**Verification status:** Pending 
+**Date verified:** Pending
 **Tester:** Tristan Koch
 
 ## 1. Access
 
-- **Application/site opened:** [Yes / No]
-- **Relevant feature accessible:** [Yes / No]
-- **Version or environment:** [App/browser version and OS, if available]
-- **Access limitations:** [None / Describe]
+- **Application/site opened:** Microsoft Word app opened successfully
+- **Relevant feature accessible:** Blank document was opened with no issues
+- **Version or environment:** Microsoft® Word for Microsoft 365 MSO (Version 2609 Build 16.0.20430.20032) 64-bit; Windows 11 64-bit
+- **Access limitations:** None Observed during access-only verification; the full encode/send/retrieve/compare/decode workflow has not been tested.
 
 ## 2. Workflow Steps
 
@@ -200,18 +203,19 @@
 
 # Week 10 Workflow Verification — Microsoft Outlook
 
-**Platform:** Microsoft Outlook  
-**Operation:** Send and Retrieve message  
-**Verification status:** not started  
-**Date verified:** 2026-10-20
+**Platform:** Microsoft Outlook
+**Operation:** Send and Retrieve message
+**Access Status:** Confirmed
+**Verification status:** Pending
+**Date verified:** Pending
 **Tester:** Tristan Koch
 
 ## 1. Access
 
-- **Application/site opened:** [Yes / No]
-- **Relevant feature accessible:** [Yes / No]
-- **Version or environment:** [App/browser version and OS, if available]
-- **Access limitations:** [None / Describe]
+- **Application/site opened:** Microsoft Outlook website loaded successfully
+- **Relevant feature accessible:** Compose window opened successfully.
+- **Version or environment:** Could not find Outlook website version; Windows 11 64-bit
+- **Access limitations:** Cannot seem to find Outlook website version during access-only verification, but access was successful, the full encode/send/retrieve/compare/decode workflow has not been tested.
 
 ## 2. Workflow Steps
 
@@ -264,18 +268,19 @@
 
 # Week 10 Workflow Verification — Telegram Web
 
-**Platform:** Telegram Web  
-**Operation:** Send and Retrieve message  
-**Verification status:** not started  
-**Date verified:** 2026-10-20
+**Platform:** Telegram Web
+**Operation:** Send and Retrieve message
+**Access Status:** Confirmed
+**Verification status:** Pending 
+**Date verified:** Pending
 **Tester:** Tristan Koch
 
 ## 1. Access
 
-- **Application/site opened:** [Yes / No]
-- **Relevant feature accessible:** [Yes / No]
-- **Version or environment:** [App/browser version and OS, if available]
-- **Access limitations:** [None / Describe]
+- **Application/site opened:** Telegram Web - website opened successfully
+- **Relevant feature accessible:** Telegram text chat opened successfully
+- **Version or environment:** Could not find Telegram Web version number; Windows 11 64-bit
+- **Access limitations:** Cannot seem to find Telegram Web version during access-only verification, but access was successful, the full encode/send/retrieve/compare/decode workflow has not been tested.
 
 ## 2. Workflow Steps
 
@@ -328,18 +333,19 @@
 
 # Week 10 Workflow Verification — Notepad++
 
-**Platform:** Notepad++  
+**Platform:** Notepad++
 **Operation:** Paste and copy back
-**Verification status:** not started  
-**Date verified:** 2026-10-20
+**Access Status:** Confirmed
+**Verification status:** Pending
+**Date verified:** Pending
 **Tester:** Tristan Koch
 
 ## 1. Access
 
-- **Application/site opened:** [Yes / No]
-- **Relevant feature accessible:** [Yes / No]
-- **Version or environment:** [App/browser version and OS, if available]
-- **Access limitations:** [None / Describe]
+- **Application/site opened:** Notepad++ application opened successfully
+- **Relevant feature accessible:** New blank notepad opened successfully
+- **Version or environment:** Notepad++ v8.9.8.1 (64-bit); Windows 11 64-bit
+- **Access limitations:** None Observed during access-only verification; the full encode/send/retrieve/compare/decode workflow has not been tested.
 
 ## 2. Workflow Steps
 
@@ -389,26 +395,27 @@
 
 ---
 
-# Week 10 Workflow Verification — Browser Console
+# Week 10 Workflow Verification — Google Chrome Console
 
-**Platform:** Browser Console  
-**Operation:** Paste and copy back  
-**Verification status:** not started  
-**Date verified:** 2026-10-20
+**Platform:** Google Chrome Console
+**Operation:** Paste and copy back
+**Access Status:** Confirmed
+**Verification status:** Pending
+**Date verified:** Pending
 **Tester:** Tristan Koch
 
 ## 1. Access
 
-- **Application/site opened:** [Yes / No]
-- **Relevant feature accessible:** [Yes / No]
-- **Version or environment:** [App/browser version and OS, if available]
-- **Access limitations:** [None / Describe]
+- **Application/site opened:** Google Chrome developer tools console opened successfully
+- **Relevant feature accessible:** Chrome developer tool console opened successfully
+- **Version or environment:** Google Chrome, Version 156.0.8078.48 (Official Build) (64-bit); Windows 11 64-bit
+- **Access limitations:** None Observed during access-only verification; the full encode/send/retrieve/compare/decode workflow has not been tested.
 
 ## 2. Workflow Steps
 
 ### Steps
 
-1. Confirm access to the browser console and open the relevant editing or input area.
+1. Confirm access to the Google Chrome console and open the relevant editing or input area.
 2. Select an approved corpus message and record its corpus ID.
 3. Encode the message using the project encoder and the approved codec configuration.
 4. Perform a local encode/decode round-trip test to verify that the original message can be recovered exactly.
