@@ -68,6 +68,7 @@ def main() -> None:
             sent_text,
             retrieved_text,
             corpus[corpus_id]["text"],
+            evidence_root=batch_path.parent,
         )
         result["validation_errors"].extend(duplicate_findings.get(index, []))
         result["valid"] = not result["validation_errors"]

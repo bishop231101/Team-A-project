@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any
 
 from .failure_analysis import analyze_recovered_text
+from .zero_width_codec import ONE, SEPARATOR, ZERO, encode_secret
 
 
 APPROVED_WORKFLOWS = {
@@ -17,6 +19,10 @@ APPROVED_WORKFLOWS = {
     "Notepad++": "paste_and_copy_back",
     "Browser Console": "paste_and_copy_back",
 }
+
+APPROVED_CORPUS_IDS = frozenset(
+    {"SA01", "SA02", "SU01", "SU02", "LA01", "LA02", "LU01", "LU02"}
+)
 
 REQUIRED_FIELDS = (
     "trial_id",
@@ -42,10 +48,16 @@ def _valid_utc_timestamp(value: object) -> bool:
         parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
     except ValueError:
         return False
-    return parsed.tzinfo is not None and parsed.utcoffset() is not None
+    return (
+        parsed.tzinfo is not None
+        and parsed.utcoffset() is not None
+        and parsed.utcoffset() == timezone.utc.utcoffset(parsed)
+    )
 
 
-def validate_trial_metadata(record: dict[str, Any]) -> list[str]:
+def validate_trial_metadata(
+    record: dict[str, Any], evidence_root: Path | None = None
+) -> list[str]:
     """Return reproducibility and protocol errors in one trial record."""
     errors = [f"missing required field: {field}" for field in REQUIRED_FIELDS if field not in record]
     if errors:
@@ -64,11 +76,20 @@ def validate_trial_metadata(record: dict[str, Any]) -> list[str]:
     if not isinstance(repetition, int) or isinstance(repetition, bool) or not 1 <= repetition <= 3:
         errors.append("repetition must be an integer from 1 through 3")
     if not _valid_utc_timestamp(record["timestamp_utc"]):
-        errors.append("timestamp_utc must be an ISO-8601 timestamp with a timezone")
+        errors.append("timestamp_utc must be an ISO-8601 timestamp in UTC")
+    if record["corpus_id"] not in APPROVED_CORPUS_IDS:
+        errors.append(f"corpus_id is not in the approved eight-message corpus: {record['corpus_id']!r}")
     if not isinstance(record["recovery_mode"], bool):
         errors.append("recovery_mode must be a boolean")
     if not isinstance(record["evidence_paths"], list) or not record["evidence_paths"]:
         errors.append("evidence_paths must be a nonempty list")
+    elif evidence_root is not None:
+        for evidence_path in record["evidence_paths"]:
+            if not isinstance(evidence_path, str) or not evidence_path:
+                errors.append("evidence_paths entries must be nonempty strings")
+                continue
+            if not (evidence_root / evidence_path).is_file():
+                errors.append(f"evidence file does not exist: {evidence_path!r}")
     if not isinstance(record["claimed_metrics"], dict):
         errors.append("claimed_metrics must be an object")
     return errors
@@ -79,11 +100,26 @@ def analyze_trial_record(
     sent_text: str,
     retrieved_text: str,
     expected_secret: str,
+    evidence_root: Path | None = None,
 ) -> dict[str, Any]:
     """Measure a trial and compare its recorded claims with reproducible results."""
-    errors = validate_trial_metadata(record)
+    errors = validate_trial_metadata(record, evidence_root=evidence_root)
     measured = analyze_recovered_text(sent_text, retrieved_text, expected_secret)
     claims = record.get("claimed_metrics")
+
+    if isinstance(record.get("recovery_mode"), bool):
+        codec_characters = frozenset((ZERO, ONE, SEPARATOR))
+        actual_payload = "".join(
+            character for character in sent_text if character in codec_characters
+        )
+        expected_payload = encode_secret(
+            expected_secret, recovery_mode=record["recovery_mode"]
+        )
+        if actual_payload != expected_payload:
+            errors.append(
+                "sent text does not match the expected encoded input for "
+                f"corpus_id {record.get('corpus_id')!r}"
+            )
 
     if isinstance(claims, dict):
         comparisons = {

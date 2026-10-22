@@ -1,6 +1,8 @@
 """Tests for Henry's Week 10 production-trial validation support."""
 
 import unittest
+from pathlib import Path
+from tempfile import TemporaryDirectory
 
 from src.production_trial_validation import (
     analyze_trial_record,
@@ -72,6 +74,46 @@ class Week10ProductionTrialValidationTests(unittest.TestCase):
         self.assertIn(
             "evidence_paths must be a nonempty list",
             validate_trial_metadata(record),
+        )
+
+    def test_non_utc_timestamp_is_rejected(self) -> None:
+        record = valid_record()
+        record["timestamp_utc"] = "2026-10-22T11:00:00+03:00"
+        self.assertIn(
+            "timestamp_utc must be an ISO-8601 timestamp in UTC",
+            validate_trial_metadata(record),
+        )
+
+    def test_missing_referenced_evidence_file_is_rejected(self) -> None:
+        record = valid_record()
+        with TemporaryDirectory() as directory:
+            errors = validate_trial_metadata(record, evidence_root=Path(directory))
+        self.assertTrue(any("evidence file does not exist" in error for error in errors))
+
+    def test_existing_referenced_evidence_file_passes(self) -> None:
+        record = valid_record()
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            evidence = root / record["evidence_paths"][0]
+            evidence.parent.mkdir(parents=True)
+            evidence.write_bytes(b"evidence")
+            errors = validate_trial_metadata(record, evidence_root=root)
+        self.assertFalse(any("evidence file" in error for error in errors))
+
+    def test_unknown_corpus_id_is_rejected(self) -> None:
+        record = valid_record()
+        record["corpus_id"] = "UNKNOWN"
+        self.assertTrue(
+            any("approved eight-message corpus" in error for error in validate_trial_metadata(record))
+        )
+
+    def test_sent_text_must_match_expected_encoded_input(self) -> None:
+        record = valid_record()
+        wrong_sent = embed_secret("Team 1 compatibility test.", "Test 123!")
+        result = analyze_trial_record(record, wrong_sent, wrong_sent, "Hello")
+        self.assertFalse(result["valid"])
+        self.assertTrue(
+            any("expected encoded input" in error for error in result["validation_errors"])
         )
 
     def test_duplicates_are_reported_for_both_records(self) -> None:
