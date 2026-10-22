@@ -463,13 +463,13 @@
 
 | Platform | Approved operation | Access | Workflow verification |
 |---|---|---|---|
-| Gmail | Send and retrieve message | Pending | Pending |
-| Discord | Send and retrieve message | Pending | Pending |
-| Microsoft Word | Save, reopen, and retrieve text | Pending | Pending |
-| Microsoft Outlook | Send and retrieve message | Pending | Pending |
-| Telegram Web | Send and retrieve message | Pending | Pending |
-| Notepad++ | Paste and copy back | Pending | Pending |
-| Browser Console | Paste and copy back | Pending | Pending |
+| Gmail | Send and retrieve message | Confirmed | Still awaiting verification |
+| Discord | Send and retrieve message | Confirmed | Still awaiting verification |
+| Microsoft Word | Save, reopen, and retrieve text | Confirmed | Still awaiting verification |
+| Microsoft Outlook | Send and retrieve message | Confirmed | Still awaiting verification |
+| Telegram Web | Send and retrieve message | Confirmed | Still awaiting verification |
+| Notepad++ | Paste and copy back | Confirmed | Still awaiting verification |
+| Browser Console | Paste and copy back | Confirmed | Still awaiting verification |
 
 **Current status:** Workflow procedures documented; platform verification and feasibility checks pending.
 
