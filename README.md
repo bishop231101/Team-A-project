@@ -108,22 +108,3 @@ The analysis reports count-based codec-character retention, decoder behavior,
 exact message recovery, and a stable failure category. Character retention is
 `retrieved codec-character total / sent codec-character total × 100`; it is not
 a sequence-match measurement.
-
-## Week 10 production-trial validation
-
-Run Henry's local Week 10 verification with:
-
-```powershell
-python tests/week10_testing/verify_henry_week10.py
-```
-
-When a production batch and its raw UTF-8 files are available, validate its
-recorded metrics with:
-
-```powershell
-python tests/week10_testing/validate_production_trials.py path/to/batch.json
-```
-
-The validator treats decoding failures as experimental results while flagging
-missing fields, duplicate trials, missing evidence, and claims that do not
-match measurements recalculated from the raw files.

@@ -60,10 +60,7 @@ Production testing results will be added only after the supporting logs and evid
 - Assist with testing scripts and reproducibility.
 - Document results and provide supporting evidence.
 
-**Current status:** Henry completed local codec verification and added a
-production-trial validation tool. The full suite passes 38 tests and 132
-subtests. Review of actual platform failures remains pending because the Week
-10 raw sent/retrieved files have not yet been submitted.
+**Current status:** Week 10 contributions and evidence pending review.
 
 ## 4. Testing and Evidence
 
@@ -88,12 +85,6 @@ The Week 9 preliminary WeChat feasibility tests demonstrated successful recovery
 **Week 10 production testing:** Pending verified logs, screenshots, and results.
 
 Evidence will be added to this report as team members complete and submit their assigned testing.
-
-Henry independently reproduced the preliminary WeChat baseline counts for
-`WeChat test message` as 137 U+200B, 111 U+200C, and 30 U+200D, for a total of
-278. The screenshots are internally consistent with those counts and report
-exact recovery. The raw retrieved WeChat text was not committed, so this is an
-evidence review rather than an independent post-platform decoder rerun.
 
 ## 5. Challenges and Lessons Learned
 
@@ -130,10 +121,6 @@ The revised scope contains 168 planned trials. These remain planned rather than 
 - `meeting_minutes/2026-10-19_week10.md`
 - `weekly_journals/ifeanyi/week10.md`
 - `tests/week9_testing/preliminary_feasibility_testing_WeChat.md`
-- `docs/week10_henry_codec_validation.md`
-- `tests/week10_testing/verify_henry_week10.py`
-- `tests/week10_testing/validate_production_trials.py`
-- `weekly_journals/henry/2026-10-22.md`
 
 ## 9. Report Status
 
