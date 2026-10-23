@@ -146,6 +146,22 @@ These results indicate that platform behavior can affect the reliability of zero
 
 The failures are valid preliminary findings and will remain documented for further investigation.
 
+#### Preliminary Platform Testing Evidence
+
+**Figure 2 – Microsoft Word Preliminary Testing**
+
+![Microsoft Word preliminary testing evidence](../tests/week10_testing/preliminary_testing/Microsoft_Word/evidence/PRELIM-WORD-01_Terminal.png)
+
+**Explanation:** This screenshot documents the preliminary Microsoft Word testing workflow. The reported results showed 0% zero-width character retention and unsuccessful decoding. This indicates that the tested Microsoft Word workflow did not preserve the hidden information.
+
+**Figure 3 – Telegram Web Preliminary Testing**
+
+![Telegram Web preliminary testing evidence](../tests/week10_testing/preliminary_testing/Telegram_Web/evidence/PRELIM-TELEGRAM-01_Terminal.png)
+
+**Explanation:** This screenshot documents the preliminary Telegram Web testing workflow. The reported results showed 100% zero-width character retention and successful decoding of the hidden message.
+
+**Evidence Limitation:** Both screenshots represent preliminary workflow testing. They do not count toward the 168 planned official production trials.
+
 ### Preliminary WeChat Evidence Review
 
 During Week 9, Tristan documented two preliminary WeChat feasibility workflows that reported successful recovery.
@@ -164,6 +180,12 @@ WeChat remains outside the approved seven-combination production scope.
 ### Codec Validation and Production Readiness
 
 Henry reported that the Week 10 codec validation suite passed 38 tests and 132 subtests.
+
+#### Henry's Codec Validation Evidence
+
+![Henry's Week 10 codec verification results](../tests/week10_testing/screenshots/henry/week10_codec_verification_passed.png)
+
+**Figure 1:** Henry's Week 10 codec verification screenshot documents the successful execution of the validation suite, including 38 tests and 132 subtests. This provides evidence of local codec verification and supports preparation for production testing. It does not establish successful recovery on every external platform.
 
 His production trial validation tools are intended to support reproducible testing by checking raw evidence, trial metadata, duplicates, and calculated metrics.
 
@@ -265,7 +287,7 @@ The team intends to begin official production data collection on October 26, 202
 
 - `weekly_journals/ifeanyi/week10.md`
 - `weekly_journals/henry/2026-10-22.md`
-- Tristan's Week 10 individual journal, included in PR #21.
+- weekly_journals/tristan/week10.md
 
 ### Testing and Validation
 
@@ -285,4 +307,4 @@ The remaining major milestone is official production testing, scheduled to begin
 
 Preliminary findings have been reported separately from production results to maintain accuracy and avoid overstating progress.
 
-All Week 10 contributions and supporting documents must be committed and pushed to the main branch before final submission.
+Week 10 documentation has been prepared and committed to the main branch. Preliminary testing findings and codec validation results are documented separately from official production testing, which is planned to begin October 26, 2026.
