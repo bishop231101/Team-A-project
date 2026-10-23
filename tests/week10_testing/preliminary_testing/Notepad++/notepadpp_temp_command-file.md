@@ -1,10 +1,10 @@
-# Week 10 Preliminary Feasibility Check — Microsoft Outlook Send and Retrieve
+# Week 10 Preliminary Feasibility Check — Notepad++ Paste and Copy Back
 
-This is a preliminary feasibility check for **Microsoft Outlook — send and retrieve message**, not an official production trial. Use only `SA01`; do not count it toward production workload or alter the protocol. If Outlook or the workflow is unavailable, record the blocker and report it to Ifeanyi before proposing a change.
+This is a preliminary feasibility check for **Notepad++ — paste and copy back**, not an official production trial. Use only `SA01`; do not count it toward the planned workload or change the approved protocol. If Notepad++ or the workflow is unavailable, record the blocker and report it to Ifeanyi before proposing a change.
 
 ## 1. Preflight and local baseline
 
-From the repository root, confirm the repository and branch. The branch must be `tristan-week10`; stop otherwise. Preserve pre-existing changes.
+From the repository root, confirm the repository and branch. The branch must be `tristan-week10`; stop if not.
 
 ```powershell
 git rev-parse --show-toplevel
@@ -25,30 +25,31 @@ assert item["category"] == "short_ascii" and item["text"] == "Hello"
 assert hashlib.sha256(item["text"].encode("utf-8")).hexdigest() == item["sha256"] == "185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969"
 encoded = embed_secret("Team 1 compatibility test.", item["text"], recovery_mode=False)
 assert extract_secret(encoded) == "Hello"
-Path("week10_sa01_encoded.txt").write_text(encoded, encoding="utf-8")
+Path("tests/week10_testing/preliminary_testing/Notepad++/week10_NPP-01_sa01_encoded.txt").write_text(encoded, encoding="utf-8")
 print({"corpus_id": item["id"], "counts": count_codec_characters(encoded), "local_round_trip": True})
 '@ | python -
 ```
 
-Stop on any validation or local-round-trip failure. Display the exact payload with `Get-Content -Raw .\week10_sa01_encoded.txt`; never retype, trim, normalize, or repair it.
+Stop on validation or local-round-trip failure. Display the exact payload with `Get-Content -Raw 'tests/week10_testing/preliminary_testing/Notepad++/week10_NPP-01_sa01_encoded.txt'`; do not retype, normalize, trim, or repair it.
 
-## 2. Manual Outlook operation
+**Overwrite protection:** This command writes to the existing preliminary-test artifact `tests/week10_testing/preliminary_testing/Notepad++/week10_NPP-01_sa01_encoded.txt`. Rerunning it may overwrite that file. Preserve the existing evidence and compare or back it up before rerunning any command that writes to the same path.
 
-1. Confirm the approved Outlook account and exact recipient/destination manually; this guide does not invent either one.
-2. Open Outlook manually and record the Outlook desktop/web version and operating system.
-3. Start a fresh message and paste the complete encoded payload into the body without editing it. Record any format choice or conversion behavior.
-4. Send manually only after confirming the destination.
-5. Open the delivered message manually in the intended recipient account and copy only the message body exactly as retrieved. Exclude quoted replies, signatures, headers, and unrelated text.
+## 2. Manual Notepad++ operation
+
+1. Open Notepad++ manually and record its exact version, encoding setting, and operating system.
+2. Open a new document. Paste the complete encoded payload into it without editing, replacing, or formatting it.
+3. Copy the entire payload back manually from Notepad++ into `tests/week10_testing/preliminary_testing/Notepad++/week10_NPP-01_sa01_retrieved.txt` as UTF-8. Do not include other document content. Save it without changing line endings or encoding if the application presents a choice.
+4. Record whether the copy-back was from the same open document and any encoding or line-ending prompt.
 
 ## 3. Retrieval and analysis
 
-Paste the copied body unchanged into UTF-8 `week10_sa01_retrieved.txt`. Do not repair or normalize it. Run:
+The saved retrieved file must be the exact copy-back, with no manual repair or normalization. Run:
 
 ```powershell
 @'
 from pathlib import Path
 from src.zero_width_codec import count_codec_characters, extract_secret
-sent = Path("week10_sa01_encoded.txt").read_text(encoding="utf-8"); retrieved = Path("week10_sa01_retrieved.txt").read_text(encoding="utf-8")
+sent = open("tests/week10_testing/preliminary_testing/Notepad++/week10_NPP-01_sa01_encoded.txt", encoding="utf-8", newline="").read(); retrieved = open("tests/week10_testing/preliminary_testing/Notepad++/week10_NPP-01_sa01_retrieved.txt", encoding="utf-8", newline="").read()
 sc, rc = count_codec_characters(sent), count_codec_characters(retrieved)
 print("encoded:", sc); print("retrieved:", rc); print("exact encoded-text match:", retrieved == sent)
 if sc["total"] == 0: print("retention percentage: undefined (encoded total is zero)")
@@ -61,18 +62,18 @@ except Exception as error: print("decode succeeded:", False); print("decode erro
 '@ | python -
 ```
 
-Record individual `U+200B`, `U+200C`, `U+200D` counts, totals, retention, exact-text match, decode result/error, and exact recovered-secret equality. Collect relevant screenshots, Outlook/OS version, manual steps, and limitations only; exclude private or unrelated account information.
+Record `U+200B`, `U+200C`, `U+200D` separately and in total for both files, retention (undefined if encoded total is zero), exact-text match, decode result/error, and exact `Hello` match. Collect relevant screenshots, Notepad++/OS version, exact steps, and limitations without exposing unrelated content.
 
 ## 4. Blank result record
 
 ```text
 Preliminary check ID: ____________________
-Platform-operation: Microsoft Outlook — send and retrieve message
-Expected behavior: local SA01 recovery is exactly Hello; platform result is measured without repair.
+Platform-operation: Notepad++ — paste and copy back
+Expected behavior: local SA01 recovery is exactly Hello; copy-back is measured without repair.
 Observed result: ______________________________________________
 Corpus ID / expected SHA-256: SA01 / 185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969
 Codec configuration: src/zero_width_codec.py; cover "Team 1 compatibility test."; recovery_mode=False
-Outlook version / account mode: ____________________
+Notepad++ version / encoding / line endings: ____________________
 Operating system: ____________________
 Encoded U+200B / U+200C / U+200D / total: ____ / ____ / ____ / ____
 Retrieved U+200B / U+200C / U+200D / total: ____ / ____ / ____ / ____
@@ -85,4 +86,4 @@ Limitations and observations: ____________________________________
 Next steps: _____________________________________________________
 ```
 
-Documented commands are not performed tests. Keep the preliminary result separate from official production results.
+This documentation is not a performed test. Keep the preliminary result separate from official production data.

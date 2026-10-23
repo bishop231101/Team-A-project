@@ -34,32 +34,32 @@ assert item["text"] == "Hello"
 assert hashlib.sha256(item["text"].encode("utf-8")).hexdigest() == item["sha256"] == "185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969"
 encoded = embed_secret("Team 1 compatibility test.", item["text"], recovery_mode=False)
 assert extract_secret(encoded) == "Hello"
-Path("week10_sa01_encoded.txt").write_text(encoded, encoding="utf-8")
+Path("tests/week10_testing/preliminary_testing/Gmail/week10_Gmail-01_sa01_encoded.txt").write_text(encoded, encoding="utf-8")
 print({"id": item["id"], "category": item["category"], "secret": item["text"], "counts": count_codec_characters(encoded), "local_round_trip": True})
 '@ | python -
 ```
 
-Do not proceed if corpus validation or the local round trip fails. Preserve the error, investigate the local issue, and report it. Do not assume a platform failure is responsible. For manual copying, display the exact file with `Get-Content -Raw .\week10_sa01_encoded.txt` or open it in a plain-text editor. Do not retype, normalize, trim, or repair it.
+Do not proceed if corpus validation or the local round trip fails. Preserve the error, investigate the local issue, and report it. Do not assume a platform failure is responsible. For manual copying, display the exact file with `Get-Content -Raw 'tests/week10_testing/preliminary_testing/Gmail/week10_Gmail-01_sa01_encoded.txt'` or open it in a plain-text editor. Do not retype, normalize, trim, or repair it.
 
 ## 2. Manual Gmail operation
 
 1. Confirm manually that you are using the intended Gmail account and the exact recipient/destination approved for this check. This guide does not choose a recipient.
 2. Open Gmail manually and record the Gmail/browser version and operating system.
-3. Start a fresh message. Paste the entire contents of `week10_sa01_encoded.txt` into the message body without editing it. Record the exact workflow and any formatting mode used.
+3. Start a fresh message. Paste the entire contents of `tests/week10_testing/preliminary_testing/Gmail/week10_Gmail-01_sa01_encoded.txt` into the message body without editing it. Record the exact workflow and any formatting mode used.
 4. Send the message manually only after confirming the destination. Do not send it to an unapproved account.
 5. Open the delivered message manually in the intended recipient account, select the message body, and copy it exactly as displayed. Do not copy quoted replies, signatures, unrelated text, or headers.
 
 ## 3. Retrieval, comparison, and metrics
 
-Paste the copied body into a new UTF-8 text file named `week10_sa01_retrieved.txt` without changing any character. Save it manually. Never trim, normalize, or repair retrieved text before comparison. Run this read-only analysis from the repository root:
+Paste the copied body into `tests/week10_testing/preliminary_testing/Gmail/week10_Gmail-01_sa01_retrieved.txt` as UTF-8 without changing any character. Save it manually. Never trim, normalize, or repair retrieved text before comparison. Run this read-only analysis from the repository root:
 
 ```powershell
 @'
 from pathlib import Path
 from src.zero_width_codec import count_codec_characters, extract_secret
 
-sent = Path("week10_sa01_encoded.txt").read_text(encoding="utf-8")
-retrieved = Path("week10_sa01_retrieved.txt").read_text(encoding="utf-8")
+sent = open("tests/week10_testing/preliminary_testing/Gmail/week10_Gmail-01_sa01_encoded.txt", encoding="utf-8", newline="").read()
+retrieved = open("tests/week10_testing/preliminary_testing/Gmail/week10_Gmail-01_sa01_retrieved.txt", encoding="utf-8", newline="").read()
 sc, rc = count_codec_characters(sent), count_codec_characters(retrieved)
 print("encoded counts:", sc)
 print("retrieved counts:", rc)

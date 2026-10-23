@@ -25,12 +25,12 @@ assert item["category"] == "short_ascii" and item["text"] == "Hello"
 assert hashlib.sha256(item["text"].encode("utf-8")).hexdigest() == item["sha256"] == "185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969"
 encoded = embed_secret("Team 1 compatibility test.", item["text"], recovery_mode=False)
 assert extract_secret(encoded) == "Hello"
-Path("week10_sa01_encoded.txt").write_text(encoded, encoding="utf-8")
+Path("tests/week10_testing/preliminary_testing/Microsoft_Word/week10_Word-01_sa01_encoded.txt").write_text(encoded, encoding="utf-8")
 print({"corpus_id": item["id"], "counts": count_codec_characters(encoded), "local_round_trip": True})
 '@ | python -
 ```
 
-Do not continue if validation or local recovery fails. Display the exact UTF-8 payload with `Get-Content -Raw .\week10_sa01_encoded.txt` or a plain-text editor. Do not retype, normalize, trim, or repair it.
+Do not continue if validation or local recovery fails. Display the exact UTF-8 payload with `Get-Content -Raw 'tests/week10_testing/preliminary_testing/Microsoft_Word/week10_Word-01_sa01_encoded.txt'` or a plain-text editor. Do not retype, normalize, trim, or repair it.
 
 ## 2. Manual Word operation
 
@@ -41,13 +41,13 @@ Do not continue if validation or local recovery fails. Display the exact UTF-8 p
 
 ## 3. Retrieval and analysis
 
-Paste the copied text unchanged into a UTF-8 file named `week10_sa01_retrieved.txt`. Do not manually repair, normalize, or trim it. Run:
+Paste the copied text unchanged into `tests/week10_testing/preliminary_testing/Microsoft_Word/week10_Word-01_sa01_retrieved.txt` as UTF-8. Do not manually repair, normalize, or trim it. Run:
 
 ```powershell
 @'
 from pathlib import Path
 from src.zero_width_codec import count_codec_characters, extract_secret
-sent = Path("week10_sa01_encoded.txt").read_text(encoding="utf-8"); retrieved = Path("week10_sa01_retrieved.txt").read_text(encoding="utf-8")
+sent = open("tests/week10_testing/preliminary_testing/Microsoft_Word/week10_Word-01_sa01_encoded.txt", encoding="utf-8", newline="").read(); retrieved = open("tests/week10_testing/preliminary_testing/Microsoft_Word/week10_Word-01_sa01_retrieved.txt", encoding="utf-8", newline="").read()
 sc, rc = count_codec_characters(sent), count_codec_characters(retrieved)
 print("encoded:", sc); print("retrieved:", rc); print("exact encoded-text match:", retrieved == sent)
 if sc["total"] == 0: print("retention percentage: undefined (encoded total is zero)")

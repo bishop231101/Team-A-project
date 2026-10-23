@@ -30,31 +30,31 @@ assert item["category"] == "short_ascii" and item["text"] == "Hello"
 assert hashlib.sha256(item["text"].encode("utf-8")).hexdigest() == item["sha256"] == "185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969"
 encoded = embed_secret("Team 1 compatibility test.", item["text"], recovery_mode=False)
 assert extract_secret(encoded) == "Hello"
-Path("week10_sa01_encoded.txt").write_text(encoded, encoding="utf-8")
+Path("tests/week10_testing/preliminary_testing/Discord/week10_Discord-01_sa01_encoded.txt").write_text(encoded, encoding="utf-8")
 print({"corpus_id": item["id"], "counts": count_codec_characters(encoded), "local_round_trip": True})
 '@ | python -
 ```
 
-Stop if validation or local recovery fails. Display the exact payload with `Get-Content -Raw .\week10_sa01_encoded.txt` or a plain-text editor; do not retype, trim, normalize, or repair invisible characters.
+Stop if validation or local recovery fails. Display the exact payload with `Get-Content -Raw 'tests/week10_testing/preliminary_testing/Discord/week10_Discord-01_sa01_encoded.txt'` or a plain-text editor; do not retype, trim, normalize, or repair invisible characters.
 
 ## 2. Manual Discord operation
 
 1. Confirm manually the approved Discord account, server/channel or direct-message destination, and recipient. This guide does not invent a destination.
 2. Open Discord manually and record the Discord/client or browser version and operating system.
-3. In a fresh message, paste the complete contents of `week10_sa01_encoded.txt` without editing it. Record the channel/context and any visible formatting behavior.
+3. In a fresh message, paste the complete contents of `tests/week10_testing/preliminary_testing/Discord/week10_Discord-01_sa01_encoded.txt` without editing it. Record the channel/context and any visible formatting behavior.
 4. Send the message manually only after confirming the destination.
 5. Retrieve the delivered message body manually from Discord, selecting and copying exactly the sent text. Exclude usernames, timestamps, reactions, quoted text, and unrelated content.
 
 ## 3. Retrieval and analysis
 
-Paste the copied body unchanged into `week10_sa01_retrieved.txt` as UTF-8. Do not manually repair or normalize it. Run:
+Paste the copied body unchanged into `tests/week10_testing/preliminary_testing/Discord/week10_Discord-01_sa01_retrieved.txt` as UTF-8. Do not manually repair or normalize it. Run:
 
 ```powershell
 @'
 from pathlib import Path
 from src.zero_width_codec import count_codec_characters, extract_secret
-sent = Path("week10_sa01_encoded.txt").read_text(encoding="utf-8")
-retrieved = Path("week10_sa01_retrieved.txt").read_text(encoding="utf-8")
+sent = open("tests/week10_testing/preliminary_testing/Discord/week10_Discord-01_sa01_encoded.txt", encoding="utf-8", newline="").read()
+retrieved = open("tests/week10_testing/preliminary_testing/Discord/week10_Discord-01_sa01_retrieved.txt", encoding="utf-8", newline="").read()
 sc, rc = count_codec_characters(sent), count_codec_characters(retrieved)
 print("encoded:", sc); print("retrieved:", rc); print("exact encoded-text match:", retrieved == sent)
 if sc["total"] == 0: print("retention percentage: undefined (encoded total is zero)")

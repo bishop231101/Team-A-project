@@ -25,33 +25,33 @@ assert item["category"] == "short_ascii" and item["text"] == "Hello"
 assert hashlib.sha256(item["text"].encode("utf-8")).hexdigest() == item["sha256"] == "185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969"
 encoded = embed_secret("Team 1 compatibility test.", item["text"], recovery_mode=False)
 assert extract_secret(encoded) == "Hello"
-Path("week10_sa01_encoded.txt").write_text(encoded, encoding="utf-8")
+Path("tests/week10_testing/preliminary_testing/Google_Chrome_Browser_Console/week10_Chrome-01_sa01_encoded.txt").write_text(encoded, encoding="utf-8")
 print({"corpus_id": item["id"], "counts": count_codec_characters(encoded), "local_round_trip": True})
 '@ | python -
 ```
 
-Stop on any validation or local-round-trip failure. Display the exact payload with `Get-Content -Raw .\week10_sa01_encoded.txt`; do not retype, normalize, trim, or repair it.
+Stop on any validation or local-round-trip failure. Display the exact payload with `Get-Content -Raw 'tests/week10_testing/preliminary_testing/Google_Chrome_Browser_Console/week10_Chrome-01_sa01_encoded.txt'`; do not retype, normalize, trim, or repair it.
 
 ## 2. Manual Google Chrome Browser Console operation
 
 1. Confirm manually that the browser is **Google Chrome**, not Opera GX or another Chromium-based browser. If Chrome access cannot be confirmed, record that blocker and stop for team-lead review; do not claim Chrome is installed or available.
 2. Open Chrome's About page at `chrome://settings/help` and record the exact version shown there, the operating system, and the date of the check. Do not substitute a browser version from memory.
 3. Start from a fresh Chrome tab with DevTools opened through the normal Chrome UI. Select the **Console** panel and leave an empty Console prompt ready. Do not navigate to a page containing private data, install an extension, disable browser security, change security settings, or use browser automation.
-4. Before using the platform workflow, confirm that the local `SA01` encode/decode command in this guide completed successfully and that `week10_sa01_encoded.txt` is the exact locally generated payload. If it failed, stop and investigate; do not open the Console for the platform check.
-5. Manually open `week10_sa01_encoded.txt` in a plain-text editor and copy its entire contents exactly, including the visible cover text and invisible characters. In the empty Chrome Console prompt, paste that exact text only as text to be copied back. Do **not** press Enter, execute it, wrap it in JavaScript, type a function, or paste any unreviewed script. The Console test is a paste-and-copy-back check, not code execution.
+4. Before using the platform workflow, confirm that the local `SA01` encode/decode command in this guide completed successfully and that `tests/week10_testing/preliminary_testing/Google_Chrome_Browser_Console/week10_Chrome-01_sa01_encoded.txt` is the exact locally generated payload. If it failed, stop and investigate; do not open the Console for the platform check.
+5. Manually open `tests/week10_testing/preliminary_testing/Google_Chrome_Browser_Console/week10_Chrome-01_sa01_encoded.txt` in a plain-text editor and copy its entire contents exactly, including the visible cover text and invisible characters. In the empty Chrome Console prompt, paste that exact text only as text to be copied back. Do **not** press Enter, execute it, wrap it in JavaScript, type a function, or paste any unreviewed script. The Console test is a paste-and-copy-back check, not code execution.
 6. If Chrome displays a self-XSS or paste-protection warning, do not type an allow phrase, bypass the warning, or weaken a security setting. Record the warning and stop the check for team-lead review because the required manual operation was not safely available.
-7. If Chrome accepts the paste without requiring a bypass, manually select the complete unexecuted text in the Console prompt and copy it back. Paste that clipboard content unchanged into UTF-8 `week10_sa01_retrieved.txt`. Do not include the prompt marker, any Console output, a warning, or unrelated text. If the prompt cannot be copied back exactly without executing or transforming the payload, stop and record the workflow as blocked rather than inventing a workaround.
+7. If Chrome accepts the paste without requiring a bypass, manually select the complete unexecuted text in the Console prompt and copy it back. Paste that clipboard content unchanged into UTF-8 `tests/week10_testing/preliminary_testing/Google_Chrome_Browser_Console/week10_Chrome-01_sa01_retrieved.txt`. Do not include the prompt marker, any Console output, a warning, or unrelated text. If the prompt cannot be copied back exactly without executing or transforming the payload, stop and record the workflow as blocked rather than inventing a workaround.
 8. Record the precise starting state, exact source file, paste location, whether the paste warning appeared, whether Enter was avoided, the copy-back method, and any observed alteration. Keep all browser interactions manual.
 
 ## 3. Retrieval and analysis
 
-Do not manually repair, normalize, or trim `week10_sa01_retrieved.txt`. Run:
+Do not manually repair, normalize, or trim `tests/week10_testing/preliminary_testing/Google_Chrome_Browser_Console/week10_Chrome-01_sa01_retrieved.txt`. Run:
 
 ```powershell
 @'
 from pathlib import Path
 from src.zero_width_codec import count_codec_characters, extract_secret
-sent = open("week10_sa01_encoded.txt", encoding="utf-8", newline="").read(); retrieved = open("week10_sa01_retrieved.txt", encoding="utf-8", newline="").read()
+sent = open("tests/week10_testing/preliminary_testing/Google_Chrome_Browser_Console/week10_Chrome-01_sa01_encoded.txt", encoding="utf-8", newline="").read(); retrieved = open("tests/week10_testing/preliminary_testing/Google_Chrome_Browser_Console/week10_Chrome-01_sa01_retrieved.txt", encoding="utf-8", newline="").read()
 sc, rc = count_codec_characters(sent), count_codec_characters(retrieved)
 print("encoded:", sc); print("retrieved:", rc); print("exact encoded-text match:", retrieved == sent)
 if sc["total"] == 0: print("retention percentage: undefined (encoded total is zero)")

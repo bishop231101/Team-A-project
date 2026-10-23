@@ -382,9 +382,9 @@
 - Decode result and error: Decode succeeded: True; recovered secret: 'Hello'; no error reported.
 - Recovered secret exactly equals Hello: True
 - Evidence references: 
-    - Paste-and-Copy-Back: `tests/week10_testing/screenshots/tristan/preliminary-testing/Notepad++/PRELIM-NPP-01-Paste-Copy-Back.png` 
-    - Terminal results: `tests/week10_testing/screenshots/tristan/preliminary-testing/Notepad++/PRELIM-NPP-01-Terminal.png`
-- Limitations and observations: This was a preliminary feasibility check, not an official production trial. The encoded message was pasted into Notepad++ and copied back without saving it in Notepad++. The copied-back text was pasted into a separate plain-text file named week10_sa01_retrieved.txt so the retrieval and analysis commands could evaluate it. No manual repair was performed.
+    - Paste-and-Copy-Back: `tests/week10_testing/preliminary_testing/Notepad++/evidence/PRELIM-NPP-01-Paste-Copy-Back.png` 
+    - Terminal results: `tests/week10_testing/preliminary_testing/Notepad++/evidence/PRELIM-NPP-01-Terminal.png`
+- Limitations and observations: This was a preliminary feasibility check, not an official production trial. The encoded message was pasted into Notepad++ and copied back without saving it in Notepad++. The copied-back text was pasted into a separate plain-text file named `week10_NPP-01_sa01_retrieved.txt` so the retrieval and analysis commands could evaluate it. No manual repair was performed.
 - Next steps: Commit the documentation and evidence associated with this preliminary check, push the changes to the existing tristan-week10 branch and pull request, and notify Ifeanyi that the preliminary check is complete and ready for review. After the pull request is reviewed and accepted, proceed with the remaining preliminary platform checks. Keep all preliminary results separate from official production data collection.
 
 > These results are for workflow verification. Do not count them as official production trials unless the team confirms that they qualify.
@@ -393,20 +393,16 @@
 
 | Evidence | File path or link | What it demonstrates |
 |---|---|---|
-| Screenshot | tests/week10_testing/screenshots/tristan/preliminary-testing/Notepad++/PRELIM-NPP-01-Paste-Copy-Back.png | encoded message pasted into unsaved Notepad++ document |
-| Terminal output | tests/week10_testing/screenshots/tristan/preliminary-testing/Notepad++/PRELIM-NPP-01-Terminal.png | terminal results from decode attempt |
-| Retrieved text or other record | week10_sa01_retrieved.txt | Contains the text copied  |
+| Screenshot | tests/week10_testing/preliminary_testing/Notepad++/evidence/PRELIM-NPP-01-Paste-Copy-Back.png | encoded message pasted into unsaved Notepad++ document |
+| Terminal output | tests/week10_testing/preliminary_testing/Notepad++/evidence/PRELIM-NPP-01-Terminal.png | terminal results from decode attempt |
+| Retrieved text or other record | tests/week10_testing/preliminary_testing/Notepad++/week10_NPP-01_sa01_retrieved.txt | Contains the text copied  |
 
 ## 5. Notes and Blockers
 
 - **Unexpected behavior:** None observed during the preliminary Notepad++ paste-and-copy-back test.
 - **Errors or limitations:** No command errors were observed. The preliminary check covers Notepad++ copy-back behavior only; it does not establish results for other platforms or count as an official production trial. The retrieved text was saved to a separate plain-text file for analysis without saving the encoded message within Notepad++.
-- **Questions requiring team confirmation:**
-  1. **Output file location:** The local encode/round-trip check currently saves the generated encoded message file in the repository root. Should future preliminary and production test files be saved in platform- and test-specific directories instead? For example, something like `tests/week10_testing/preliminary-testing/Notepad++/`.
-  2. **Test-specific filenames:** Should we adopt filenames that identify the platform and corpus entry, rather than using generic names such as `week10_sa01_encoded.txt` and `week10_sa01_retrieved.txt`? For example, `week10_NPP_sa01_encoded.txt` and `week10_NPP_sa01_retrieved.txt`. This would make the files easier to associate with the correct test and reduce the risk of overwriting or confusing results from different platforms.
-  For future production data collection, where the same corpus message may be tested across multiple trials, we could also include a unique trial ID in each filename. For example, `week10_NPP-01_sa01_encoded.txt` and `week10_NPP-01_sa01_retrieved.txt`, where NPP-01 identifies the Notepad++ trial and sa01 identifies the corpus entry. Should we adopt a consistent naming convention that includes the platform, trial ID when applicable, corpus ID, and file purpose across the preliminary and production testing guides?
-    - For now, the files associated with this Notepad++ preliminary feasibility check will retain their original naming conventions and remain in the repository root. This preserves consistency with the commands used during the test and makes it clear where the encoded message is generated and where the user-created retrieved-text file must be saved if the test needs to be repeated. Any changes to file locations or naming conventions will be made after the team confirms the preferred approach.
-  3. **Scope of changes:** If the team agrees on a new directory and naming convention, should we update the existing preliminary guides and future production-testing guides to use it consistently? I have not made these changes pending team confirmation.
+- **File organization and naming convention:** Preliminary artifacts are stored by platform under `tests/week10_testing/preliminary_testing/`. Text artifacts use `week10_<Platform>-<TrialNumber>_<CorpusID>_<Purpose>.txt`; this completed check uses `week10_NPP-01_sa01_encoded.txt` and `week10_NPP-01_sa01_retrieved.txt`. Future production records must remain separate and use their assigned trial identifiers.
+- **Questions requiring team confirmation:** None for this completed preliminary-check file organization. Platform workflows other than the completed Notepad++ check remain subject to their documented pending verification status.
 - **Next action:** Commit the completed preliminary-check documentation and evidence, push the changes to the existing tristan-week10 branch and pull request, and notify Ifeanyi that the Notepad++ preliminary check is ready for review. After review and acceptance, continue with the remaining preliminary platform checks, keeping their results separate from production data collection.
 
 ---
@@ -485,7 +481,7 @@
 | Microsoft Outlook | Send and retrieve message | Confirmed | Still awaiting verification |
 | Telegram Web | Send and retrieve message | Confirmed | Still awaiting verification |
 | Notepad++ | Paste and copy back | Confirmed | Verified |
-| Browser Console | Paste and copy back | Confirmed | Still awaiting verification |
+| Google Chrome Browser Console | Paste and copy back | Confirmed | Still awaiting verification |
 
 **Current status:** Workflow procedures documented; platform access verified, preliminary feasibility checks pending.
 
