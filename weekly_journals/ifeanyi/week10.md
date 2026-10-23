@@ -1,68 +1,37 @@
-# CS481 – Week 10 Individual Journal
+# Week 10 Individual Journal — Ifeanyi
 
-**Name:** Ifeanyi Emeka  
-**Role:** Team Leader  
-**Week:** 10 (October 19–25, 2026)  
-**Project:** Zero-Width Unicode Steganography with Social-Media Robustness Engineering
+**Course:** CS481 — Capstone Project  
+**Role:** Team 1 Leader  
+**Week:** October 19–25, 2026
 
-## 1. Work Completed
+## Work Completed
 
-At the beginning of Week 10, I reviewed our Week 9 testing protocol and the revised production testing requirements to ensure that our team was following the approved project plan.
+This week, I focused on coordinating the team, reviewing completed work, and ensuring our project followed the approved testing protocol.
 
-I coordinated our Monday meeting on October 19, with all team members present, and documented the meeting minutes in our GitHub repository.
+I reviewed Henry's Week 10 validation contributions and identified a pull request that would have accidentally reversed his completed work. After discussing the issue with Henry, we confirmed that his original PR #22 had already been merged and that PR #23 should be closed without merging.
 
-I also organized the responsibilities for Week 10. Tristan is responsible for platform workflow verification and production data collection, while Henry will continue supporting codec verification and failure analysis. My responsibilities include reviewing testing evidence, maintaining the compatibility matrix, monitoring progress, and preparing team documentation.
+I also reviewed Tristan's PR #21, which contained the seven platform-specific testing guides and preliminary workflow verification documents. During the review, I identified potential problems with the file organization and naming conventions that could cause testing evidence to be overwritten.
 
-I created the Week 10 data-quality audit to establish the requirements for checking production testing results. This document includes a testing checklist, outstanding issues, evidence requirements, and a comparison with our project plan.
+I worked with Tristan to address these concerns by organizing testing files into separate platform folders and using consistent filenames. After reviewing the updates and supporting evidence, I merged PR #21 into the main branch.
 
-I committed and pushed both the Monday meeting minutes and the Week 10 data-quality audit to GitHub.
+I also monitored the preliminary testing results and coordinated the team's plan to begin official production testing on October 26.
 
-## 2. Testing and Verification
+## Challenges and Lessons Learned
 
-I reviewed the approved production testing matrix, which contains seven platform-operation combinations, eight approved messages, and three repetitions per message.
+One challenge was ensuring that pull requests did not accidentally remove completed work. This reinforced the importance of reviewing changes carefully before merging.
 
-This gives us 168 planned production trials.
+Another challenge was maintaining accurate and organized testing evidence. I learned that good documentation is just as important as successful testing because it allows the team to verify results and reproduce experiments.
 
-I also reviewed Tristan's preliminary WeChat feasibility results from Week 9. Although the preliminary results were successful, I maintained the distinction between feasibility testing and official production testing.
+## Preliminary Testing Findings
 
-No new production trial results have been verified by me at this stage of Week 10.
+Tristan reported that five platforms retained 100% of the zero-width characters and successfully recovered the hidden message.
 
-My next responsibility is to review actual testing logs, screenshots, decoder results, and exact message recovery outcomes as they become available.
+Gmail retained 44.74%, while Microsoft Word retained 0%. Both failed to recover the hidden message.
 
-## 3. Challenges Encountered
+These results demonstrated that successful local testing does not guarantee that different platforms will preserve the encoded information.
 
-One challenge carried over from Week 9 is that the exact workflows for the seven approved platforms have not yet been confirmed.
+## Next Steps
 
-Without this confirmation, we cannot confidently begin collecting official production results under the finalized protocol.
+My next priorities are to finalize the Week 10 team report, ensure Friday's meeting minutes are documented, review all supporting evidence, and coordinate the start of official production testing on October 26.
 
-Another challenge is ensuring that the team communicates consistently and submits enough supporting evidence for its work.
-
-To address these issues, I documented the outstanding requirements in the Week 10 audit and assigned clear responsibilities.
-
-## 4. Lessons Learned
-
-This week reinforced the importance of planning and verification before collecting experimental data.
-
-I learned that a successful preliminary test does not automatically mean a platform is ready for full production testing.
-
-I also recognize that maintaining accurate records is an important part of my responsibility as team leader. We need to report actual results rather than assume a task is complete because it was assigned.
-
-## 5. Plans for the Remainder of Week 10
-
-- Obtain Tristan's confirmation of platform access and exact testing workflows.
-- Review production testing results and supporting screenshots.
-- Check trial records for accuracy, completeness, and duplicates.
-- Coordinate with Henry on decoder verification and failure analysis.
-- Update the data-quality audit and compatibility matrix as verified results become available.
-- Monitor GitHub contributions and review submitted pull requests.
-- Document Friday's meeting and prepare the Week 10 team report.
-
-## 6. Personal Reflection
-
-Week 10 has started with a clear focus on accountability, testing accuracy, and teamwork. As team leader, I have completed our Monday meeting documentation and established a data-quality audit to help guide the team's work.
-
-Although we still have production testing to complete, I am making sure we have clear responsibilities and a reliable process for documenting results.
-
-My goal for the remainder of the week is to keep the team organized, address challenges early, and ensure our reported progress is supported by actual evidence.
-
-**Journal Status:** In Progress – To be updated as additional Week 10 work is completed.
+I will continue monitoring team contributions, reviewing pull requests, and ensuring that all testing follows the approved protocol.
