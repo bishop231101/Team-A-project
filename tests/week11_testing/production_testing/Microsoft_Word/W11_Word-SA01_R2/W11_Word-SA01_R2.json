@@ -1,0 +1,30 @@
+{
+  "trial_id": "W11_Word-SA01_R2",
+  "status": "ready_for_manual_transfer",
+  "platform": "Microsoft Word",
+  "platform_directory": "Microsoft_Word",
+  "operation": "save_reopen_and_retrieve",
+  "corpus_id": "SA01",
+  "repetition": 2,
+  "repetition_policy": "reuse_encoded_input",
+  "tester": null,
+  "timestamp_utc": null,
+  "codec_commit": "4134cec1d23be3ae7069440a3718e09069922bdc",
+  "protocol_version": "1.0-week11-baseline",
+  "cover_text": "Team 1 compatibility test.",
+  "recovery_mode": false,
+  "repetition_factor": null,
+  "sent_path": "Microsoft_Word/W11_Word-SA01_R2/W11_Word-SA01_R2_sent.txt",
+  "retrieved_path": "Microsoft_Word/W11_Word-SA01_R2/W11_Word-SA01_R2_retrieved.txt",
+  "record_path": "Microsoft_Word/W11_Word-SA01_R2/W11_Word-SA01_R2.json",
+  "evidence_paths": [
+    "Microsoft_Word/W11_Word-SA01_R2/evidence"
+  ],
+  "input_sha256": "956563d0d87a072df79208b7d8a689b530a9cfc2734b321a403b3e3cce2eee07",
+  "local_validation": {
+    "passed": true,
+    "exact_round_trip": true
+  },
+  "measured_results": null,
+  "notes": []
+}

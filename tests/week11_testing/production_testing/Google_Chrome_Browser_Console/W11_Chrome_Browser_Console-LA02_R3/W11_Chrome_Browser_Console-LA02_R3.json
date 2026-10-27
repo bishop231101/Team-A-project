@@ -1,0 +1,30 @@
+{
+  "trial_id": "W11_Chrome_Browser_Console-LA02_R3",
+  "status": "ready_for_manual_transfer",
+  "platform": "Browser Console",
+  "platform_directory": "Google_Chrome_Browser_Console",
+  "operation": "paste_and_copy_back",
+  "corpus_id": "LA02",
+  "repetition": 3,
+  "repetition_policy": "reuse_encoded_input",
+  "tester": null,
+  "timestamp_utc": null,
+  "codec_commit": "4134cec1d23be3ae7069440a3718e09069922bdc",
+  "protocol_version": "1.0-week11-baseline",
+  "cover_text": "Team 1 compatibility test.",
+  "recovery_mode": false,
+  "repetition_factor": null,
+  "sent_path": "Google_Chrome_Browser_Console/W11_Chrome_Browser_Console-LA02_R3/W11_Chrome_Browser_Console-LA02_R3_sent.txt",
+  "retrieved_path": "Google_Chrome_Browser_Console/W11_Chrome_Browser_Console-LA02_R3/W11_Chrome_Browser_Console-LA02_R3_retrieved.txt",
+  "record_path": "Google_Chrome_Browser_Console/W11_Chrome_Browser_Console-LA02_R3/W11_Chrome_Browser_Console-LA02_R3.json",
+  "evidence_paths": [
+    "Google_Chrome_Browser_Console/W11_Chrome_Browser_Console-LA02_R3/evidence"
+  ],
+  "input_sha256": "cfaf99c919aa92c1fdaa4c74c88ae0c00d96192882f1a98e59c6e01b2eb68455",
+  "local_validation": {
+    "passed": true,
+    "exact_round_trip": true
+  },
+  "measured_results": null,
+  "notes": []
+}

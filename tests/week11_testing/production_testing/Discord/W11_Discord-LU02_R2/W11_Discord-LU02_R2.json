@@ -1,0 +1,30 @@
+{
+  "trial_id": "W11_Discord-LU02_R2",
+  "status": "ready_for_manual_transfer",
+  "platform": "Discord",
+  "platform_directory": "Discord",
+  "operation": "send_and_retrieve",
+  "corpus_id": "LU02",
+  "repetition": 2,
+  "repetition_policy": "reuse_encoded_input",
+  "tester": null,
+  "timestamp_utc": null,
+  "codec_commit": "4134cec1d23be3ae7069440a3718e09069922bdc",
+  "protocol_version": "1.0-week11-baseline",
+  "cover_text": "Team 1 compatibility test.",
+  "recovery_mode": false,
+  "repetition_factor": null,
+  "sent_path": "Discord/W11_Discord-LU02_R2/W11_Discord-LU02_R2_sent.txt",
+  "retrieved_path": "Discord/W11_Discord-LU02_R2/W11_Discord-LU02_R2_retrieved.txt",
+  "record_path": "Discord/W11_Discord-LU02_R2/W11_Discord-LU02_R2.json",
+  "evidence_paths": [
+    "Discord/W11_Discord-LU02_R2/evidence"
+  ],
+  "input_sha256": "229fa970c557014b69e328aefde0008f1811cfd30155c4c9f9a15a0331472dbf",
+  "local_validation": {
+    "passed": true,
+    "exact_round_trip": true
+  },
+  "measured_results": null,
+  "notes": []
+}
