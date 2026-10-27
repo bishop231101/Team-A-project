@@ -83,25 +83,65 @@ These results establish a verified baseline for subsequent testing and error-cor
 
 ## 4. Testing and Evidence
 
-### 4.1 Baseline Production Testing
+### 4.1 Approved Production Testing Scope
 
-The approved testing scope consists of seven platform-operation combinations, eight approved messages, and three repetitions per message.
+The approved testing protocol consists of seven platform-operation combinations, eight approved corpus messages, and three repetitions per message.
 
 **Total planned production trials: 168.**
 
-The number of completed production trials remains unconfirmed.
+The number of completed official production trials remains unconfirmed because the required trial records and supporting evidence have not yet been submitted for independent review.
 
-Preliminary Week 10 platform results must remain separate from official production data.
+The preliminary Week 10 platform findings remain documented separately and are not counted as official production results.
 
-### 4.2 Previous Codec Validation
+### 4.2 Baseline Corpus Integrity Verification
+
+During Week 11, Ifeanyi independently verified the approved testing corpus stored in `tests/fixtures/week9_corpus.json`.
+
+The verification produced the following results:
+
+- Total corpus entries: 8
+- Required fields (`id`, `category`, `text`, `sha256`): PASS
+- Unique message identifiers: PASS
+- SHA-256 integrity checks: 8 of 8 passed
+
+**Result:** All eight approved messages passed the structural and integrity checks performed.
+
+**Evidence:** `docs/week11_data_quality_audit.md`
+
+This verification establishes that the approved corpus is structurally valid and available for production testing. It does not demonstrate that production trials have been completed.
+
+### 4.3 Automated Regression Testing
+
+Ifeanyi executed the existing automated test suite using:
+
+`python -m pytest -q`
+
+**Results:**
+
+- 43 tests passed.
+- 132 subtests passed.
+- No failures reported.
+- Execution time: approximately 0.23 seconds.
+
+These results establish a passing baseline for the current codebase and provide a reference for evaluating future changes.
+
+**Evidence:** `docs/week11_data_quality_audit.md` and the corresponding terminal output.
+
+The automated regression results do not establish completion of the 168 production trials or successful implementation of the proposed Week 11 error-correction feature.
+
+### 4.4 Previous Codec Validation
 
 During Week 10, Henry reported successful local codec validation involving 38 tests and 132 subtests.
 
-These results support local codec readiness but do not establish successful recovery across every external platform.
+His work also included validation tools intended to identify missing evidence, duplicate trials, inconsistent metadata, and calculation errors.
 
-### 4.3 Week 11 Error-Correction Testing
+These results support local codec readiness but do not establish successful message recovery across every external platform.
 
-The planned testing includes:
+**Evidence:** `docs/week10_henry_codec_validation.md`
+
+### 4.5 Week 11 Error-Correction Testing
+
+The planned Week 11 error-correction tests include:
 
 - Successful decoding without corruption.
 - Recovery under correctable corruption.
@@ -113,9 +153,19 @@ The planned testing includes:
 - Backward compatibility with baseline mode.
 - Encoded-length overhead and payload capacity.
 
-**Evidence Status:** Pending implementation results and screenshots.
+**Evidence Status:** Pending Henry's implementation, verified test results, and supporting screenshots.
 
-Screenshots will be embedded with explanations after the relevant tests have been completed.
+No claim of successful error-correction functionality will be made until the implementation and corresponding tests have been reviewed.
+
+### 4.6 Production Testing Evidence and Remaining Work
+
+Tristan's production testing submission remains pending verification.
+
+The required evidence includes individual trial records, original and retrieved text, decoder results, character-retention calculations, screenshots, and explanations of successful and failed tests.
+
+Once submitted, the team leader will review the evidence, use the available validation tools, identify missing or duplicate records, and update the production compatibility matrix.
+
+**Current Status:** Baseline corpus verification and automated regression testing completed. Official production testing and error-correction verification remain outstanding.
 
 ## 5. Challenges and Lessons Learned
 
