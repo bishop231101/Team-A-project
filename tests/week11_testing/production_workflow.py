@@ -21,6 +21,21 @@ from src.week11_production import (  # noqa: E402
 CORPUS = ROOT / "tests" / "fixtures" / "week9_corpus.json"
 
 
+def _is_record_invalid(result: dict) -> bool:
+    if result["valid"]:
+        return False
+    if result.get("analysis_status") != "incomplete":
+        return True
+    operational_incomplete = (
+        "trial status must be completed or failed after manual transfer",
+        "retrieved file is empty; no platform result has been supplied",
+    )
+    return any(
+        not (error in operational_incomplete or error.startswith("missing raw file:"))
+        for error in result.get("validation_errors", [])
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Prepare or analyze Week 11 official trials.")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -49,22 +64,26 @@ def main() -> None:
         print(json.dumps({"prepared_trial_count": len(result["trials"]), "output": str(args.root)}, indent=2))
     elif args.command == "analyze-trial":
         record = json.loads(args.record.read_text(encoding="utf-8"))
-        result = analyze_trial(record, load_and_validate_corpus(CORPUS), args.root)
+        manifest_path = args.root.parent / "production_manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        expected = next(item for item in manifest["trials"] if item["trial_id"] == record.get("trial_id"))
+        result = analyze_trial(record, load_and_validate_corpus(CORPUS), args.root, expected)
         print(json.dumps(result, ensure_ascii=False, indent=2))
         raise SystemExit(0 if result["valid"] else 1)
     else:
         manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
         corpus = load_and_validate_corpus(CORPUS)
         results = []
-        for record in manifest.get("trials", []):
-            record_path = args.root / record["record_path"]
+        for manifest_record in manifest.get("trials", []):
+            record = manifest_record
+            record_path = args.root / manifest_record["record_path"]
             if record_path.is_file():
                 record = json.loads(record_path.read_text(encoding="utf-8"))
-            results.append(analyze_trial(record, corpus, args.root))
+            results.append(analyze_trial(record, corpus, args.root, manifest_record))
         summary = {
             "planned_records": len(results),
             "valid_records": sum(item["valid"] for item in results),
-            "invalid_records": sum(not item["valid"] and item["analysis_status"] != "incomplete" for item in results),
+            "invalid_records": sum(_is_record_invalid(item) for item in results),
             "complete_records": sum(item.get("analysis_status") == "completed" for item in results),
             "incomplete_records": sum(item.get("analysis_status") == "incomplete" for item in results),
             "exact_recoveries": sum(item.get("measured", {}).get("exact_match", False) for item in results),

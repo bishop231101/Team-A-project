@@ -19,6 +19,12 @@ CORPUS = ROOT / "tests" / "fixtures" / "week9_corpus.json"
 
 
 class Week11ProductionWorkflowTests(unittest.TestCase):
+    def _expected(self, record: dict, root: Path | None = None) -> dict:
+        manifest = build_manifest()
+        if root is not None and (root.parent / "production_manifest.json").is_file():
+            manifest = json.loads((root.parent / "production_manifest.json").read_text(encoding="utf-8"))
+        return next(item for item in manifest["trials"] if item["trial_id"] == record["trial_id"])
+
     def test_manifest_has_exact_168_slots_and_existing_platform_paths(self):
         manifest = build_manifest()
         self.assertEqual(manifest["planned_trial_count"], 168)
@@ -97,21 +103,99 @@ class Week11ProductionWorkflowTests(unittest.TestCase):
             self._empty_production_root(root)
             prepare_inputs(root, CORPUS)
             record = json.loads((root / "Gmail/W11_Gmail-SA01_R1/W11_Gmail-SA01_R1.json").read_text(encoding="utf-8"))
-            incomplete = analyze_trial(record, corpus, root)
+            incomplete = analyze_trial(record, corpus, root, self._expected(record, root))
             self.assertEqual(incomplete["analysis_status"], "incomplete")
             with (root / record["retrieved_path"]).open("w", encoding="utf-8", newline="") as handle:
                 handle.write("retrieved but not yet marked complete")
-            still_incomplete = analyze_trial(record, corpus, root)
+            still_incomplete = analyze_trial(record, corpus, root, self._expected(record, root))
             self.assertEqual(still_incomplete["analysis_status"], "incomplete")
             record["status"] = "failed"
             retrieved = root / record["retrieved_path"]
             with retrieved.open("w", encoding="utf-8", newline="") as handle:
                 handle.write("Team 1 compatibility test.\r\n")
-            result = analyze_trial(record, corpus, root)
+            result = analyze_trial(record, corpus, root, self._expected(record, root))
             self.assertEqual(result["analysis_status"], "completed")
             self.assertFalse(result["measured"]["decoder_returned"])
             saved = json.loads((root / record["record_path"]).read_text(encoding="utf-8"))
             self.assertEqual(saved["analysis_status"], "completed")
+
+    def test_completed_trial_with_captured_empty_retrieval_is_analyzed(self):
+        corpus = load_and_validate_corpus(CORPUS)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "production_testing"
+            self._empty_production_root(root)
+            prepare_inputs(root, CORPUS)
+            record_path = root / "Gmail/W11_Gmail-SA01_R1/W11_Gmail-SA01_R1.json"
+            record = json.loads(record_path.read_text(encoding="utf-8"))
+            record["status"] = "completed"
+            record["tester"] = "Tristan Koch"
+            record["timestamp_utc"] = "2026-10-28T15:00:00Z"
+            evidence = root / "Gmail/W11_Gmail-SA01_R1/evidence/gmail-empty.png"
+            evidence.write_bytes(b"captured evidence")
+            record["evidence_paths"] = ["Gmail/W11_Gmail-SA01_R1/evidence/gmail-empty.png"]
+            record_path.write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            result = analyze_trial(record, corpus, root, self._expected(record, root))
+            self.assertEqual(result["analysis_status"], "completed")
+            self.assertEqual(result["measured"]["retrieved_counts"]["total"], 0)
+            self.assertEqual(result["measured"]["retention_percentage"], 0.0)
+            self.assertFalse(result["measured"]["decoder_returned"])
+            self.assertIsNotNone(result["measured"]["decoder_error"])
+
+    def test_completed_metadata_is_required_and_valid_metadata_is_accepted(self):
+        corpus = load_and_validate_corpus(CORPUS)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "production_testing"
+            self._empty_production_root(root)
+            prepare_inputs(root, CORPUS)
+            record_path = root / "Gmail/W11_Gmail-SA01_R1/W11_Gmail-SA01_R1.json"
+            record = json.loads(record_path.read_text(encoding="utf-8"))
+            record["status"] = "completed"
+            for field in ("tester", "timestamp_utc", "evidence_paths"):
+                candidate = dict(record)
+                candidate[field] = None if field != "evidence_paths" else []
+                result = analyze_trial(candidate, corpus, root, self._expected(record, root), write_result=False)
+                self.assertTrue(any(field in error or "evidence" in error for error in result["validation_errors"]))
+            invalid_timestamp = dict(record, tester="Tristan Koch", timestamp_utc="2026-10-28T15:00:00-04:00", evidence_paths=[])
+            result = analyze_trial(invalid_timestamp, corpus, root, self._expected(record, root), write_result=False)
+            self.assertTrue(any("UTC timestamp" in error for error in result["validation_errors"]))
+            valid = dict(record, tester="Tristan Koch", timestamp_utc="2026-10-28T15:00:00Z", evidence_paths=["Gmail/W11_Gmail-SA01_R1/evidence/valid.png"])
+            (root / valid["evidence_paths"][0]).write_bytes(b"evidence")
+            result = analyze_trial(valid, corpus, root, self._expected(record, root), write_result=False)
+            self.assertTrue(result["valid"])
+
+    def test_completed_evidence_references_cannot_escape_production_root(self):
+        corpus = load_and_validate_corpus(CORPUS)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "production_testing"
+            self._empty_production_root(root)
+            prepare_inputs(root, CORPUS)
+            record_path = root / "Gmail/W11_Gmail-SA01_R1/W11_Gmail-SA01_R1.json"
+            record = json.loads(record_path.read_text(encoding="utf-8"))
+            record.update({"status": "completed", "tester": "Tristan Koch", "timestamp_utc": "2026-10-28T15:00:00Z"})
+            outside = Path(directory) / "outside-evidence.png"
+            outside.write_bytes(b"evidence")
+            for evidence_path in (str(outside), "../outside-evidence.png"):
+                candidate = dict(record, evidence_paths=[evidence_path])
+                result = analyze_trial(candidate, corpus, root, self._expected(record, root), write_result=False)
+                self.assertFalse(result["valid"])
+                self.assertTrue(any("escapes production root" in error for error in result["validation_errors"]))
+
+    def test_manifest_tampering_is_rejected(self):
+        corpus = load_and_validate_corpus(CORPUS)
+        fields = ("trial_id", "platform", "operation", "corpus_id", "repetition", "sent_path", "retrieved_path", "input_sha256", "protocol_version", "codec_commit", "cover_text", "recovery_mode", "repetition_policy")
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "production_testing"
+            self._empty_production_root(root)
+            prepare_inputs(root, CORPUS)
+            record_path = root / "Gmail/W11_Gmail-SA01_R1/W11_Gmail-SA01_R1.json"
+            record = json.loads(record_path.read_text(encoding="utf-8"))
+            expected = self._expected(record, root)
+            for field in fields:
+                tampered = dict(record)
+                tampered[field] = "tampered" if field not in {"repetition", "recovery_mode"} else (99 if field == "repetition" else True)
+                result = analyze_trial(tampered, corpus, root, expected, write_result=False)
+                self.assertFalse(result["valid"], field)
+                self.assertTrue(any(field in error for error in result["validation_errors"]), field)
 
     def test_batch_analysis_distinguishes_incomplete_success_and_failure(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -129,6 +213,12 @@ class Week11ProductionWorkflowTests(unittest.TestCase):
                 record_path = root / item["record_path"]
                 record = json.loads(record_path.read_text(encoding="utf-8"))
                 record["status"] = status
+                if status == "completed":
+                    record["tester"] = "Tristan Koch"
+                    record["timestamp_utc"] = "2026-10-28T15:00:00Z"
+                    evidence = root / item["platform_directory"] / item["trial_id"] / "evidence" / "batch.png"
+                    evidence.write_bytes(b"batch evidence")
+                    record["evidence_paths"] = [str(evidence.relative_to(root)).replace("\\", "/")]
                 with (root / item["retrieved_path"]).open("w", encoding="utf-8", newline="") as handle:
                     handle.write(retrieved_text)
                 record_path.write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -139,13 +229,37 @@ class Week11ProductionWorkflowTests(unittest.TestCase):
                 text=True,
                 check=False,
             )
-            self.assertEqual(completed.returncode, 0, completed.stderr)
+            self.assertEqual(completed.returncode, 0, completed.stderr + completed.stdout)
             summary = json.loads((root / "analysis/batch_analysis.json").read_text(encoding="utf-8"))["summary"]
             self.assertEqual(summary["planned_records"], 168)
             self.assertEqual(summary["complete_records"], 2)
             self.assertEqual(summary["incomplete_records"], 166)
             self.assertEqual(summary["invalid_records"], 0)
             self.assertEqual(summary["exact_recoveries"], 1)
+
+    def test_batch_analysis_reports_manifest_mismatch_as_invalid(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "production_testing"
+            self._empty_production_root(root)
+            prepare_inputs(root, CORPUS)
+            manifest_path = Path(directory) / "production_manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            target = manifest["trials"][0]
+            record_path = root / target["record_path"]
+            record = json.loads(record_path.read_text(encoding="utf-8"))
+            record["platform"] = "Discord"
+            record_path.write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            completed = subprocess.run(
+                [sys.executable, "tests/week11_testing/production_workflow.py", "analyze-batch", "--root", str(root), "--manifest", str(manifest_path)],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(completed.returncode, 1, completed.stderr + completed.stdout)
+            summary = json.loads((root / "analysis/batch_analysis.json").read_text(encoding="utf-8"))["summary"]
+            self.assertEqual(summary["invalid_records"], 1)
+            self.assertEqual(summary["incomplete_records"], 168)
 
 
 if __name__ == "__main__":

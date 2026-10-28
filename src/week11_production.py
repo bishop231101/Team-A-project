@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -34,6 +35,12 @@ APPROVED_WORKFLOWS = (
 )
 
 APPROVED_CORPUS_IDS = ("SA01", "SA02", "SU01", "SU02", "LA01", "LA02", "LU01", "LU02")
+MANIFEST_MATCH_FIELDS = (
+    "trial_id", "platform", "platform_directory", "operation", "corpus_id",
+    "repetition", "repetition_policy", "protocol_version", "codec_commit",
+    "cover_text", "recovery_mode", "sent_path", "retrieved_path", "record_path",
+    "input_sha256",
+)
 def read_exact_utf8(path: Path) -> str:
     """Read UTF-8 without translating line endings or trimming content."""
     with path.open("r", encoding="utf-8", newline="") as handle:
@@ -180,10 +187,71 @@ def prepare_inputs(output_root: Path, corpus_path: Path) -> dict[str, Any]:
     return manifest
 
 
-def analyze_trial(record: dict[str, Any], corpus: dict[str, dict[str, Any]], root: Path, write_result: bool = True) -> dict[str, Any]:
+def _valid_utc_timestamp(value: object) -> bool:
+    if not isinstance(value, str) or not value.strip():
+        return False
+    try:
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return False
+    return parsed.tzinfo is not None and parsed.utcoffset() == timezone.utc.utcoffset(parsed)
+
+
+def _validate_manifest_record(record: dict[str, Any], expected: dict[str, Any]) -> list[str]:
+    errors = []
+    for field in MANIFEST_MATCH_FIELDS:
+        expected_value = expected.get(field)
+        if expected_value is not None and record.get(field) != expected_value:
+            errors.append(
+                f"record field {field!r} disagrees with the approved manifest: "
+                f"record={record.get(field)!r}, manifest={expected_value!r}"
+            )
+    return errors
+
+
+def _validate_completed_metadata(record: dict[str, Any], root: Path) -> list[str]:
+    errors = []
+    if not isinstance(record.get("tester"), str) or not record["tester"].strip():
+        errors.append("completed trial requires a non-empty tester")
+    if not _valid_utc_timestamp(record.get("timestamp_utc")):
+        errors.append("completed trial requires a valid UTC timestamp")
+    evidence_paths = record.get("evidence_paths")
+    if not isinstance(evidence_paths, list) or not evidence_paths:
+        errors.append("completed trial requires non-empty evidence_paths")
+    else:
+        for evidence_path in evidence_paths:
+            if not isinstance(evidence_path, str) or not evidence_path.strip():
+                errors.append("completed trial evidence references must be non-empty strings")
+                continue
+            path = Path(evidence_path)
+            if path.is_absolute():
+                errors.append(f"completed trial evidence reference escapes production root: {evidence_path!r}")
+                continue
+            root_resolved = root.resolve()
+            resolved = (root / path).resolve()
+            try:
+                resolved.relative_to(root_resolved)
+            except ValueError:
+                errors.append(f"completed trial evidence reference escapes production root: {evidence_path!r}")
+                continue
+            if not resolved.is_file():
+                errors.append(f"completed trial evidence reference is not a file: {evidence_path!r}")
+            elif resolved.stat().st_size == 0:
+                errors.append(f"completed trial evidence file is empty: {evidence_path!r}")
+    return errors
+
+
+def analyze_trial(
+    record: dict[str, Any],
+    corpus: dict[str, dict[str, Any]],
+    root: Path,
+    expected_manifest_record: dict[str, Any],
+    write_result: bool = True,
+) -> dict[str, Any]:
     """Analyze one trial and persist the result beside its raw files."""
     errors: list[str] = []
     record_status = record.get("status")
+    errors.extend(_validate_manifest_record(record, expected_manifest_record))
     sent_path = root / record.get("sent_path", "")
     retrieved_path = root / record.get("retrieved_path", "")
     if record_status not in {"completed", "failed"}:
@@ -194,11 +262,8 @@ def analyze_trial(record: dict[str, Any], corpus: dict[str, dict[str, Any]], roo
                   "validation_errors": errors}
         return _persist_result(record, result, root, write_result)
     sent, retrieved = read_exact_utf8(sent_path), read_exact_utf8(retrieved_path)
-    if not retrieved:
-        errors.append("retrieved file is empty; no platform result has been supplied")
-        result = {"trial_id": record.get("trial_id"), "analysis_status": "incomplete", "valid": False,
-                  "validation_errors": errors}
-        return _persist_result(record, result, root, write_result)
+    if record_status == "completed":
+        errors.extend(_validate_completed_metadata(record, root))
     if record_status not in {"completed", "failed"}:
         result = {"trial_id": record.get("trial_id"), "analysis_status": "incomplete", "valid": False,
                   "validation_errors": errors}
