@@ -209,35 +209,35 @@ def _validate_manifest_record(record: dict[str, Any], expected: dict[str, Any]) 
     return errors
 
 
-def _validate_completed_metadata(record: dict[str, Any], root: Path) -> list[str]:
+def _validate_terminal_metadata(record: dict[str, Any], root: Path) -> list[str]:
     errors = []
     if not isinstance(record.get("tester"), str) or not record["tester"].strip():
-        errors.append("completed trial requires a non-empty tester")
+        errors.append("terminal trial requires a non-empty tester")
     if not _valid_utc_timestamp(record.get("timestamp_utc")):
-        errors.append("completed trial requires a valid UTC timestamp")
+        errors.append("terminal trial requires a valid UTC timestamp")
     evidence_paths = record.get("evidence_paths")
     if not isinstance(evidence_paths, list) or not evidence_paths:
-        errors.append("completed trial requires non-empty evidence_paths")
+        errors.append("terminal trial requires non-empty evidence_paths")
     else:
         for evidence_path in evidence_paths:
             if not isinstance(evidence_path, str) or not evidence_path.strip():
-                errors.append("completed trial evidence references must be non-empty strings")
+                errors.append("terminal trial evidence references must be non-empty strings")
                 continue
             path = Path(evidence_path)
             if path.is_absolute():
-                errors.append(f"completed trial evidence reference escapes production root: {evidence_path!r}")
+                errors.append(f"terminal trial evidence reference escapes production root: {evidence_path!r}")
                 continue
             root_resolved = root.resolve()
             resolved = (root / path).resolve()
             try:
                 resolved.relative_to(root_resolved)
             except ValueError:
-                errors.append(f"completed trial evidence reference escapes production root: {evidence_path!r}")
+                errors.append(f"terminal trial evidence reference escapes production root: {evidence_path!r}")
                 continue
             if not resolved.is_file():
-                errors.append(f"completed trial evidence reference is not a file: {evidence_path!r}")
+                errors.append(f"terminal trial evidence reference is not a file: {evidence_path!r}")
             elif resolved.stat().st_size == 0:
-                errors.append(f"completed trial evidence file is empty: {evidence_path!r}")
+                errors.append(f"terminal trial evidence file is empty: {evidence_path!r}")
     return errors
 
 
@@ -262,8 +262,8 @@ def analyze_trial(
                   "validation_errors": errors}
         return _persist_result(record, result, root, write_result)
     sent, retrieved = read_exact_utf8(sent_path), read_exact_utf8(retrieved_path)
-    if record_status == "completed":
-        errors.extend(_validate_completed_metadata(record, root))
+    if record_status in {"completed", "failed"}:
+        errors.extend(_validate_terminal_metadata(record, root))
     if record_status not in {"completed", "failed"}:
         result = {"trial_id": record.get("trial_id"), "analysis_status": "incomplete", "valid": False,
                   "validation_errors": errors}

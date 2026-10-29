@@ -213,7 +213,7 @@ class Week11ProductionWorkflowTests(unittest.TestCase):
                 record_path = root / item["record_path"]
                 record = json.loads(record_path.read_text(encoding="utf-8"))
                 record["status"] = status
-                if status == "completed":
+                if status in {"completed", "failed"}:
                     record["tester"] = "Tristan Koch"
                     record["timestamp_utc"] = "2026-10-28T15:00:00Z"
                     evidence = root / item["platform_directory"] / item["trial_id"] / "evidence" / "batch.png"
@@ -236,6 +236,63 @@ class Week11ProductionWorkflowTests(unittest.TestCase):
             self.assertEqual(summary["incomplete_records"], 166)
             self.assertEqual(summary["invalid_records"], 0)
             self.assertEqual(summary["exact_recoveries"], 1)
+
+    def test_failed_trial_requires_terminal_metadata_and_accepts_valid_metadata(self):
+        corpus = load_and_validate_corpus(CORPUS)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "production_testing"
+            self._empty_production_root(root)
+            prepare_inputs(root, CORPUS)
+            record_path = root / "Gmail/W11_Gmail-SA01_R1/W11_Gmail-SA01_R1.json"
+            record = json.loads(record_path.read_text(encoding="utf-8"))
+            record["status"] = "failed"
+            retrieved = root / record["retrieved_path"]
+            retrieved.write_text("Team 1 compatibility test.", encoding="utf-8")
+            expected = self._expected(record, root)
+
+            cases = (
+                ("missing tester", dict(tester=None, timestamp_utc="2026-10-28T15:00:00Z", evidence_paths=["Gmail/W11_Gmail-SA01_R1/evidence/valid.png"])),
+                ("invalid timestamp", dict(tester="Tristan Koch", timestamp_utc="not-utc", evidence_paths=["Gmail/W11_Gmail-SA01_R1/evidence/valid.png"])),
+                ("missing evidence references", dict(tester="Tristan Koch", timestamp_utc="2026-10-28T15:00:00Z", evidence_paths=[])),
+                ("missing evidence file", dict(tester="Tristan Koch", timestamp_utc="2026-10-28T15:00:00Z", evidence_paths=["Gmail/W11_Gmail-SA01_R1/evidence/missing.png"])),
+            )
+            for label, updates in cases:
+                candidate = dict(record, **updates)
+                result = analyze_trial(candidate, corpus, root, expected, write_result=False)
+                self.assertFalse(result["valid"], label)
+            empty_evidence = root / "Gmail/W11_Gmail-SA01_R1/evidence/empty.png"
+            empty_evidence.write_bytes(b"")
+            empty_candidate = dict(record, tester="Tristan Koch", timestamp_utc="2026-10-28T15:00:00Z", evidence_paths=["Gmail/W11_Gmail-SA01_R1/evidence/empty.png"])
+            self.assertFalse(analyze_trial(empty_candidate, corpus, root, expected, write_result=False)["valid"])
+            valid_evidence = root / "Gmail/W11_Gmail-SA01_R1/evidence/valid.png"
+            valid_evidence.write_bytes(b"failed trial evidence")
+            valid_candidate = dict(record, tester="Tristan Koch", timestamp_utc="2026-10-28T15:00:00Z", evidence_paths=["Gmail/W11_Gmail-SA01_R1/evidence/valid.png"])
+            result = analyze_trial(valid_candidate, corpus, root, expected, write_result=False)
+            self.assertTrue(result["valid"])
+            self.assertEqual(result["analysis_status"], "completed")
+
+    def test_failed_trial_with_missing_timestamp_is_rejected(self):
+        corpus = load_and_validate_corpus(CORPUS)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "production_testing"
+            self._empty_production_root(root)
+            prepare_inputs(root, CORPUS)
+            record_path = root / "Gmail/W11_Gmail-SA01_R1/W11_Gmail-SA01_R1.json"
+            record = json.loads(record_path.read_text(encoding="utf-8"))
+            record["status"] = "failed"
+            retrieved = root / record["retrieved_path"]
+            retrieved.write_text("Team 1 compatibility test.", encoding="utf-8")
+            evidence = root / "Gmail/W11_Gmail-SA01_R1/evidence/valid.png"
+            evidence.write_bytes(b"failed trial evidence")
+            candidate = dict(
+                record,
+                tester="Tristan Koch",
+                timestamp_utc=None,
+                evidence_paths=["Gmail/W11_Gmail-SA01_R1/evidence/valid.png"],
+            )
+            result = analyze_trial(candidate, corpus, root, self._expected(record, root), write_result=False)
+            self.assertFalse(result["valid"])
+            self.assertTrue(any("UTC timestamp" in error for error in result["validation_errors"]))
 
     def test_batch_analysis_reports_manifest_mismatch_as_invalid(self):
         with tempfile.TemporaryDirectory() as directory:
