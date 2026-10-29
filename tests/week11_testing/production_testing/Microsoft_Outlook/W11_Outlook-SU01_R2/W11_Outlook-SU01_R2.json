@@ -1,0 +1,30 @@
+{
+  "trial_id": "W11_Outlook-SU01_R2",
+  "status": "ready_for_manual_transfer",
+  "platform": "Microsoft Outlook",
+  "platform_directory": "Microsoft_Outlook",
+  "operation": "send_and_retrieve",
+  "corpus_id": "SU01",
+  "repetition": 2,
+  "repetition_policy": "reuse_encoded_input",
+  "tester": null,
+  "timestamp_utc": null,
+  "codec_commit": "4134cec1d23be3ae7069440a3718e09069922bdc",
+  "protocol_version": "1.0-week11-baseline",
+  "cover_text": "Team 1 compatibility test.",
+  "recovery_mode": false,
+  "repetition_factor": null,
+  "sent_path": "Microsoft_Outlook/W11_Outlook-SU01_R2/W11_Outlook-SU01_R2_sent.txt",
+  "retrieved_path": "Microsoft_Outlook/W11_Outlook-SU01_R2/W11_Outlook-SU01_R2_retrieved.txt",
+  "record_path": "Microsoft_Outlook/W11_Outlook-SU01_R2/W11_Outlook-SU01_R2.json",
+  "evidence_paths": [
+    "Microsoft_Outlook/W11_Outlook-SU01_R2/evidence"
+  ],
+  "input_sha256": "e7ab46d673e706f6d6ffdd00e646eab4184be0e31ad8477db34bef53c110432a",
+  "local_validation": {
+    "passed": true,
+    "exact_round_trip": true
+  },
+  "measured_results": null,
+  "notes": []
+}

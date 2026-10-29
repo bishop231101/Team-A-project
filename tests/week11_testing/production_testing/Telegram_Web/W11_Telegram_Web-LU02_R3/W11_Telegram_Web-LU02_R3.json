@@ -1,0 +1,30 @@
+{
+  "trial_id": "W11_Telegram_Web-LU02_R3",
+  "status": "ready_for_manual_transfer",
+  "platform": "Telegram Web",
+  "platform_directory": "Telegram_Web",
+  "operation": "send_and_retrieve",
+  "corpus_id": "LU02",
+  "repetition": 3,
+  "repetition_policy": "reuse_encoded_input",
+  "tester": null,
+  "timestamp_utc": null,
+  "codec_commit": "4134cec1d23be3ae7069440a3718e09069922bdc",
+  "protocol_version": "1.0-week11-baseline",
+  "cover_text": "Team 1 compatibility test.",
+  "recovery_mode": false,
+  "repetition_factor": null,
+  "sent_path": "Telegram_Web/W11_Telegram_Web-LU02_R3/W11_Telegram_Web-LU02_R3_sent.txt",
+  "retrieved_path": "Telegram_Web/W11_Telegram_Web-LU02_R3/W11_Telegram_Web-LU02_R3_retrieved.txt",
+  "record_path": "Telegram_Web/W11_Telegram_Web-LU02_R3/W11_Telegram_Web-LU02_R3.json",
+  "evidence_paths": [
+    "Telegram_Web/W11_Telegram_Web-LU02_R3/evidence"
+  ],
+  "input_sha256": "229fa970c557014b69e328aefde0008f1811cfd30155c4c9f9a15a0331472dbf",
+  "local_validation": {
+    "passed": true,
+    "exact_round_trip": true
+  },
+  "measured_results": null,
+  "notes": []
+}
