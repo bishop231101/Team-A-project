@@ -3,6 +3,8 @@
 The codec appends a self-validating invisible frame to ordinary cover text.
 It supports the original byte-oriented format and an optional configurable
 repetition mode that uses majority voting to recover limited symbol damage.
+It also supports an optional Hamming SECDED mode for single-bit correction and
+double-bit detection within each protected byte.
 """
 
 from __future__ import annotations
@@ -23,6 +25,10 @@ _CODEC_CHARACTERS = frozenset((ZERO, ONE, SEPARATOR))
 _DEFAULT_REPETITION_FACTOR = 3
 _MIN_REPETITION_FACTOR = 3
 _MAX_REPETITION_FACTOR = 15
+_HAMMING_PREFIX_LENGTH = 2
+_HAMMING_CODEWORD_LENGTH = 13
+_HAMMING_PARITY_POSITIONS = (1, 2, 4, 8)
+_HAMMING_DATA_POSITIONS = (3, 5, 6, 7, 9, 10, 11, 12)
 
 
 class DecodeError(ValueError):
@@ -37,6 +43,7 @@ def encode_secret(
     secret: str,
     recovery_mode: bool = False,
     repetition_factor: int = _DEFAULT_REPETITION_FACTOR,
+    error_correction: str | None = None,
 ) -> str:
     """Encode ``secret`` into an invisible, self-validating frame.
 
@@ -47,16 +54,24 @@ def encode_secret(
     The factor must be an odd integer from 3 through 15. The default remains
     three for compatibility with Week 5; Week 6 testing uses five copies to
     recover as many as two removed or altered data symbols in each group.
+    Setting ``error_correction="hamming"`` instead uses a Hamming SECDED
+    codeword for each frame byte. Hamming mode corrects one altered bit and
+    detects two altered bits per codeword; it does not recover deleted symbols.
     """
     if not isinstance(secret, str):
         raise TypeError("secret must be a string")
     if not isinstance(recovery_mode, bool):
         raise TypeError("recovery_mode must be a boolean")
     _validate_repetition_factor(repetition_factor)
+    _validate_error_correction(error_correction)
+    if recovery_mode and error_correction is not None:
+        raise ValueError("recovery_mode and error_correction cannot be combined")
 
     payload = secret.encode("utf-8")
     frame = _MAGIC + struct.pack(">I", len(payload)) + payload
     frame += struct.pack(">I", zlib.crc32(frame) & 0xFFFFFFFF)
+    if error_correction == "hamming":
+        return _encode_with_hamming(frame)
     if recovery_mode:
         return _encode_with_repetition(frame, repetition_factor)
     return SEPARATOR.join(_encode_byte(value) for value in frame)
@@ -67,6 +82,7 @@ def embed_secret(
     secret: str,
     recovery_mode: bool = False,
     repetition_factor: int = _DEFAULT_REPETITION_FACTOR,
+    error_correction: str | None = None,
 ) -> str:
     """Append an encoded secret to visible ``cover_text``.
 
@@ -84,6 +100,7 @@ def embed_secret(
         secret,
         recovery_mode=recovery_mode,
         repetition_factor=repetition_factor,
+        error_correction=error_correction,
     )
 
 
@@ -101,11 +118,15 @@ def extract_secret(stego_text: str) -> str:
     if not encoded:
         raise DecodeError("no zero-width payload was found")
 
-    repetition_factor = _repetition_factor_from_prefix(encoded)
-    if repetition_factor is not None:
-        frame = _decode_with_repetition(encoded[repetition_factor:], repetition_factor)
+    prefix_length = len(encoded) - len(encoded.lstrip(SEPARATOR))
+    if prefix_length == _HAMMING_PREFIX_LENGTH:
+        frame = _decode_with_hamming(encoded[_HAMMING_PREFIX_LENGTH:])
     else:
-        frame = _decode_standard(encoded)
+        repetition_factor = _repetition_factor_from_prefix(encoded)
+        if repetition_factor is not None:
+            frame = _decode_with_repetition(encoded[repetition_factor:], repetition_factor)
+        else:
+            frame = _decode_standard(encoded)
 
     return _decode_frame(frame)
 
@@ -154,6 +175,13 @@ def _validate_repetition_factor(repetition_factor: int) -> None:
         raise ValueError("repetition_factor must be odd")
 
 
+def _validate_error_correction(error_correction: str | None) -> None:
+    if error_correction is not None and not isinstance(error_correction, str):
+        raise TypeError("error_correction must be a string or None")
+    if error_correction not in (None, "hamming"):
+        raise ValueError("error_correction must be None or 'hamming'")
+
+
 def _repetition_factor_from_prefix(encoded: str) -> int | None:
     prefix_length = len(encoded) - len(encoded.lstrip(SEPARATOR))
     if prefix_length < _MIN_REPETITION_FACTOR:
@@ -193,6 +221,66 @@ def _decode_with_repetition(encoded: str, repetition_factor: int) -> bytes:
     if len(bits) % 8 != 0:
         raise DecodeError("recovery payload does not contain complete bytes")
     return bytes(int("".join(bits[index : index + 8]), 2) for index in range(0, len(bits), 8))
+
+
+def _encode_with_hamming(frame: bytes) -> str:
+    codewords = [_encode_hamming_byte(value) for value in frame]
+    return (SEPARATOR * _HAMMING_PREFIX_LENGTH) + SEPARATOR.join(codewords)
+
+
+def _encode_hamming_byte(value: int) -> str:
+    positions = [0] * (_HAMMING_CODEWORD_LENGTH + 1)
+    for position, bit in zip(_HAMMING_DATA_POSITIONS, f"{value:08b}"):
+        positions[position] = int(bit)
+    for parity_position in _HAMMING_PARITY_POSITIONS:
+        positions[parity_position] = sum(
+            positions[position]
+            for position in range(1, 13)
+            if position & parity_position
+        ) % 2
+    positions[13] = sum(positions[1:13]) % 2
+    return "".join(ONE if positions[position] else ZERO for position in range(1, 14))
+
+
+def _decode_with_hamming(encoded: str) -> bytes:
+    codewords = encoded.split(SEPARATOR)
+    if not codewords or any(len(codeword) != _HAMMING_CODEWORD_LENGTH for codeword in codewords):
+        raise DecodeError("Hamming payload contains an incomplete or malformed codeword")
+    return bytes(_decode_hamming_codeword(codeword) for codeword in codewords)
+
+
+def _decode_hamming_codeword(codeword: str) -> int:
+    positions = [0] + [
+        0 if character == ZERO else 1 if character == ONE else -1
+        for character in codeword
+    ]
+    if -1 in positions:
+        raise ValueError("unknown bit character")
+
+    syndrome = 0
+    for parity_position in _HAMMING_PARITY_POSITIONS:
+        if (
+            sum(
+                positions[position]
+                for position in range(1, 13)
+                if position & parity_position
+            )
+            % 2
+        ):
+            syndrome += parity_position
+    overall_mismatch = sum(positions[1:14]) % 2
+
+    if syndrome and overall_mismatch:
+        if syndrome > 12:
+            raise DecodeError("Hamming payload has an uncorrectable corruption pattern")
+        positions[syndrome] ^= 1
+    elif syndrome and not overall_mismatch:
+        raise DecodeError("Hamming payload contains an uncorrectable double-bit error")
+    elif not syndrome and overall_mismatch:
+        positions[13] ^= 1
+
+    bits = "".join(str(positions[position]) for position in _HAMMING_DATA_POSITIONS)
+    return int(bits, 2)
 
 
 def contains_codec_characters(text: str) -> bool:

@@ -127,3 +127,27 @@ python tests/week10_testing/validate_production_trials.py path/to/batch.json
 The validator treats decoding failures as experimental results while flagging
 missing fields, duplicate trials, missing evidence, and claims that do not
 match measurements recalculated from the raw files.
+
+## Week 11 Hamming error correction
+
+Week 11 adds an optional Hamming SECDED mode for controlled bit alterations:
+
+```python
+stego = embed_secret(
+    "Visible cover",
+    "hidden message",
+    error_correction="hamming",
+)
+```
+
+Run Henry's Week 11 checks with:
+
+```powershell
+python tests/week11_testing/analyze_preliminary_failures.py
+python tests/week11_testing/verify_hamming_mode.py
+```
+
+Hamming mode corrects one altered bit and detects two altered bits in each
+protected byte. It safely rejects, but cannot recover, deleted symbols,
+Gmail-style removal of an entire symbol class, or Word-style complete payload
+stripping.

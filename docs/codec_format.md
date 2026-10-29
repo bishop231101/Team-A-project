@@ -71,3 +71,21 @@ because it integrates without an external dependency and directly extends the
 Week 5 baseline. Removing a group separator, damaging the repetition prefix,
 or stripping all zero-width characters remains unrecoverable and produces a
 clear decoding error rather than unverified output.
+
+## Week 11 Hamming SECDED mode
+
+The optional `error_correction="hamming"` mode protects each frame byte with a
+13-bit extended Hamming codeword: eight data bits, four Hamming parity bits,
+and one overall parity bit. Two leading `U+200D` characters identify this mode;
+`U+200D` also separates adjacent codewords. Existing standard payloads and the
+three-to-fifteen-separator repetition prefixes keep their original meanings.
+
+For each codeword, the decoder corrects one altered bit and detects two altered
+bits. The original frame CRC-32 remains mandatory, preventing corrected or
+uncorrected corruption from being returned as verified plaintext. The mode is
+deterministic and adds about 56% codec-character overhead compared with the
+standard format for large frames, substantially less than five-copy repetition.
+
+Hamming mode protects bit substitutions, not symbol deletions or separator
+loss. It cannot recover when a platform removes one zero-width character class
+or strips the complete invisible payload. Those cases are rejected clearly.
