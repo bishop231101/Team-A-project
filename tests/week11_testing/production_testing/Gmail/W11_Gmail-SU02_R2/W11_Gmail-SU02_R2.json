@@ -1,14 +1,14 @@
 {
   "trial_id": "W11_Gmail-SU02_R2",
-  "status": "ready_for_manual_transfer",
+  "status": "completed",
   "platform": "Gmail",
   "platform_directory": "Gmail",
   "operation": "send_and_retrieve",
   "corpus_id": "SU02",
   "repetition": 2,
   "repetition_policy": "reuse_encoded_input",
-  "tester": null,
-  "timestamp_utc": null,
+  "tester": "Tristan Koch",
+  "timestamp_utc": "2026-10-29T22:35:38Z",
   "codec_commit": "4134cec1d23be3ae7069440a3718e09069922bdc",
   "protocol_version": "1.0-week11-baseline",
   "cover_text": "Team 1 compatibility test.",
@@ -18,13 +18,38 @@
   "retrieved_path": "Gmail/W11_Gmail-SU02_R2/W11_Gmail-SU02_R2_retrieved.txt",
   "record_path": "Gmail/W11_Gmail-SU02_R2/W11_Gmail-SU02_R2.json",
   "evidence_paths": [
-    "Gmail/W11_Gmail-SU02_R2/evidence"
+    "Gmail/W11_Gmail-SU02_R2/evidence/W11_Gmail-SU02_R2_terminal.png",
+    "Gmail/W11_Gmail-SU02_R2/evidence/W11_Gmail-SU02_R2.png"
   ],
   "input_sha256": "849b7b3f3b8d72ad4a3b1782aff8ce3bcbdc68e7581286aebbb0b803fcf9be42",
   "local_validation": {
     "passed": true,
     "exact_round_trip": true
   },
-  "measured_results": null,
-  "notes": []
+  "measured_results": {
+    "sent_counts": {
+      "U+200B": 85,
+      "U+200C": 59,
+      "U+200D": 17,
+      "total": 161
+    },
+    "retrieved_counts": {
+      "U+200B": 0,
+      "U+200C": 59,
+      "U+200D": 17,
+      "total": 76
+    },
+    "retention_percentage": 47.20496894409938,
+    "retention_above_100_percent": false,
+    "decoder_returned": false,
+    "exact_match": false,
+    "recovered_secret": null,
+    "decoder_error": "payload contains an incomplete or malformed byte block",
+    "failure_category": "structural_corruption"
+  },
+  "notes": [
+    "Gmail preserved 76 of 161 sent zero-width characters (47.20% retention). All 85 U+200B characters were lost, while all 59 U+200C and 17 U+200D characters were retained. Decoding failed because the payload contained an incomplete or malformed byte block. Exact message recovery was unsuccessful, and the analyzer classified the result as `structural_corruption`. Sent-email and terminal-output screenshots were saved as evidence. The trial record passed validation with no validation errors."
+  ],
+  "analysis_status": "completed",
+  "analysis_errors": []
 }
