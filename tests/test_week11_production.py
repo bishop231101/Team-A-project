@@ -135,6 +135,7 @@ class Week11ProductionWorkflowTests(unittest.TestCase):
             record["evidence_paths"] = ["Gmail/W11_Gmail-SA01_R1/evidence/gmail-empty.png"]
             record_path.write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
             result = analyze_trial(record, corpus, root, self._expected(record, root))
+            self.assertTrue(result["valid"])
             self.assertEqual(result["analysis_status"], "completed")
             self.assertEqual(result["measured"]["retrieved_counts"]["total"], 0)
             self.assertEqual(result["measured"]["retention_percentage"], 0.0)
