@@ -21,6 +21,10 @@ def classify_decoder_error(message: str) -> str:
         return "checksum_corruption"
     if "valid UTF-8" in message:
         return "utf8_corruption"
+    if "Hamming" in message and "uncorrectable" in message:
+        return "error_correction_uncorrectable"
+    if "Hamming" in message:
+        return "error_correction_structure"
     if any(
         phrase in message
         for phrase in (
