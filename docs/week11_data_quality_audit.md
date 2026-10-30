@@ -1,9 +1,9 @@
 # CS481 Team 1 – Week 11 Data Quality Audit
 
-**Prepared by:** Ifeanyi Emeka – Team Leader  
-**Date:** October 27, 2026  
-**Reporting Period:** October 26 – November 1, 2026  
-**Project:** Zero-Width Unicode Steganography with Social-Media Robustness Engineering  
+**Prepared by:** Ifeanyi Emeka – Team Leader
+**Date:** October 27, 2026
+**Reporting Period:** October 26 – November 1, 2026
+**Project:** Zero-Width Unicode Steganography with Social-Media Robustness Engineering
 **Status:** In Progress – Production Results Awaiting Verification
 
 ## 1. Purpose
@@ -151,8 +151,8 @@ The team's priority is to produce accurate, reproducible results and complete th
 
 ### Baseline Corpus Integrity Verification — October 27, 2026
 
-**Reviewer:** Ifeanyi Emeka  
-**File verified:** `tests/fixtures/week9_corpus.json`  
+**Reviewer:** Ifeanyi Emeka
+**File verified:** `tests/fixtures/week9_corpus.json`
 **Status:** PASSED
 
 The team leader independently verified the baseline testing corpus using Python and SHA-256 integrity checks.
@@ -169,8 +169,8 @@ The team leader independently verified the baseline testing corpus using Python 
 
 ### Automated Baseline Regression Testing — October 27, 2026
 
-**Reviewer:** Ifeanyi Emeka  
-**Command:** `python -m pytest -q`  
+**Reviewer:** Ifeanyi Emeka
+**Command:** `python -m pytest -q`
 **Status:** PASSED
 
 The team leader independently executed the existing automated test suite to verify the current baseline code before integrating Week 11 changes.
@@ -260,8 +260,8 @@ The following items remain pending verification:
 
 ### Gmail Production Testing Progress — October 29, 2026
 
-**Tester:** Tristan Koch  
-**Platform:** Gmail  
+**Tester:** Tristan Koch
+**Platform:** Gmail
 **Status:** In Progress — Awaiting Independent Verification
 
 Tristan reported completing the first 12 of 24 official Gmail production trials, covering corpus messages SA01, SA02, SU01, and SU02, with three repetitions per message (R1–R3).
@@ -291,3 +291,34 @@ Although Tristan reported that all 12 records passed analyzer validation, the te
 **Verification Status:** Pending — Results reported by tester but not yet independently verified.
 
 **Audit Conclusion:** PR #24 successfully established and validated the production-testing preparation workflow. Official platform results must still be collected, independently reviewed, and documented before the baseline testing requirements can be considered complete.
+
+### Week 11 Hamming Error-Correction Verification — October 30, 2026
+
+**Contributor:** Henry Smith
+**Independent Reviewer:** Ifeanyi Emeka
+**Pull Request:** #25 — Add Week 11 Hamming error-correction validation
+**Merge Commit:** `3d311e7`
+**Status:** Reviewed, tested, and merged.
+
+#### Independent Verification
+
+The team leader reviewed Henry's Week 11 implementation, supporting documentation, automated tests, and error-correction functionality before merging PR #25.
+
+The following verification was completed:
+
+- Full automated test suite: **54 tests passed and 148 subtests passed**.
+- Existing zero-width codec tests: **28 tests passed and 132 subtests passed**.
+- Hamming verification script: **All five checks passed**, including Unicode round-trip, single-bit correction, double-bit rejection, Gmail-style stripping rejection, and Word-style stripping rejection.
+- Source-code changes were reviewed against the existing codec implementation.
+
+#### Findings
+
+Henry implemented an optional Hamming SECDED error-correction mode designed to correct single-bit errors and detect double-bit errors within protected codewords.
+
+Testing confirmed that the implementation preserves existing codec functionality and safely rejects severely damaged payloads.
+
+**Limitation:** Hamming error correction does not recover payloads when platforms completely remove required hidden characters.
+
+#### Conclusion
+
+PR #25 was successfully reviewed, independently tested, and merged into `main`. The implementation is ready for further evaluation using verified production-testing evidence. This verification does not establish successful recovery on Gmail or Microsoft Word.

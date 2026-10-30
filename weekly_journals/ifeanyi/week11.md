@@ -1,8 +1,8 @@
 # Week 11 Individual Journal – Ifeanyi Emeka
 
-**Course:** CS481 – Capstone Project  
-**Role:** Team 1 Leader  
-**Reporting Period:** October 26 – November 1, 2026  
+**Course:** CS481 – Capstone Project
+**Role:** Team 1 Leader
+**Reporting Period:** October 26 – November 1, 2026
 **Status:** In Progress
 
 ## 1. Work Completed
@@ -152,3 +152,49 @@ I will review Tristan's GitHub pull request when the complete Gmail testing evid
 **Status:** Production testing in progress; independent verification pending.
 
 **Journal Status:** In Progress – To be updated with verified work completed during the remainder of Week 11.
+
+### Week 11 Hamming Error-Correction Implementation and Independent Verification — October 30, 2026
+
+**Contributor:** Henry Smith
+**Reviewer:** Ifeanyi Emeka
+**Pull Request:** #25
+**Merge Commit:** `3d311e7`
+**Status:** Successfully reviewed, tested, and merged into `main`.
+
+#### Milestones Achieved
+
+Henry completed the implementation and testing of an optional Hamming SECDED error-correction mode for the zero-width Unicode steganography codec.
+
+The implementation supports single-bit error correction and double-bit error detection while maintaining compatibility with the existing codec functionality.
+
+#### Testing and Verification
+
+The team leader independently reviewed Henry's source-code changes, documentation, and supporting evidence.
+
+The following tests were executed successfully:
+
+- Full automated test suite: 54 tests passed and 148 subtests passed.
+- Existing codec regression tests: 28 tests passed and 132 subtests passed.
+- Hamming verification script: All five checks passed.
+
+The five verification checks covered Unicode round-trip, single-bit correction, double-bit rejection, Gmail-style character stripping, and Word-style character stripping.
+
+The Gmail-style and Word-style tests confirmed safe rejection of unrecoverable payloads, not successful message recovery.
+
+#### Challenges and Lessons Learned
+
+A major challenge is that some platforms remove hidden Unicode characters during text processing. Although Hamming error correction can repair certain bit errors, it cannot restore a payload when required characters have been completely removed.
+
+This reinforced the importance of testing error-correction techniques against realistic platform behavior instead of relying only on local unit tests.
+
+#### Individual Contributions
+
+**Henry Smith:** Researched error-correction approaches, implemented Hamming SECDED mode, developed tests, prepared documentation and screenshots, and submitted PR #25.
+
+**Ifeanyi Emeka:** Reviewed the pull request, examined source-code changes, independently executed automated and targeted tests, verified the implementation's limitations, and merged the approved contribution into the main branch.
+
+#### Remaining Work
+
+Tristan's official Gmail production-testing results still require complete evidence submission and independent verification before the platform compatibility matrix can be finalized.
+
+**Verification Status:** Hamming implementation verified and merged. Official Gmail production results remain pending independent verification.
