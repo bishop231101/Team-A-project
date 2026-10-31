@@ -420,3 +420,19 @@ Both required team meetings were completed and documented.
   `meeting_minutes/2026-10-30_week11.md`
 
 All three team members attended Friday's meeting. The team reviewed Henry's completed Hamming implementation, Tristan's Gmail production-testing progress, outstanding verification requirements, and Week 12 responsibilities.
+
+## 10. Week 11 Testing Screenshots and Evidence
+
+### Gmail Production Testing — Trial LA01, Repetition 1
+
+**Screenshot 1: Gmail send-and-retrieve evidence**
+
+![Gmail trial LA01 R1](../tests/week11_testing/production_testing/Gmail/W11_Gmail-LA01_R1/evidence/W11_Gmail-LA01_R1.png)
+
+**Explanation:** This screenshot documents the Gmail operation performed during the first repetition of the long ASCII test. The testing workflow involved sending the prepared encoded message through Gmail and retrieving the resulting content for analysis.
+
+**Screenshot 2: Terminal analysis results**
+
+![Gmail trial LA01 R1 analysis](../tests/week11_testing/production_testing/Gmail/W11_Gmail-LA01_R1/evidence/W11_Gmail-LA01_R1_terminal.png)
+
+**Explanation:** This screenshot shows the analyzer's output for the same trial. The recorded result indicates approximately 1.45% zero-width character retention, unsuccessful decoding, and a structural corruption classification. This demonstrates that the encoded payload was not preserved during the tested Gmail workflow.
