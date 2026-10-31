@@ -1,200 +1,46 @@
-# Week 11 Individual Journal – Ifeanyi Emeka
+# Week 11 Individual Journal — Ifeanyi Emeka
 
-**Course:** CS481 – Capstone Project
-**Role:** Team 1 Leader
-**Reporting Period:** October 26 – November 1, 2026
-**Status:** In Progress
+**Course:** CS481 — Capstone Project  
+**Role:** Team 1 Leader  
+**Reporting period:** October 26–November 1, 2026  
+**Status:** Week 11 work documented; remaining project testing continues in Week 12
 
-## 1. Work Completed
+## 1. Work Completed and Leadership
 
-During the beginning of Week 11, I focused on coordinating the completion of outstanding Week 10 requirements while preparing the team for Week 11 error-correction development.
+I coordinated Team 1's Week 11 priorities, reviewed the semester plan and Week 10 carryover tasks, prepared Monday's meeting minutes, and communicated responsibilities to Tristan Koch and Henry Smith. I maintained the Week 11 data-quality audit and weekly report, monitored testing progress, and reviewed pull requests before approving merges. Our Friday meeting reviewed completed implementation work, Gmail testing progress, verification requirements, and Week 12 responsibilities.
 
-I reviewed our semester project plan and identified unfinished baseline production testing, statistical analysis, and supporting documentation.
+## 2. Independent Baseline Verification — October 27
 
-I prepared the Week 11 Monday meeting minutes, including the Week 10 carryover requirements and revised schedule.
+I checked `tests/fixtures/week9_corpus.json` using Python and confirmed that all eight corpus entries contained the required fields (`id`, `category`, `text`, `sha256`), had unique identifiers, and matched their recorded SHA-256 hashes. I also ran `python -m pytest -q`: **43 tests and 132 subtests passed**, with no reported failures. These results verified corpus integrity and the existing local test baseline, not external platform compatibility.
 
-I also communicated individual priorities to Tristan and Henry, emphasizing production testing, validation, error-correction development, meaningful GitHub contributions, and the Friday completion target.
+**Evidence:** `docs/week11_data_quality_audit.md`.
 
-I created the Week 11 data-quality audit to track production evidence, implementation progress, project risks, and outstanding requirements.
+## 3. Production Workflow Review — PR #24
 
-## 2. Challenges Encountered
+I reviewed Tristan's production workflow, including preparation of **168 planned trial records** (seven approved workflows × eight corpus messages × three repetitions), evidence organization, metadata validation, and safeguards against confusing incomplete trials with genuinely empty retrieved messages. I independently ran the workflow tests: **56 tests and 132 subtests passed**. I approved and merged PR #24 (merge commit `8646a48`) and authorized Gmail production testing. The 168 prepared records were **not** 168 completed platform operations.
 
-The primary challenge is that official production testing remains unverified. Tristan has not yet confirmed how many of the 168 planned trials have been completed.
+## 4. Hamming SECDED Review — PR #25, October 30
 
-This delay affects our ability to finalize baseline analysis and evaluate error-correction performance against verified platform failures.
+I reviewed Henry's optional Hamming SECDED implementation, documentation, and tests. My independent verification included **54 tests and 148 subtests passed** in the full suite, **28 tests and 132 subtests passed** in the existing codec regression tests, and **five successful targeted checks**. The checks covered Unicode round-trip, single-bit correction, double-bit rejection, Gmail-style stripping, and Word-style stripping. The stripping cases demonstrated safe rejection of unrecoverable data, **not successful recovery**. After verification, PR #25 was merged (merge commit `3d311e7`).
 
-Another challenge is balancing unfinished Week 10 deliverables with the additional requirements scheduled for Week 11.
+## 5. Gmail Production Testing Review — PR #26
 
-## 3. Lessons Learned
+I monitored Tristan's Gmail testing, initially documenting the first 12 reported trials and then reviewing the final submission of **24 of 24 planned Gmail trials**. I examined the trial-record structure, analyzer outputs, screenshot references, and the distinction between a valid analysis record and successful secret recovery. The reviewed Gmail evidence showed substantial loss of zero-width characters and failed recovery in the representative long-ASCII trial: **25 of 1,727 zero-width characters retained (about 1.45%)**, with a structural-corruption decoder error. I reviewed the submission and merged PR #26 into `main`.
 
-I learned the importance of identifying project delays early and adjusting responsibilities before they affect additional milestones.
+Tristan confirmed that repetitions R1–R3 were separate Gmail send-and-retrieve operations using the same prepared input. Matching SHA-256 hashes across repetitions were documented as an issue for further investigation; identical hashes alone do not establish whether the operations were independent or whether the retrieved outputs were correct. I did not treat analyzer validation as proof of successful decoding.
 
-I also reinforced the need to distinguish planned work, preliminary testing, and verified production results.
+**Evidence:** PR #26; `tests/week11_testing/production_testing/Gmail/` (trial records, sent/retrieved text, and screenshots); `reports/weekly_report_11.md`.
 
-Accurate documentation and clear communication are essential for maintaining accountability and producing reproducible results.
+## 6. Challenges and Lessons Learned
 
-## 4. Leadership and Quality Assurance
+Week 10 carryover delayed the planned baseline analysis. I learned to distinguish prepared trial templates, completed platform operations, valid analysis records, and successful message recovery. Reviewing raw evidence and reproducible calculations is necessary before accepting compatibility conclusions. I also learned that bit-error correction has limits when platforms delete required zero-width characters entirely.
 
-My responsibilities this week include:
+## 7. Individual Contribution and Progress Against Plan
 
-- Monitoring production testing and error-correction development.
-- Reviewing GitHub pull requests and individual contributions.
-- Checking testing evidence for completeness and accuracy.
-- Coordinating the resolution of outstanding technical issues.
-- Maintaining meeting minutes, audit records, and the weekly team report.
-- Tracking progress against the revised project schedule.
+My Week 11 contributions included team coordination, two meeting records, corpus integrity checks, independent test execution, review and merge of PRs #24, #25, and #26, tracking Gmail evidence concerns, and consolidation of the weekly report with screenshots and explanations. Gmail's **24 planned trials were completed**, but the complete **168-trial** cross-platform dataset, statistical analysis, and final compatibility matrix were **not** completed during Week 11.
 
-## 5. Progress Against the Project Plan
+## 8. Next Steps
 
-Week 10 baseline testing and analysis remain outstanding pending verified production records.
+Complete and verify production testing for the remaining approved platforms; investigate matching hashes and confirm trial provenance where necessary; finish the cross-platform compatibility matrix and statistical analysis; and evaluate the optional Hamming mode against observed platform corruption while documenting its limitations. Continue individual journals and Monday/Friday meeting records.
 
-Week 11 error-correction design and implementation are scheduled to proceed alongside these carryover tasks.
-
-The team is targeting Friday, October 30, for completion and review of the outstanding deliverables.
-
-### Independent Baseline Verification — October 27, 2026
-
-During Week 11, I independently verified the project's baseline testing corpus and automated test suite before integrating new error-correction features.
-
-**Corpus Integrity Verification**
-
-I inspected `tests/fixtures/week9_corpus.json` and used Python to validate the structure and integrity of the testing data.
-
-- Confirmed eight corpus entries.
-- Verified that all entries contained the required fields: `id`, `category`, `text`, and `sha256`.
-- Confirmed that all message identifiers were unique.
-- Recalculated SHA-256 hashes and verified that all eight matched their stored values.
-
-**Automated Regression Testing**
-
-I executed the existing test suite using `python -m pytest -q`.
-
-- 43 tests passed.
-- 132 subtests passed.
-- No failures were reported.
-- Execution time was approximately 0.23 seconds.
-
-**Lessons Learned**
-
-These checks reinforced the importance of verifying the integrity of experimental inputs and establishing a reliable baseline before integrating new features.
-
-The results demonstrate that the existing automated tests pass, but they do not establish that production testing or error-correction development has been completed.
-
-**Supporting Evidence**
-
-Detailed verification results are documented in `docs/week11_data_quality_audit.md`.
-
-## Week 11 Baseline Verification and Quality Assurance
-
-During Week 11, I performed additional verification to ensure that our project was ready for official production testing and future error-correction development.
-
-I independently reviewed the approved testing corpus and confirmed that all eight messages contained the required fields, had unique identifiers, and passed SHA-256 integrity checks.
-
-I also executed the existing automated regression suite using `python -m pytest -q`. The results showed 43 passing tests and 132 passing subtests, with no reported failures.
-
-These checks confirmed that the current baseline code passed the tests performed. However, they did not establish completion of the 168 planned production trials or verify the proposed error-correction implementation.
-
-I documented the results in `docs/week11_data_quality_audit.md` and updated `reports/weekly_report_11.md` to include the verified findings.
-
-This work strengthened our quality-assurance process and established a reference point for reviewing upcoming changes from Henry and Tristan.
-
-**Evidence:** `docs/week11_data_quality_audit.md` and `reports/weekly_report_11.md`.
-
-### Week 11 Production Workflow Review and Merge
-
-I reviewed Tristan's Week 11 production testing workflow in PR #24, which included automated trial preparation, trial metadata validation, evidence organization, and safeguards for incomplete and failed trials.
-
-The workflow prepared 168 trial records across seven approved platforms, eight corpus messages, and three repetitions. These were preparation records, not completed production trials.
-
-I independently ran the automated test suite in VS Code and confirmed that all 56 tests and 132 subtests passed. I also verified that the updated workflow distinguishes incomplete trials from completed trials with genuinely empty retrieved text.
-
-After reviewing the final updates and confirming successful local tests, I merged PR #24 into the main branch. I then synchronized my local repository and confirmed that the working tree was clean.
-
-This work helped establish a consistent and verifiable process for collecting official production testing results. Tristan was authorized to begin Gmail production testing under the approved protocol.
-
-**Evidence:** GitHub PR #24, merge commit `8646a48`, local pytest results (56 passed, 132 subtests passed).
-
-## 6. Next Steps
-
-1. Obtain Tristan's production testing progress and supporting evidence.
-2. Review Henry's error-correction design and validation work.
-3. Verify actual testing results and calculations.
-4. Update the baseline compatibility matrix and project schedule.
-5. Review individual GitHub contributions and pull requests.
-6. Document Friday's team meeting.
-7. Finalize the Week 11 team report before Sunday's deadline.
-
-### Week 11 Gmail Production Testing Progress Review — October 29, 2026
-
-As Team Leader, I continued monitoring our official production testing and coordinating with Tristan Koch to ensure that results were accurately documented and supported by evidence.
-
-Tristan reported completing the first 12 of 24 official Gmail production trials. All 12 trial records passed analyzer validation, but none successfully recovered the hidden message.
-
-The reported findings showed that Gmail removed all U+200B characters while preserving U+200C and U+200D characters across the tested messages.
-
-I reviewed Tristan's progress update and identified the need to distinguish successful analyzer validation from successful message recovery. I also emphasized the importance of independently reviewing raw testing evidence before accepting the reported findings as verified results.
-
-I updated the Week 11 Data Quality Audit and Team Weekly Report to document the progress, findings, limitations, and outstanding verification requirements.
-
-**My Contributions:**
-- Monitored official Gmail production testing progress.
-- Reviewed Tristan's reported testing outcomes.
-- Documented the first 12 reported Gmail trials.
-- Updated the Week 11 data quality audit.
-- Updated the Week 11 team report.
-- Tracked outstanding testing evidence and verification requirements.
-- Coordinated the next steps for completing the remaining Gmail trials.
-
-**Next Steps:**
-
-I will review Tristan's GitHub pull request when the complete Gmail testing evidence is submitted, independently verify the trial records and calculations, and update the official compatibility matrix using verified results.
-
-**Status:** Production testing in progress; independent verification pending.
-
-**Journal Status:** In Progress – To be updated with verified work completed during the remainder of Week 11.
-
-### Week 11 Hamming Error-Correction Implementation and Independent Verification — October 30, 2026
-
-**Contributor:** Henry Smith
-**Reviewer:** Ifeanyi Emeka
-**Pull Request:** #25
-**Merge Commit:** `3d311e7`
-**Status:** Successfully reviewed, tested, and merged into `main`.
-
-#### Milestones Achieved
-
-Henry completed the implementation and testing of an optional Hamming SECDED error-correction mode for the zero-width Unicode steganography codec.
-
-The implementation supports single-bit error correction and double-bit error detection while maintaining compatibility with the existing codec functionality.
-
-#### Testing and Verification
-
-The team leader independently reviewed Henry's source-code changes, documentation, and supporting evidence.
-
-The following tests were executed successfully:
-
-- Full automated test suite: 54 tests passed and 148 subtests passed.
-- Existing codec regression tests: 28 tests passed and 132 subtests passed.
-- Hamming verification script: All five checks passed.
-
-The five verification checks covered Unicode round-trip, single-bit correction, double-bit rejection, Gmail-style character stripping, and Word-style character stripping.
-
-The Gmail-style and Word-style tests confirmed safe rejection of unrecoverable payloads, not successful message recovery.
-
-#### Challenges and Lessons Learned
-
-A major challenge is that some platforms remove hidden Unicode characters during text processing. Although Hamming error correction can repair certain bit errors, it cannot restore a payload when required characters have been completely removed.
-
-This reinforced the importance of testing error-correction techniques against realistic platform behavior instead of relying only on local unit tests.
-
-#### Individual Contributions
-
-**Henry Smith:** Researched error-correction approaches, implemented Hamming SECDED mode, developed tests, prepared documentation and screenshots, and submitted PR #25.
-
-**Ifeanyi Emeka:** Reviewed the pull request, examined source-code changes, independently executed automated and targeted tests, verified the implementation's limitations, and merged the approved contribution into the main branch.
-
-#### Remaining Work
-
-Tristan's official Gmail production-testing results still require complete evidence submission and independent verification before the platform compatibility matrix can be finalized.
-
-**Verification Status:** Hamming implementation verified and merged. Official Gmail production results remain pending independent verification.
+**Week 11 conclusion:** I completed the leadership, verification, review, and reporting tasks described above. The production workflow, Hamming implementation, and Gmail trial submission were merged, while broader platform testing and final analysis remain outstanding.
