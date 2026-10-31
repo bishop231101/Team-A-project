@@ -1,14 +1,14 @@
 {
   "trial_id": "W11_Gmail-LU02_R1",
-  "status": "ready_for_manual_transfer",
+  "status": "completed",
   "platform": "Gmail",
   "platform_directory": "Gmail",
   "operation": "send_and_retrieve",
   "corpus_id": "LU02",
   "repetition": 1,
   "repetition_policy": "reuse_encoded_input",
-  "tester": null,
-  "timestamp_utc": null,
+  "tester": "Tristan Koch",
+  "timestamp_utc": "2026-10-30T20:35:39Z",
   "codec_commit": "4134cec1d23be3ae7069440a3718e09069922bdc",
   "protocol_version": "1.0-week11-baseline",
   "cover_text": "Team 1 compatibility test.",
@@ -18,13 +18,36 @@
   "retrieved_path": "Gmail/W11_Gmail-LU02_R1/W11_Gmail-LU02_R1_retrieved.txt",
   "record_path": "Gmail/W11_Gmail-LU02_R1/W11_Gmail-LU02_R1.json",
   "evidence_paths": [
-    "Gmail/W11_Gmail-LU02_R1/evidence"
+    "Gmail/W11_Gmail-LU02_R1/evidence/W11_Gmail-LU02_R1_terminal.png",
+    "Gmail/W11_Gmail-LU02_R1/evidence/W11_Gmail-LU02_R1.png"
   ],
   "input_sha256": "229fa970c557014b69e328aefde0008f1811cfd30155c4c9f9a15a0331472dbf",
   "local_validation": {
     "passed": true,
     "exact_round_trip": true
   },
-  "measured_results": null,
-  "notes": []
+  "measured_results": {
+    "sent_counts": {
+      "U+200B": 656,
+      "U+200C": 624,
+      "U+200D": 159,
+      "total": 1439
+    },
+    "retrieved_counts": {
+      "U+200B": 0,
+      "U+200C": 18,
+      "U+200D": 7,
+      "total": 25
+    },
+    "retention_percentage": 1.7373175816539264,
+    "retention_above_100_percent": false,
+    "decoder_returned": false,
+    "exact_match": false,
+    "recovered_secret": null,
+    "decoder_error": "payload contains an incomplete or malformed byte block",
+    "failure_category": "structural_corruption"
+  },
+  "notes": ["Gmail retained only 25 of the 1,439 sent zero-width characters (1.74% retention). All U+200B characters were removed, while 18 U+200C and 7 U+200D characters remained. The retrieved payload was insufficient for successful decoding and produced a structural corruption error: 'payload contains an incomplete or malformed byte block.' The original secret was not recovered. No manual corrections or alterations were made to the retrieved text."],
+  "analysis_status": "completed",
+  "analysis_errors": []
 }
