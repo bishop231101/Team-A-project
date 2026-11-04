@@ -1,14 +1,14 @@
 {
   "trial_id": "W11_Notepad++-LU02_R2",
-  "status": "ready_for_manual_transfer",
+  "status": "completed",
   "platform": "Notepad++",
   "platform_directory": "Notepad++",
   "operation": "paste_and_copy_back",
   "corpus_id": "LU02",
   "repetition": 2,
   "repetition_policy": "reuse_encoded_input",
-  "tester": null,
-  "timestamp_utc": null,
+  "tester": "Tristan Koch",
+  "timestamp_utc": "2026-11-03T23:20:56Z",
   "codec_commit": "4134cec1d23be3ae7069440a3718e09069922bdc",
   "protocol_version": "1.0-week11-baseline",
   "cover_text": "Team 1 compatibility test.",
@@ -18,13 +18,36 @@
   "retrieved_path": "Notepad++/W11_Notepad++-LU02_R2/W11_Notepad++-LU02_R2_retrieved.txt",
   "record_path": "Notepad++/W11_Notepad++-LU02_R2/W11_Notepad++-LU02_R2.json",
   "evidence_paths": [
-    "Notepad++/W11_Notepad++-LU02_R2/evidence"
+    "Notepad++/W11_Notepad++-LU02_R2/evidence/W11_NPP-LU02_R2_terminal.png",
+    "Notepad++/W11_Notepad++-LU02_R2/evidence/W11_NPP-LU02_R2.png"
   ],
   "input_sha256": "229fa970c557014b69e328aefde0008f1811cfd30155c4c9f9a15a0331472dbf",
   "local_validation": {
     "passed": true,
     "exact_round_trip": true
   },
-  "measured_results": null,
-  "notes": []
+  "measured_results": {
+    "sent_counts": {
+      "U+200B": 656,
+      "U+200C": 624,
+      "U+200D": 159,
+      "total": 1439
+    },
+    "retrieved_counts": {
+      "U+200B": 656,
+      "U+200C": 624,
+      "U+200D": 159,
+      "total": 1439
+    },
+    "retention_percentage": 100.0,
+    "retention_above_100_percent": false,
+    "decoder_returned": true,
+    "exact_match": true,
+    "recovered_secret": "你好，世界！こんにちは。 你好，世界！こんにちは。 你好，世界！こんにちは。 你好，世界！こんにちは。 ",
+    "decoder_error": null,
+    "failure_category": null
+  },
+  "notes": ["Notepad++ successfully preserved all encoded zero-width characters during the paste-and-copy-back operation. All 1,439 zero-width characters were retained, resulting in 100.00% retention. The decoder successfully recovered the original multilingual Unicode secret, including Chinese and Japanese characters, with an exact match and no reported errors. Trial record passed validation."],
+  "analysis_status": "completed",
+  "analysis_errors": []
 }
