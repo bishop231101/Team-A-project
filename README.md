@@ -151,3 +151,23 @@ Hamming mode corrects one altered bit and detects two altered bits in each
 protected byte. It safely rejects, but cannot recover, deleted symbols,
 Gmail-style removal of an entire symbol class, or Word-style complete payload
 stripping.
+
+## Week 12 Hamming stabilization
+
+Run Henry's corpus-wide stability and overhead verification with:
+
+```powershell
+python tests/week12_testing/verify_henry_hamming_stability.py
+```
+
+Run the focused stabilization tests with:
+
+```powershell
+python -m pytest tests/test_hamming_stability.py -q
+```
+
+The Week 12 checks cover all approved corpus messages, exhaustive double-bit
+rejection in a representative codeword, false-success prevention, damaged
+format markers and separators, a large Unicode boundary payload, and exact
+encoded-length overhead. See `docs/week12_henry_hamming_stability.md` for the
+verified results and limitations.
