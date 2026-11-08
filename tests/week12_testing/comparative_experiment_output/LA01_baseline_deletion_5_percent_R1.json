@@ -1,0 +1,527 @@
+{
+  "trial_id": "W12_LA01_baseline_deletion_5_percent_R1",
+  "corpus_id": "LA01",
+  "expected_secret": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+  "encoding_mode": "baseline",
+  "corruption_condition": "deletion_5_percent",
+  "repetition": 1,
+  "sent_zero_width_character_counts": {
+    "U+200B": 838,
+    "U+200C": 698,
+    "U+200D": 191,
+    "total": 1727
+  },
+  "retrieved_zero_width_character_counts": {
+    "U+200B": 794,
+    "U+200C": 665,
+    "U+200D": 191,
+    "total": 1650
+  },
+  "retention_percentage": 95.54140127388536,
+  "encoded_length": 1727,
+  "encoded_length_overhead_relative_to_baseline_percent": 0.0,
+  "corruption": {
+    "deletion_seed": 481202,
+    "eligible_symbol_count_before": 1536,
+    "target_deletion_percentage": 5.0,
+    "rounding_rule": "nearest integer, ties rounded up (floor(n * percentage + 0.5))",
+    "target_symbol_removal_count": 77,
+    "affected_symbol_count": 77,
+    "actual_deletion_percentage": 5.013020833333334,
+    "removed_symbols": [
+      {
+        "physical_index": 19,
+        "symbol": "‌",
+        "frame_byte_index": 2,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 38,
+        "symbol": "​",
+        "frame_byte_index": 4,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 74,
+        "symbol": "​",
+        "frame_byte_index": 8,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 76,
+        "symbol": "​",
+        "frame_byte_index": 8,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 78,
+        "symbol": "​",
+        "frame_byte_index": 8,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 96,
+        "symbol": "​",
+        "frame_byte_index": 10,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 119,
+        "symbol": "‌",
+        "frame_byte_index": 13,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 180,
+        "symbol": "​",
+        "frame_byte_index": 20,
+        "data_bit_position": 0
+      },
+      {
+        "physical_index": 200,
+        "symbol": "‌",
+        "frame_byte_index": 22,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 213,
+        "symbol": "​",
+        "frame_byte_index": 23,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 225,
+        "symbol": "​",
+        "frame_byte_index": 25,
+        "data_bit_position": 0
+      },
+      {
+        "physical_index": 234,
+        "symbol": "​",
+        "frame_byte_index": 26,
+        "data_bit_position": 0
+      },
+      {
+        "physical_index": 245,
+        "symbol": "‌",
+        "frame_byte_index": 27,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 246,
+        "symbol": "​",
+        "frame_byte_index": 27,
+        "data_bit_position": 3
+      },
+      {
+        "physical_index": 252,
+        "symbol": "​",
+        "frame_byte_index": 28,
+        "data_bit_position": 0
+      },
+      {
+        "physical_index": 265,
+        "symbol": "​",
+        "frame_byte_index": 29,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 352,
+        "symbol": "‌",
+        "frame_byte_index": 39,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 356,
+        "symbol": "‌",
+        "frame_byte_index": 39,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 393,
+        "symbol": "​",
+        "frame_byte_index": 43,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 402,
+        "symbol": "​",
+        "frame_byte_index": 44,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 425,
+        "symbol": "‌",
+        "frame_byte_index": 47,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 428,
+        "symbol": "​",
+        "frame_byte_index": 47,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 441,
+        "symbol": "​",
+        "frame_byte_index": 49,
+        "data_bit_position": 0
+      },
+      {
+        "physical_index": 459,
+        "symbol": "​",
+        "frame_byte_index": 51,
+        "data_bit_position": 0
+      },
+      {
+        "physical_index": 463,
+        "symbol": "‌",
+        "frame_byte_index": 51,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 514,
+        "symbol": "‌",
+        "frame_byte_index": 57,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 544,
+        "symbol": "​",
+        "frame_byte_index": 60,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 545,
+        "symbol": "​",
+        "frame_byte_index": 60,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 550,
+        "symbol": "‌",
+        "frame_byte_index": 61,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 556,
+        "symbol": "‌",
+        "frame_byte_index": 61,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 619,
+        "symbol": "​",
+        "frame_byte_index": 68,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 625,
+        "symbol": "​",
+        "frame_byte_index": 69,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 661,
+        "symbol": "‌",
+        "frame_byte_index": 73,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 689,
+        "symbol": "​",
+        "frame_byte_index": 76,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 698,
+        "symbol": "​",
+        "frame_byte_index": 77,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 699,
+        "symbol": "‌",
+        "frame_byte_index": 77,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 770,
+        "symbol": "​",
+        "frame_byte_index": 85,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 811,
+        "symbol": "‌",
+        "frame_byte_index": 90,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 843,
+        "symbol": "​",
+        "frame_byte_index": 93,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 851,
+        "symbol": "‌",
+        "frame_byte_index": 94,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 876,
+        "symbol": "​",
+        "frame_byte_index": 97,
+        "data_bit_position": 3
+      },
+      {
+        "physical_index": 943,
+        "symbol": "‌",
+        "frame_byte_index": 104,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 1001,
+        "symbol": "‌",
+        "frame_byte_index": 111,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 1009,
+        "symbol": "‌",
+        "frame_byte_index": 112,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 1022,
+        "symbol": "​",
+        "frame_byte_index": 113,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 1031,
+        "symbol": "‌",
+        "frame_byte_index": 114,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 1036,
+        "symbol": "‌",
+        "frame_byte_index": 115,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 1046,
+        "symbol": "‌",
+        "frame_byte_index": 116,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 1049,
+        "symbol": "​",
+        "frame_byte_index": 116,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 1057,
+        "symbol": "​",
+        "frame_byte_index": 117,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 1068,
+        "symbol": "‌",
+        "frame_byte_index": 118,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 1075,
+        "symbol": "​",
+        "frame_byte_index": 119,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 1078,
+        "symbol": "‌",
+        "frame_byte_index": 119,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 1098,
+        "symbol": "​",
+        "frame_byte_index": 122,
+        "data_bit_position": 0
+      },
+      {
+        "physical_index": 1122,
+        "symbol": "‌",
+        "frame_byte_index": 124,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 1163,
+        "symbol": "‌",
+        "frame_byte_index": 129,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 1251,
+        "symbol": "​",
+        "frame_byte_index": 139,
+        "data_bit_position": 0
+      },
+      {
+        "physical_index": 1284,
+        "symbol": "​",
+        "frame_byte_index": 142,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 1320,
+        "symbol": "​",
+        "frame_byte_index": 146,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 1330,
+        "symbol": "‌",
+        "frame_byte_index": 147,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 1348,
+        "symbol": "‌",
+        "frame_byte_index": 149,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 1375,
+        "symbol": "​",
+        "frame_byte_index": 152,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 1410,
+        "symbol": "‌",
+        "frame_byte_index": 156,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 1429,
+        "symbol": "​",
+        "frame_byte_index": 158,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 1441,
+        "symbol": "‌",
+        "frame_byte_index": 160,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 1477,
+        "symbol": "‌",
+        "frame_byte_index": 164,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 1480,
+        "symbol": "​",
+        "frame_byte_index": 164,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 1489,
+        "symbol": "‌",
+        "frame_byte_index": 165,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 1497,
+        "symbol": "‌",
+        "frame_byte_index": 166,
+        "data_bit_position": 3
+      },
+      {
+        "physical_index": 1499,
+        "symbol": "​",
+        "frame_byte_index": 166,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 1543,
+        "symbol": "​",
+        "frame_byte_index": 171,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 1552,
+        "symbol": "​",
+        "frame_byte_index": 172,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 1593,
+        "symbol": "​",
+        "frame_byte_index": 177,
+        "data_bit_position": 0
+      },
+      {
+        "physical_index": 1633,
+        "symbol": "‌",
+        "frame_byte_index": 181,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 1647,
+        "symbol": "​",
+        "frame_byte_index": 183,
+        "data_bit_position": 0
+      },
+      {
+        "physical_index": 1690,
+        "symbol": "​",
+        "frame_byte_index": 187,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 1695,
+        "symbol": "​",
+        "frame_byte_index": 188,
+        "data_bit_position": 3
+      }
+    ],
+    "eligible_symbol_count_after": 1459,
+    "denominator_definition": "ZERO and ONE symbols only; separators and Hamming prefix excluded",
+    "bit_seed": 481201
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 838,
+      "U+200C": 698,
+      "U+200D": 191,
+      "total": 1727
+    },
+    "retrieved_counts": {
+      "U+200B": 794,
+      "U+200C": 665,
+      "U+200D": 191,
+      "total": 1650
+    },
+    "retention_percentage": 95.54140127388536,
+    "retention_above_100_percent": false,
+    "decoder_returned": false,
+    "exact_match": false,
+    "recovered_secret": null,
+    "decoder_error": "payload contains an incomplete or malformed byte block",
+    "failure_category": "structural_corruption"
+  },
+  "recovered_secret": null,
+  "exact_match": false,
+  "outcome": "detected_failure",
+  "failure_detected": true,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "060dbcc48650e992ccc4b82b0a8bb35a83b5deafaedba09cc20efd69225f3977",
+  "damaged_encoded_sha256": "2633b96f5f3ced51fe799e3b21153c43f4c0abee3048a7e195753b1cdebef36e"
+}

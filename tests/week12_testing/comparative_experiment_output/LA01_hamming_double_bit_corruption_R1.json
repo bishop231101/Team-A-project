@@ -1,0 +1,83 @@
+{
+  "trial_id": "W12_LA01_hamming_double_bit_corruption_R1",
+  "corpus_id": "LA01",
+  "expected_secret": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+  "encoding_mode": "hamming",
+  "corruption_condition": "double_bit_corruption",
+  "repetition": 1,
+  "sent_zero_width_character_counts": {
+    "U+200B": 1286,
+    "U+200C": 1210,
+    "U+200D": 193,
+    "total": 2689
+  },
+  "retrieved_zero_width_character_counts": {
+    "U+200B": 1286,
+    "U+200C": 1210,
+    "U+200D": 193,
+    "total": 2689
+  },
+  "retention_percentage": 100.0,
+  "encoded_length": 2689,
+  "encoded_length_overhead_relative_to_baseline_percent": 55.70353213665315,
+  "corruption": {
+    "bit_seed": 481201,
+    "deletion_seed": 481202,
+    "logical_target": {
+      "bit_seed": 481201,
+      "frame_byte_index": 9,
+      "single_bit_position": 1,
+      "double_bit_positions": [
+        1,
+        5
+      ],
+      "coordinate_definition": "frame byte index and frame data-bit position, both zero-based",
+      "bit_seed_role": "recorded repetition-specific reproducibility seed; approved logical targets are fixed"
+    },
+    "affected_symbol_count": 2,
+    "mapped_locations": [
+      {
+        "physical_index": 132,
+        "frame_byte_index": 9,
+        "data_bit_position": 1,
+        "codeword_position": 4,
+        "codeword_position_one_based": 5
+      },
+      {
+        "physical_index": 137,
+        "frame_byte_index": 9,
+        "data_bit_position": 5,
+        "codeword_position": 9,
+        "codeword_position_one_based": 10
+      }
+    ]
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 1286,
+      "U+200C": 1210,
+      "U+200D": 193,
+      "total": 2689
+    },
+    "retrieved_counts": {
+      "U+200B": 1286,
+      "U+200C": 1210,
+      "U+200D": 193,
+      "total": 2689
+    },
+    "retention_percentage": 100.0,
+    "retention_above_100_percent": false,
+    "decoder_returned": false,
+    "exact_match": false,
+    "recovered_secret": null,
+    "decoder_error": "Hamming payload contains an uncorrectable double-bit error",
+    "failure_category": "error_correction_uncorrectable"
+  },
+  "recovered_secret": null,
+  "exact_match": false,
+  "outcome": "detected_failure",
+  "failure_detected": true,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "d41e81dd0752b4bb92e421197a0b003a95d9c5eb9749d2a8a9e083ead127d582",
+  "damaged_encoded_sha256": "a8d74d8bfc38ad32d4d8dc61fd0292d4266e74f756121ca7a9b00e485eed471e"
+}

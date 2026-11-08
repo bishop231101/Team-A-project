@@ -1,0 +1,155 @@
+{
+  "trial_id": "W12_LA01_baseline_deletion_1_percent_R3",
+  "corpus_id": "LA01",
+  "expected_secret": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+  "encoding_mode": "baseline",
+  "corruption_condition": "deletion_1_percent",
+  "repetition": 3,
+  "sent_zero_width_character_counts": {
+    "U+200B": 838,
+    "U+200C": 698,
+    "U+200D": 191,
+    "total": 1727
+  },
+  "retrieved_zero_width_character_counts": {
+    "U+200B": 831,
+    "U+200C": 690,
+    "U+200D": 191,
+    "total": 1712
+  },
+  "retention_percentage": 99.13144180660105,
+  "encoded_length": 1727,
+  "encoded_length_overhead_relative_to_baseline_percent": 0.0,
+  "corruption": {
+    "deletion_seed": 481222,
+    "eligible_symbol_count_before": 1536,
+    "target_deletion_percentage": 1.0,
+    "rounding_rule": "nearest integer, ties rounded up (floor(n * percentage + 0.5))",
+    "target_symbol_removal_count": 15,
+    "affected_symbol_count": 15,
+    "actual_deletion_percentage": 0.9765625,
+    "removed_symbols": [
+      {
+        "physical_index": 68,
+        "symbol": "‌",
+        "frame_byte_index": 7,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 159,
+        "symbol": "​",
+        "frame_byte_index": 17,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 232,
+        "symbol": "‌",
+        "frame_byte_index": 25,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 631,
+        "symbol": "‌",
+        "frame_byte_index": 70,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 709,
+        "symbol": "​",
+        "frame_byte_index": 78,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 875,
+        "symbol": "‌",
+        "frame_byte_index": 97,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 919,
+        "symbol": "‌",
+        "frame_byte_index": 102,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 1092,
+        "symbol": "‌",
+        "frame_byte_index": 121,
+        "data_bit_position": 3
+      },
+      {
+        "physical_index": 1278,
+        "symbol": "​",
+        "frame_byte_index": 142,
+        "data_bit_position": 0
+      },
+      {
+        "physical_index": 1285,
+        "symbol": "​",
+        "frame_byte_index": 142,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 1427,
+        "symbol": "​",
+        "frame_byte_index": 158,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 1445,
+        "symbol": "‌",
+        "frame_byte_index": 160,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 1546,
+        "symbol": "‌",
+        "frame_byte_index": 171,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 1564,
+        "symbol": "​",
+        "frame_byte_index": 173,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 1651,
+        "symbol": "​",
+        "frame_byte_index": 183,
+        "data_bit_position": 4
+      }
+    ],
+    "eligible_symbol_count_after": 1521,
+    "denominator_definition": "ZERO and ONE symbols only; separators and Hamming prefix excluded",
+    "bit_seed": 481221
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 838,
+      "U+200C": 698,
+      "U+200D": 191,
+      "total": 1727
+    },
+    "retrieved_counts": {
+      "U+200B": 831,
+      "U+200C": 690,
+      "U+200D": 191,
+      "total": 1712
+    },
+    "retention_percentage": 99.13144180660105,
+    "retention_above_100_percent": false,
+    "decoder_returned": false,
+    "exact_match": false,
+    "recovered_secret": null,
+    "decoder_error": "payload contains an incomplete or malformed byte block",
+    "failure_category": "structural_corruption"
+  },
+  "recovered_secret": null,
+  "exact_match": false,
+  "outcome": "detected_failure",
+  "failure_detected": true,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "060dbcc48650e992ccc4b82b0a8bb35a83b5deafaedba09cc20efd69225f3977",
+  "damaged_encoded_sha256": "c027662b2485cf730c160cbae6ae3dd26be8e73e001b03fbfae031a0c2dc722d"
+}

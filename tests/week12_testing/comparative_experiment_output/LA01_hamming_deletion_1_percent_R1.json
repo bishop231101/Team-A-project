@@ -1,0 +1,265 @@
+{
+  "trial_id": "W12_LA01_hamming_deletion_1_percent_R1",
+  "corpus_id": "LA01",
+  "expected_secret": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+  "encoding_mode": "hamming",
+  "corruption_condition": "deletion_1_percent",
+  "repetition": 1,
+  "sent_zero_width_character_counts": {
+    "U+200B": 1286,
+    "U+200C": 1210,
+    "U+200D": 193,
+    "total": 2689
+  },
+  "retrieved_zero_width_character_counts": {
+    "U+200B": 1273,
+    "U+200C": 1198,
+    "U+200D": 193,
+    "total": 2664
+  },
+  "retention_percentage": 99.07028635180365,
+  "encoded_length": 2689,
+  "encoded_length_overhead_relative_to_baseline_percent": 55.70353213665315,
+  "corruption": {
+    "deletion_seed": 481202,
+    "eligible_symbol_count_before": 2496,
+    "target_deletion_percentage": 1.0,
+    "rounding_rule": "nearest integer, ties rounded up (floor(n * percentage + 0.5))",
+    "target_symbol_removal_count": 25,
+    "affected_symbol_count": 25,
+    "actual_deletion_percentage": 1.001602564102564,
+    "removed_symbols": [
+      {
+        "physical_index": 39,
+        "symbol": "​",
+        "frame_byte_index": 2,
+        "codeword_position": 9,
+        "codeword_position_one_based": 10,
+        "logical_data_bit_position": 5
+      },
+      {
+        "physical_index": 76,
+        "symbol": "​",
+        "frame_byte_index": 5,
+        "codeword_position": 4,
+        "codeword_position_one_based": 5,
+        "logical_data_bit_position": 1
+      },
+      {
+        "physical_index": 231,
+        "symbol": "‌",
+        "frame_byte_index": 16,
+        "codeword_position": 5,
+        "codeword_position_one_based": 6,
+        "logical_data_bit_position": 2
+      },
+      {
+        "physical_index": 346,
+        "symbol": "​",
+        "frame_byte_index": 24,
+        "codeword_position": 8,
+        "codeword_position_one_based": 9,
+        "logical_data_bit_position": 4
+      },
+      {
+        "physical_index": 411,
+        "symbol": "​",
+        "frame_byte_index": 29,
+        "codeword_position": 3,
+        "codeword_position_one_based": 4,
+        "logical_data_bit_position": null
+      },
+      {
+        "physical_index": 474,
+        "symbol": "​",
+        "frame_byte_index": 33,
+        "codeword_position": 10,
+        "codeword_position_one_based": 11,
+        "logical_data_bit_position": 6
+      },
+      {
+        "physical_index": 484,
+        "symbol": "​",
+        "frame_byte_index": 34,
+        "codeword_position": 6,
+        "codeword_position_one_based": 7,
+        "logical_data_bit_position": 3
+      },
+      {
+        "physical_index": 510,
+        "symbol": "‌",
+        "frame_byte_index": 36,
+        "codeword_position": 4,
+        "codeword_position_one_based": 5,
+        "logical_data_bit_position": 1
+      },
+      {
+        "physical_index": 889,
+        "symbol": "‌",
+        "frame_byte_index": 63,
+        "codeword_position": 5,
+        "codeword_position_one_based": 6,
+        "logical_data_bit_position": 2
+      },
+      {
+        "physical_index": 1044,
+        "symbol": "‌",
+        "frame_byte_index": 74,
+        "codeword_position": 6,
+        "codeword_position_one_based": 7,
+        "logical_data_bit_position": 3
+      },
+      {
+        "physical_index": 1056,
+        "symbol": "‌",
+        "frame_byte_index": 75,
+        "codeword_position": 4,
+        "codeword_position_one_based": 5,
+        "logical_data_bit_position": 1
+      },
+      {
+        "physical_index": 1189,
+        "symbol": "​",
+        "frame_byte_index": 84,
+        "codeword_position": 11,
+        "codeword_position_one_based": 12,
+        "logical_data_bit_position": 7
+      },
+      {
+        "physical_index": 1556,
+        "symbol": "‌",
+        "frame_byte_index": 111,
+        "codeword_position": 0,
+        "codeword_position_one_based": 1,
+        "logical_data_bit_position": null
+      },
+      {
+        "physical_index": 1809,
+        "symbol": "‌",
+        "frame_byte_index": 129,
+        "codeword_position": 1,
+        "codeword_position_one_based": 2,
+        "logical_data_bit_position": null
+      },
+      {
+        "physical_index": 1935,
+        "symbol": "​",
+        "frame_byte_index": 138,
+        "codeword_position": 1,
+        "codeword_position_one_based": 2,
+        "logical_data_bit_position": null
+      },
+      {
+        "physical_index": 1959,
+        "symbol": "‌",
+        "frame_byte_index": 139,
+        "codeword_position": 11,
+        "codeword_position_one_based": 12,
+        "logical_data_bit_position": 7
+      },
+      {
+        "physical_index": 1978,
+        "symbol": "​",
+        "frame_byte_index": 141,
+        "codeword_position": 2,
+        "codeword_position_one_based": 3,
+        "logical_data_bit_position": 0
+      },
+      {
+        "physical_index": 1985,
+        "symbol": "‌",
+        "frame_byte_index": 141,
+        "codeword_position": 9,
+        "codeword_position_one_based": 10,
+        "logical_data_bit_position": 5
+      },
+      {
+        "physical_index": 2012,
+        "symbol": "​",
+        "frame_byte_index": 143,
+        "codeword_position": 8,
+        "codeword_position_one_based": 9,
+        "logical_data_bit_position": 4
+      },
+      {
+        "physical_index": 2048,
+        "symbol": "​",
+        "frame_byte_index": 146,
+        "codeword_position": 2,
+        "codeword_position_one_based": 3,
+        "logical_data_bit_position": 0
+      },
+      {
+        "physical_index": 2067,
+        "symbol": "‌",
+        "frame_byte_index": 147,
+        "codeword_position": 7,
+        "codeword_position_one_based": 8,
+        "logical_data_bit_position": null
+      },
+      {
+        "physical_index": 2151,
+        "symbol": "‌",
+        "frame_byte_index": 153,
+        "codeword_position": 7,
+        "codeword_position_one_based": 8,
+        "logical_data_bit_position": null
+      },
+      {
+        "physical_index": 2229,
+        "symbol": "‌",
+        "frame_byte_index": 159,
+        "codeword_position": 1,
+        "codeword_position_one_based": 2,
+        "logical_data_bit_position": null
+      },
+      {
+        "physical_index": 2397,
+        "symbol": "​",
+        "frame_byte_index": 171,
+        "codeword_position": 1,
+        "codeword_position_one_based": 2,
+        "logical_data_bit_position": null
+      },
+      {
+        "physical_index": 2550,
+        "symbol": "​",
+        "frame_byte_index": 182,
+        "codeword_position": 0,
+        "codeword_position_one_based": 1,
+        "logical_data_bit_position": null
+      }
+    ],
+    "eligible_symbol_count_after": 2471,
+    "denominator_definition": "ZERO and ONE symbols only; separators and Hamming prefix excluded",
+    "bit_seed": 481201
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 1286,
+      "U+200C": 1210,
+      "U+200D": 193,
+      "total": 2689
+    },
+    "retrieved_counts": {
+      "U+200B": 1273,
+      "U+200C": 1198,
+      "U+200D": 193,
+      "total": 2664
+    },
+    "retention_percentage": 99.07028635180365,
+    "retention_above_100_percent": false,
+    "decoder_returned": false,
+    "exact_match": false,
+    "recovered_secret": null,
+    "decoder_error": "Hamming payload contains an incomplete or malformed codeword",
+    "failure_category": "error_correction_structure"
+  },
+  "recovered_secret": null,
+  "exact_match": false,
+  "outcome": "detected_failure",
+  "failure_detected": true,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "d41e81dd0752b4bb92e421197a0b003a95d9c5eb9749d2a8a9e083ead127d582",
+  "damaged_encoded_sha256": "bd70d76527da8236fb458f529e08e9114269ca4281727bdc97e3068aba50488f"
+}
