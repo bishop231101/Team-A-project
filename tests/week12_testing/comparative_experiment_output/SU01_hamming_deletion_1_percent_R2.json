@@ -1,0 +1,81 @@
+{
+  "trial_id": "W12_SU01_hamming_deletion_1_percent_R2",
+  "corpus_id": "SU01",
+  "expected_secret": "Café",
+  "encoding_mode": "hamming",
+  "corruption_condition": "deletion_1_percent",
+  "repetition": 2,
+  "sent_zero_width_character_counts": {
+    "U+200B": 133,
+    "U+200C": 88,
+    "U+200D": 18,
+    "total": 239
+  },
+  "retrieved_zero_width_character_counts": {
+    "U+200B": 132,
+    "U+200C": 87,
+    "U+200D": 18,
+    "total": 237
+  },
+  "retention_percentage": 99.16317991631799,
+  "encoded_length": 239,
+  "encoded_length_overhead_relative_to_baseline_percent": 57.236842105263165,
+  "corruption": {
+    "deletion_seed": 481212,
+    "eligible_symbol_count_before": 221,
+    "target_deletion_percentage": 1.0,
+    "rounding_rule": "nearest integer, ties rounded up (floor(n * percentage + 0.5))",
+    "target_symbol_removal_count": 2,
+    "affected_symbol_count": 2,
+    "actual_deletion_percentage": 0.904977375565611,
+    "removed_symbols": [
+      {
+        "physical_index": 128,
+        "symbol": "‌",
+        "frame_byte_index": 9,
+        "codeword_position": 0,
+        "codeword_position_one_based": 1,
+        "logical_data_bit_position": null
+      },
+      {
+        "physical_index": 161,
+        "symbol": "​",
+        "frame_byte_index": 11,
+        "codeword_position": 5,
+        "codeword_position_one_based": 6,
+        "logical_data_bit_position": 2
+      }
+    ],
+    "eligible_symbol_count_after": 219,
+    "denominator_definition": "ZERO and ONE symbols only; separators and Hamming prefix excluded",
+    "bit_seed": 481211
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 133,
+      "U+200C": 88,
+      "U+200D": 18,
+      "total": 239
+    },
+    "retrieved_counts": {
+      "U+200B": 132,
+      "U+200C": 87,
+      "U+200D": 18,
+      "total": 237
+    },
+    "retention_percentage": 99.16317991631799,
+    "retention_above_100_percent": false,
+    "decoder_returned": false,
+    "exact_match": false,
+    "recovered_secret": null,
+    "decoder_error": "Hamming payload contains an incomplete or malformed codeword",
+    "failure_category": "error_correction_structure"
+  },
+  "recovered_secret": null,
+  "exact_match": false,
+  "outcome": "detected_failure",
+  "failure_detected": true,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "8a261a28bbdf9c6073afde2eea9680c71f2b875fdcf9e756caa82ed40fa17d6a",
+  "damaged_encoded_sha256": "3e4b2429108240df3442c31fc3ef8badc075f2ea94bb211f65822ec5db97c5d2"
+}

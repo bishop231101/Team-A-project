@@ -1,0 +1,46 @@
+{
+  "corpus_id": "SA01",
+  "expected_secret": "Hello",
+  "encoding_mode": "baseline",
+  "corruption_condition": "no_corruption",
+  "repetition": 1,
+  "original_encoded_zero_width_character_count": {
+    "U+200B": 84,
+    "U+200C": 52,
+    "U+200D": 16,
+    "total": 152
+  },
+  "encoded_length_overhead_relative_to_baseline_percent": 0.0,
+  "corruption": {
+    "seed": null,
+    "affected_symbol_count": 0
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 84,
+      "U+200C": 52,
+      "U+200D": 16,
+      "total": 152
+    },
+    "retrieved_counts": {
+      "U+200B": 84,
+      "U+200C": 52,
+      "U+200D": 16,
+      "total": 152
+    },
+    "retention_percentage": 100.0,
+    "retention_above_100_percent": false,
+    "decoder_returned": true,
+    "exact_match": true,
+    "recovered_secret": "Hello",
+    "decoder_error": null,
+    "failure_category": null
+  },
+  "outcome": "successful_recovery",
+  "recovery_exact": true,
+  "failure_detected": false,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "eb39fd73ce867915c784cd8cd6ecf927e317761d64226d8428506e6d241cd802",
+  "damaged_encoded_sha256": "eb39fd73ce867915c784cd8cd6ecf927e317761d64226d8428506e6d241cd802",
+  "pilot_protocol": "Week 12 comparative experiment pilot; SA01; one repetition"
+}

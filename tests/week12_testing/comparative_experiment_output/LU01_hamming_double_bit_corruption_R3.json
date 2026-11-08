@@ -1,0 +1,83 @@
+{
+  "trial_id": "W12_LU01_hamming_double_bit_corruption_R3",
+  "corpus_id": "LU01",
+  "expected_secret": "Café déjà vu — résumé. Café déjà vu — résumé. Café déjà vu — résumé. Café déjà vu — résumé. ",
+  "encoding_mode": "hamming",
+  "corruption_condition": "double_bit_corruption",
+  "repetition": 3,
+  "sent_zero_width_character_counts": {
+    "U+200B": 972,
+    "U+200C": 744,
+    "U+200D": 133,
+    "total": 1849
+  },
+  "retrieved_zero_width_character_counts": {
+    "U+200B": 972,
+    "U+200C": 744,
+    "U+200D": 133,
+    "total": 1849
+  },
+  "retention_percentage": 100.0,
+  "encoded_length": 1849,
+  "encoded_length_overhead_relative_to_baseline_percent": 55.77085088458298,
+  "corruption": {
+    "bit_seed": 481221,
+    "deletion_seed": 481222,
+    "logical_target": {
+      "bit_seed": 481221,
+      "frame_byte_index": 9,
+      "single_bit_position": 1,
+      "double_bit_positions": [
+        1,
+        5
+      ],
+      "coordinate_definition": "frame byte index and frame data-bit position, both zero-based",
+      "bit_seed_role": "recorded repetition-specific reproducibility seed; approved logical targets are fixed"
+    },
+    "affected_symbol_count": 2,
+    "mapped_locations": [
+      {
+        "physical_index": 132,
+        "frame_byte_index": 9,
+        "data_bit_position": 1,
+        "codeword_position": 4,
+        "codeword_position_one_based": 5
+      },
+      {
+        "physical_index": 137,
+        "frame_byte_index": 9,
+        "data_bit_position": 5,
+        "codeword_position": 9,
+        "codeword_position_one_based": 10
+      }
+    ]
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 972,
+      "U+200C": 744,
+      "U+200D": 133,
+      "total": 1849
+    },
+    "retrieved_counts": {
+      "U+200B": 972,
+      "U+200C": 744,
+      "U+200D": 133,
+      "total": 1849
+    },
+    "retention_percentage": 100.0,
+    "retention_above_100_percent": false,
+    "decoder_returned": false,
+    "exact_match": false,
+    "recovered_secret": null,
+    "decoder_error": "Hamming payload contains an uncorrectable double-bit error",
+    "failure_category": "error_correction_uncorrectable"
+  },
+  "recovered_secret": null,
+  "exact_match": false,
+  "outcome": "detected_failure",
+  "failure_detected": true,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "08005474bee06b1333cd2de11dddcdf32522f00050520f9f09f4be2722877fc8",
+  "damaged_encoded_sha256": "2a3151796006443156ce393d9a542cfabe69e7c8b8c424929a571862f8163f80"
+}

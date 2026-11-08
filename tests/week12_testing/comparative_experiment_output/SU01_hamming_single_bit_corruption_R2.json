@@ -1,0 +1,76 @@
+{
+  "trial_id": "W12_SU01_hamming_single_bit_corruption_R2",
+  "corpus_id": "SU01",
+  "expected_secret": "Café",
+  "encoding_mode": "hamming",
+  "corruption_condition": "single_bit_corruption",
+  "repetition": 2,
+  "sent_zero_width_character_counts": {
+    "U+200B": 133,
+    "U+200C": 88,
+    "U+200D": 18,
+    "total": 239
+  },
+  "retrieved_zero_width_character_counts": {
+    "U+200B": 134,
+    "U+200C": 87,
+    "U+200D": 18,
+    "total": 239
+  },
+  "retention_percentage": 100.0,
+  "encoded_length": 239,
+  "encoded_length_overhead_relative_to_baseline_percent": 57.236842105263165,
+  "corruption": {
+    "bit_seed": 481211,
+    "deletion_seed": 481212,
+    "logical_target": {
+      "bit_seed": 481211,
+      "frame_byte_index": 9,
+      "single_bit_position": 1,
+      "double_bit_positions": [
+        1,
+        5
+      ],
+      "coordinate_definition": "frame byte index and frame data-bit position, both zero-based",
+      "bit_seed_role": "recorded repetition-specific reproducibility seed; approved logical targets are fixed"
+    },
+    "affected_symbol_count": 1,
+    "mapped_locations": [
+      {
+        "physical_index": 132,
+        "frame_byte_index": 9,
+        "data_bit_position": 1,
+        "codeword_position": 4,
+        "codeword_position_one_based": 5
+      }
+    ]
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 133,
+      "U+200C": 88,
+      "U+200D": 18,
+      "total": 239
+    },
+    "retrieved_counts": {
+      "U+200B": 134,
+      "U+200C": 87,
+      "U+200D": 18,
+      "total": 239
+    },
+    "retention_percentage": 100.0,
+    "retention_above_100_percent": false,
+    "decoder_returned": true,
+    "exact_match": true,
+    "recovered_secret": "Café",
+    "decoder_error": null,
+    "failure_category": null
+  },
+  "recovered_secret": "Café",
+  "exact_match": true,
+  "outcome": "successful_recovery",
+  "failure_detected": false,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "8a261a28bbdf9c6073afde2eea9680c71f2b875fdcf9e756caa82ed40fa17d6a",
+  "damaged_encoded_sha256": "2bbc14bc3e5901a0749ccf33b431e5d031f611f07a2df8051d2176658b865759"
+}

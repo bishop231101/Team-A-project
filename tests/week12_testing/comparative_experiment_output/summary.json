@@ -1,0 +1,380 @@
+{
+  "total_trials": 120,
+  "expected_total_trials": 120,
+  "corpus_messages": [
+    "SA01",
+    "SU01",
+    "LA01",
+    "LU01"
+  ],
+  "modes": [
+    "baseline",
+    "hamming"
+  ],
+  "conditions": [
+    "no_corruption",
+    "single_bit_corruption",
+    "double_bit_corruption",
+    "deletion_1_percent",
+    "deletion_5_percent"
+  ],
+  "repetitions": [
+    1,
+    2,
+    3
+  ],
+  "repetitions_per_combination": 3,
+  "trial_counts_by_corpus": {
+    "LA01": 30,
+    "LU01": 30,
+    "SA01": 30,
+    "SU01": 30
+  },
+  "trial_counts_by_mode": {
+    "baseline": 60,
+    "hamming": 60
+  },
+  "trial_counts_by_condition": {
+    "deletion_1_percent": 24,
+    "deletion_5_percent": 24,
+    "double_bit_corruption": 24,
+    "no_corruption": 24,
+    "single_bit_corruption": 24
+  },
+  "outcome_counts": {
+    "successful_recovery": 36,
+    "detected_failure": 84,
+    "undetected_error": 0
+  },
+  "recovery_success_rates_by_mode_and_condition_percent": {
+    "baseline": {
+      "no_corruption": 100.0,
+      "single_bit_corruption": 0.0,
+      "double_bit_corruption": 0.0,
+      "deletion_1_percent": 0.0,
+      "deletion_5_percent": 0.0
+    },
+    "hamming": {
+      "no_corruption": 100.0,
+      "single_bit_corruption": 100.0,
+      "double_bit_corruption": 0.0,
+      "deletion_1_percent": 0.0,
+      "deletion_5_percent": 0.0
+    }
+  },
+  "results_by_corpus_and_mode": {
+    "SA01": {
+      "baseline": {
+        "trial_count": 15,
+        "outcome_counts": {
+          "successful_recovery": 3,
+          "detected_failure": 12,
+          "undetected_error": 0
+        },
+        "average_encoded_length": 152,
+        "average_retention_percentage": 98.94736842105263
+      },
+      "hamming": {
+        "trial_count": 15,
+        "outcome_counts": {
+          "successful_recovery": 6,
+          "detected_failure": 9,
+          "undetected_error": 0
+        },
+        "average_encoded_length": 239,
+        "average_retention_percentage": 98.91213389121339
+      }
+    },
+    "SU01": {
+      "baseline": {
+        "trial_count": 15,
+        "outcome_counts": {
+          "successful_recovery": 3,
+          "detected_failure": 12,
+          "undetected_error": 0
+        },
+        "average_encoded_length": 152,
+        "average_retention_percentage": 98.94736842105263
+      },
+      "hamming": {
+        "trial_count": 15,
+        "outcome_counts": {
+          "successful_recovery": 6,
+          "detected_failure": 9,
+          "undetected_error": 0
+        },
+        "average_encoded_length": 239,
+        "average_retention_percentage": 98.91213389121339
+      }
+    },
+    "LA01": {
+      "baseline": {
+        "trial_count": 15,
+        "outcome_counts": {
+          "successful_recovery": 3,
+          "detected_failure": 12,
+          "undetected_error": 0
+        },
+        "average_encoded_length": 1727,
+        "average_retention_percentage": 98.93456861609728
+      },
+      "hamming": {
+        "trial_count": 15,
+        "outcome_counts": {
+          "successful_recovery": 6,
+          "detected_failure": 9,
+          "undetected_error": 0
+        },
+        "average_encoded_length": 2689,
+        "average_retention_percentage": 98.88434362216438
+      }
+    },
+    "LU01": {
+      "baseline": {
+        "trial_count": 15,
+        "outcome_counts": {
+          "successful_recovery": 3,
+          "detected_failure": 12,
+          "undetected_error": 0
+        },
+        "average_encoded_length": 1187,
+        "average_retention_percentage": 98.92165122156698
+      },
+      "hamming": {
+        "trial_count": 15,
+        "outcome_counts": {
+          "successful_recovery": 6,
+          "detected_failure": 9,
+          "undetected_error": 0
+        },
+        "average_encoded_length": 1849,
+        "average_retention_percentage": 98.88588426176311
+      }
+    }
+  },
+  "average_encoded_length_and_overhead": {
+    "SA01": {
+      "baseline": 0.0,
+      "hamming": 57.236842105263165,
+      "baseline_encoded_length": 152
+    },
+    "SU01": {
+      "baseline": 0.0,
+      "hamming": 57.236842105263165,
+      "baseline_encoded_length": 152
+    },
+    "LA01": {
+      "baseline": 0.0,
+      "hamming": 55.70353213665315,
+      "baseline_encoded_length": 1727
+    },
+    "LU01": {
+      "baseline": 0.0,
+      "hamming": 55.77085088458298,
+      "baseline_encoded_length": 1187
+    }
+  },
+  "deletion_statistics": {
+    "baseline": {
+      "deletion_1_percent": {
+        "affected_symbol_counts": [
+          15,
+          15,
+          15,
+          11,
+          11,
+          11,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "actual_deletion_percentages": [
+          0.9765625,
+          0.9765625,
+          0.9765625,
+          1.0416666666666665,
+          1.0416666666666665,
+          1.0416666666666665,
+          0.7352941176470588,
+          0.7352941176470588,
+          0.7352941176470588,
+          0.7352941176470588,
+          0.7352941176470588,
+          0.7352941176470588
+        ],
+        "eligible_symbol_counts_before": [
+          1536,
+          1536,
+          1536,
+          1056,
+          1056,
+          1056,
+          136,
+          136,
+          136,
+          136,
+          136,
+          136
+        ]
+      },
+      "deletion_5_percent": {
+        "affected_symbol_counts": [
+          77,
+          77,
+          77,
+          53,
+          53,
+          53,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "actual_deletion_percentages": [
+          5.013020833333334,
+          5.013020833333334,
+          5.013020833333334,
+          5.018939393939394,
+          5.018939393939394,
+          5.018939393939394,
+          5.147058823529411,
+          5.147058823529411,
+          5.147058823529411,
+          5.147058823529411,
+          5.147058823529411,
+          5.147058823529411
+        ],
+        "eligible_symbol_counts_before": [
+          1536,
+          1536,
+          1536,
+          1056,
+          1056,
+          1056,
+          136,
+          136,
+          136,
+          136,
+          136,
+          136
+        ]
+      }
+    },
+    "hamming": {
+      "deletion_1_percent": {
+        "affected_symbol_counts": [
+          25,
+          25,
+          25,
+          17,
+          17,
+          17,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "actual_deletion_percentages": [
+          1.001602564102564,
+          1.001602564102564,
+          1.001602564102564,
+          0.9906759906759907,
+          0.9906759906759907,
+          0.9906759906759907,
+          0.904977375565611,
+          0.904977375565611,
+          0.904977375565611,
+          0.904977375565611,
+          0.904977375565611,
+          0.904977375565611
+        ],
+        "eligible_symbol_counts_before": [
+          2496,
+          2496,
+          2496,
+          1716,
+          1716,
+          1716,
+          221,
+          221,
+          221,
+          221,
+          221,
+          221
+        ]
+      },
+      "deletion_5_percent": {
+        "affected_symbol_counts": [
+          125,
+          125,
+          125,
+          86,
+          86,
+          86,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11
+        ],
+        "actual_deletion_percentages": [
+          5.008012820512821,
+          5.008012820512821,
+          5.008012820512821,
+          5.011655011655012,
+          5.011655011655012,
+          5.011655011655012,
+          4.97737556561086,
+          4.97737556561086,
+          4.97737556561086,
+          4.97737556561086,
+          4.97737556561086,
+          4.97737556561086
+        ],
+        "eligible_symbol_counts_before": [
+          2496,
+          2496,
+          2496,
+          1716,
+          1716,
+          1716,
+          221,
+          221,
+          221,
+          221,
+          221,
+          221
+        ]
+      }
+    }
+  },
+  "retention_percentages": {
+    "average": 98.91818154326548,
+    "by_mode_and_condition": {
+      "baseline": {
+        "no_corruption": 100.0,
+        "single_bit_corruption": 100.0,
+        "double_bit_corruption": 100.0,
+        "deletion_1_percent": 99.22223658786274,
+        "deletion_5_percent": 95.46645926184917
+      },
+      "hamming": {
+        "no_corruption": 100.0,
+        "single_bit_corruption": 100.0,
+        "double_bit_corruption": 100.0,
+        "deletion_1_percent": 99.11930757098821,
+        "deletion_5_percent": 95.37381201195461
+      }
+    }
+  },
+  "invalid_records": [],
+  "unexpected_execution_errors": []
+}

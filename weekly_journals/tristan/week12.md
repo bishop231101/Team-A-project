@@ -22,6 +22,12 @@ Complete official production data collection for Notepad++ and Microsoft Word, i
 - The pilot produced three successful recoveries and seven detected failures across both modes, with no undetected incorrect recoveries.
 - The Hamming mode successfully corrected the tested single-bit corruption that caused Baseline decoding to fail. Both modes detected or rejected the tested double-bit corruption and deletion conditions.
 - Recorded the encoded-length overhead of Hamming compared with Baseline, along with the actual deletion counts, percentages, and recovery outcomes.
+- Implemented and executed the approved full Week 12 Baseline-versus-Hamming comparative experiment using SA01, SU01, LA01, and LU01; both encoding modes; five corruption conditions; and three repetitions per combination, for exactly 120 trials.
+- Used the approved repetition-specific deterministic seed pairs: R1 `481201/481202`, R2 `481211/481212`, and R3 `481221/481222`. The fixed logical bit targets were frame byte 9, bit 1 for single-bit corruption, and frame byte 9, bits 1 and 5 for double-bit corruption.
+- Saved 120 individual JSON trial records, an aggregate `summary.json`, and `experiment_report.md` in `tests/week12_testing/comparative_experiment_output/`.
+- Added automated validation and summary-aggregation tests. The relevant test run passed with 13 tests and 398 Hamming subtests.
+- Independently audited every individual trial record against the codec, corpus, approved seed pairs, corruption metadata, decoder results, and aggregate summary. All 120 expected combinations were unique and valid.
+- Verified that Baseline completed 12 successful recoveries out of 60 trials and Hamming completed 24 successful recoveries out of 60 trials. There were 84 detected failures, 0 undetected errors, and 0 unexpected execution errors.
 
 ## What I Learned
 
@@ -34,22 +40,23 @@ Complete official production data collection for Notepad++ and Microsoft Word, i
 - Both modes detected or rejected the tested double-bit corruption and deletion conditions, demonstrating that error correction does not guarantee recovery from every type of corruption.
 - Deletion of encoded symbols presents a different challenge from bit substitutions because removing symbols can disrupt the structure of the encoded payload.
 - Automated testing improves consistency and efficiency when running repeated comparative experiments locally, while saving individual trial records and summary statistics makes results easier to verify.
+- The full comparison showed the practical benefit of Hamming for bit substitutions: it recovered all 12 Hamming single-bit trials while Baseline detected all 12 corresponding failures. This benefit came with additional encoded length: 57.24% overhead for SA01 and SU01, 55.70% for LA01, and 55.77% for LU01.
+- Both modes detected all tested double-bit and deletion failures. Hamming's additional redundancy did not make it recover deleted symbols, reinforcing that protection against bit substitutions does not guarantee recovery from structural symbol loss.
+- Average retention for the deletion conditions was 99.22% for Baseline and 99.12% for Hamming at approximately 1% deletion, and 95.47% for Baseline and 95.37% for Hamming at approximately 5% deletion.
 
 ## Problems and Challenges
 
 - Remaining official production testing across the other approved platforms is still outstanding, including Discord, Telegram Web, Microsoft Outlook, and Google Chrome Browser Console.
 - Microsoft Word consistently removed the entire zero-width payload across all 24 trials, preventing successful decoding regardless of message length or character set.
-- The SA01 comparative pilot is complete, but its methodology, individual trial records, and summary statistics are awaiting review and approval from Henry and Ifeanyi.
-- The full comparative experiment matrix cannot proceed until the pilot results are reviewed and the team approves the methodology.
-- The comparative experiment script and pilot evidence were prepared while working with Henry's branch, so the submission and branch workflow for the full experiment needs to follow Ifeanyi's direction to use a separate branch and PR based on the updated main branch.
+- The full comparative experiment and its independent audit are complete. The separate comparative-experiment PR remains pending review and submission; no PR has been created yet.
+- The generated human-readable experiment report records the totals and approved methodology, while the independently audited summary and individual records contain the detailed overhead, retention, and deletion statistics needed for final review.
+- The comparative experiment work was prepared on the separate `tristan-week12-comparative-experiment` branch, and the submission workflow still needs to follow Ifeanyi's direction before staging or opening a PR.
 - Balancing the remaining platform production trials with comparative experiments and documentation continues to be a workload challenge.
 
 ## Next Steps
 
-- Obtain Henry and Ifeanyi's feedback and approval on the SA01 comparative pilot, including the script, ten individual trial records, deletion methodology, recovery outcomes, and summary statistics.
-- Follow Ifeanyi's direction regarding the submission of the comparative pilot artifacts and include them in the appropriate PR or review workflow.
-- After Henry's required changes are merged into `main`, create a separate branch and PR for the full comparative experiment, as requested by Ifeanyi.
-- If the pilot is approved, prepare and execute the full comparative experiment matrix using the approved methodology, preserving individual trial results, supporting evidence, and summary statistics.
+- Submit the separate comparative-experiment implementation, 120 audited trial records, summary, report, methodology document, and tests for Henry and Ifeanyi's review; the PR remains pending and has not been created.
+- Preserve the independently verified experiment results and include the validation evidence in the appropriate review workflow.
 - Continue the remaining official production testing across Discord, Telegram Web, Microsoft Outlook, and Google Chrome Browser Console, completing the approved corpus messages and repetitions for each platform.
 - Update the Week 12 journal and GitHub contributions with completed work, supporting evidence, and experiment results.
 - Ensure the completed Notepad++ and Microsoft Word trial records, screenshots, analysis results, Gmail Reproducibility document, and updated journal are included in the appropriate PR for Ifeanyi's review.

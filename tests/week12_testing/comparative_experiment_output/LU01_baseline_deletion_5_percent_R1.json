@@ -1,0 +1,383 @@
+{
+  "trial_id": "W12_LU01_baseline_deletion_5_percent_R1",
+  "corpus_id": "LU01",
+  "expected_secret": "Café déjà vu — résumé. Café déjà vu — résumé. Café déjà vu — résumé. Café déjà vu — résumé. ",
+  "encoding_mode": "baseline",
+  "corruption_condition": "deletion_5_percent",
+  "repetition": 1,
+  "sent_zero_width_character_counts": {
+    "U+200B": 615,
+    "U+200C": 441,
+    "U+200D": 131,
+    "total": 1187
+  },
+  "retrieved_zero_width_character_counts": {
+    "U+200B": 583,
+    "U+200C": 420,
+    "U+200D": 131,
+    "total": 1134
+  },
+  "retention_percentage": 95.53496208930076,
+  "encoded_length": 1187,
+  "encoded_length_overhead_relative_to_baseline_percent": 0.0,
+  "corruption": {
+    "deletion_seed": 481202,
+    "eligible_symbol_count_before": 1056,
+    "target_deletion_percentage": 5.0,
+    "rounding_rule": "nearest integer, ties rounded up (floor(n * percentage + 0.5))",
+    "target_symbol_removal_count": 53,
+    "affected_symbol_count": 53,
+    "actual_deletion_percentage": 5.018939393939394,
+    "removed_symbols": [
+      {
+        "physical_index": 19,
+        "symbol": "‌",
+        "frame_byte_index": 2,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 38,
+        "symbol": "​",
+        "frame_byte_index": 4,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 74,
+        "symbol": "​",
+        "frame_byte_index": 8,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 76,
+        "symbol": "​",
+        "frame_byte_index": 8,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 78,
+        "symbol": "‌",
+        "frame_byte_index": 8,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 96,
+        "symbol": "‌",
+        "frame_byte_index": 10,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 119,
+        "symbol": "‌",
+        "frame_byte_index": 13,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 180,
+        "symbol": "​",
+        "frame_byte_index": 20,
+        "data_bit_position": 0
+      },
+      {
+        "physical_index": 200,
+        "symbol": "‌",
+        "frame_byte_index": 22,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 213,
+        "symbol": "​",
+        "frame_byte_index": 23,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 225,
+        "symbol": "‌",
+        "frame_byte_index": 25,
+        "data_bit_position": 0
+      },
+      {
+        "physical_index": 245,
+        "symbol": "‌",
+        "frame_byte_index": 27,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 246,
+        "symbol": "​",
+        "frame_byte_index": 27,
+        "data_bit_position": 3
+      },
+      {
+        "physical_index": 252,
+        "symbol": "​",
+        "frame_byte_index": 28,
+        "data_bit_position": 0
+      },
+      {
+        "physical_index": 265,
+        "symbol": "​",
+        "frame_byte_index": 29,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 356,
+        "symbol": "​",
+        "frame_byte_index": 39,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 393,
+        "symbol": "​",
+        "frame_byte_index": 43,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 402,
+        "symbol": "​",
+        "frame_byte_index": 44,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 425,
+        "symbol": "‌",
+        "frame_byte_index": 47,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 428,
+        "symbol": "​",
+        "frame_byte_index": 47,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 441,
+        "symbol": "‌",
+        "frame_byte_index": 49,
+        "data_bit_position": 0
+      },
+      {
+        "physical_index": 459,
+        "symbol": "​",
+        "frame_byte_index": 51,
+        "data_bit_position": 0
+      },
+      {
+        "physical_index": 463,
+        "symbol": "​",
+        "frame_byte_index": 51,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 514,
+        "symbol": "​",
+        "frame_byte_index": 57,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 544,
+        "symbol": "‌",
+        "frame_byte_index": 60,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 545,
+        "symbol": "​",
+        "frame_byte_index": 60,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 550,
+        "symbol": "‌",
+        "frame_byte_index": 61,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 556,
+        "symbol": "‌",
+        "frame_byte_index": 61,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 619,
+        "symbol": "‌",
+        "frame_byte_index": 68,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 625,
+        "symbol": "​",
+        "frame_byte_index": 69,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 661,
+        "symbol": "​",
+        "frame_byte_index": 73,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 689,
+        "symbol": "​",
+        "frame_byte_index": 76,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 698,
+        "symbol": "​",
+        "frame_byte_index": 77,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 699,
+        "symbol": "‌",
+        "frame_byte_index": 77,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 770,
+        "symbol": "​",
+        "frame_byte_index": 85,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 811,
+        "symbol": "​",
+        "frame_byte_index": 90,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 843,
+        "symbol": "​",
+        "frame_byte_index": 93,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 851,
+        "symbol": "​",
+        "frame_byte_index": 94,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 876,
+        "symbol": "​",
+        "frame_byte_index": 97,
+        "data_bit_position": 3
+      },
+      {
+        "physical_index": 943,
+        "symbol": "​",
+        "frame_byte_index": 104,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 1001,
+        "symbol": "‌",
+        "frame_byte_index": 111,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 1009,
+        "symbol": "‌",
+        "frame_byte_index": 112,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 1022,
+        "symbol": "​",
+        "frame_byte_index": 113,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 1031,
+        "symbol": "​",
+        "frame_byte_index": 114,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 1036,
+        "symbol": "​",
+        "frame_byte_index": 115,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 1046,
+        "symbol": "​",
+        "frame_byte_index": 116,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 1049,
+        "symbol": "‌",
+        "frame_byte_index": 116,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 1057,
+        "symbol": "​",
+        "frame_byte_index": 117,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 1068,
+        "symbol": "‌",
+        "frame_byte_index": 118,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 1075,
+        "symbol": "​",
+        "frame_byte_index": 119,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 1078,
+        "symbol": "‌",
+        "frame_byte_index": 119,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 1122,
+        "symbol": "‌",
+        "frame_byte_index": 124,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 1163,
+        "symbol": "‌",
+        "frame_byte_index": 129,
+        "data_bit_position": 2
+      }
+    ],
+    "eligible_symbol_count_after": 1003,
+    "denominator_definition": "ZERO and ONE symbols only; separators and Hamming prefix excluded",
+    "bit_seed": 481201
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 615,
+      "U+200C": 441,
+      "U+200D": 131,
+      "total": 1187
+    },
+    "retrieved_counts": {
+      "U+200B": 583,
+      "U+200C": 420,
+      "U+200D": 131,
+      "total": 1134
+    },
+    "retention_percentage": 95.53496208930076,
+    "retention_above_100_percent": false,
+    "decoder_returned": false,
+    "exact_match": false,
+    "recovered_secret": null,
+    "decoder_error": "payload contains an incomplete or malformed byte block",
+    "failure_category": "structural_corruption"
+  },
+  "recovered_secret": null,
+  "exact_match": false,
+  "outcome": "detected_failure",
+  "failure_detected": true,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "8c6a89a45cb6455ac8c616545411053806a72bba0e49b5be1c786613e12f5a52",
+  "damaged_encoded_sha256": "ccf1e6243473161165550ed6886edd7e70b042ed71b93f99aea9a7ac43b81273"
+}

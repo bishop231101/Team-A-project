@@ -1,0 +1,56 @@
+{
+  "trial_id": "W12_LU01_baseline_no_corruption_R3",
+  "corpus_id": "LU01",
+  "expected_secret": "Café déjà vu — résumé. Café déjà vu — résumé. Café déjà vu — résumé. Café déjà vu — résumé. ",
+  "encoding_mode": "baseline",
+  "corruption_condition": "no_corruption",
+  "repetition": 3,
+  "sent_zero_width_character_counts": {
+    "U+200B": 615,
+    "U+200C": 441,
+    "U+200D": 131,
+    "total": 1187
+  },
+  "retrieved_zero_width_character_counts": {
+    "U+200B": 615,
+    "U+200C": 441,
+    "U+200D": 131,
+    "total": 1187
+  },
+  "retention_percentage": 100.0,
+  "encoded_length": 1187,
+  "encoded_length_overhead_relative_to_baseline_percent": 0.0,
+  "corruption": {
+    "bit_seed": 481221,
+    "deletion_seed": 481222,
+    "affected_symbol_count": 0
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 615,
+      "U+200C": 441,
+      "U+200D": 131,
+      "total": 1187
+    },
+    "retrieved_counts": {
+      "U+200B": 615,
+      "U+200C": 441,
+      "U+200D": 131,
+      "total": 1187
+    },
+    "retention_percentage": 100.0,
+    "retention_above_100_percent": false,
+    "decoder_returned": true,
+    "exact_match": true,
+    "recovered_secret": "Café déjà vu — résumé. Café déjà vu — résumé. Café déjà vu — résumé. Café déjà vu — résumé. ",
+    "decoder_error": null,
+    "failure_category": null
+  },
+  "recovered_secret": "Café déjà vu — résumé. Café déjà vu — résumé. Café déjà vu — résumé. Café déjà vu — résumé. ",
+  "exact_match": true,
+  "outcome": "successful_recovery",
+  "failure_detected": false,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "8c6a89a45cb6455ac8c616545411053806a72bba0e49b5be1c786613e12f5a52",
+  "damaged_encoded_sha256": "8c6a89a45cb6455ac8c616545411053806a72bba0e49b5be1c786613e12f5a52"
+}

@@ -1,0 +1,131 @@
+{
+  "trial_id": "W12_LU01_baseline_deletion_1_percent_R1",
+  "corpus_id": "LU01",
+  "expected_secret": "Café déjà vu — résumé. Café déjà vu — résumé. Café déjà vu — résumé. Café déjà vu — résumé. ",
+  "encoding_mode": "baseline",
+  "corruption_condition": "deletion_1_percent",
+  "repetition": 1,
+  "sent_zero_width_character_counts": {
+    "U+200B": 615,
+    "U+200C": 441,
+    "U+200D": 131,
+    "total": 1187
+  },
+  "retrieved_zero_width_character_counts": {
+    "U+200B": 607,
+    "U+200C": 438,
+    "U+200D": 131,
+    "total": 1176
+  },
+  "retention_percentage": 99.07329401853411,
+  "encoded_length": 1187,
+  "encoded_length_overhead_relative_to_baseline_percent": 0.0,
+  "corruption": {
+    "deletion_seed": 481202,
+    "eligible_symbol_count_before": 1056,
+    "target_deletion_percentage": 1.0,
+    "rounding_rule": "nearest integer, ties rounded up (floor(n * percentage + 0.5))",
+    "target_symbol_removal_count": 11,
+    "affected_symbol_count": 11,
+    "actual_deletion_percentage": 1.0416666666666665,
+    "removed_symbols": [
+      {
+        "physical_index": 180,
+        "symbol": "​",
+        "frame_byte_index": 20,
+        "data_bit_position": 0
+      },
+      {
+        "physical_index": 213,
+        "symbol": "​",
+        "frame_byte_index": 23,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 246,
+        "symbol": "​",
+        "frame_byte_index": 27,
+        "data_bit_position": 3
+      },
+      {
+        "physical_index": 265,
+        "symbol": "​",
+        "frame_byte_index": 29,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 463,
+        "symbol": "​",
+        "frame_byte_index": 51,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 619,
+        "symbol": "‌",
+        "frame_byte_index": 68,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 1009,
+        "symbol": "‌",
+        "frame_byte_index": 112,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 1022,
+        "symbol": "​",
+        "frame_byte_index": 113,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 1031,
+        "symbol": "​",
+        "frame_byte_index": 114,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 1036,
+        "symbol": "​",
+        "frame_byte_index": 115,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 1163,
+        "symbol": "‌",
+        "frame_byte_index": 129,
+        "data_bit_position": 2
+      }
+    ],
+    "eligible_symbol_count_after": 1045,
+    "denominator_definition": "ZERO and ONE symbols only; separators and Hamming prefix excluded",
+    "bit_seed": 481201
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 615,
+      "U+200C": 441,
+      "U+200D": 131,
+      "total": 1187
+    },
+    "retrieved_counts": {
+      "U+200B": 607,
+      "U+200C": 438,
+      "U+200D": 131,
+      "total": 1176
+    },
+    "retention_percentage": 99.07329401853411,
+    "retention_above_100_percent": false,
+    "decoder_returned": false,
+    "exact_match": false,
+    "recovered_secret": null,
+    "decoder_error": "payload contains an incomplete or malformed byte block",
+    "failure_category": "structural_corruption"
+  },
+  "recovered_secret": null,
+  "exact_match": false,
+  "outcome": "detected_failure",
+  "failure_detected": true,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "8c6a89a45cb6455ac8c616545411053806a72bba0e49b5be1c786613e12f5a52",
+  "damaged_encoded_sha256": "d53b10586725b7bbfdce6ec357e2244a29a8684543ebd7bdce4e66661fbe6332"
+}

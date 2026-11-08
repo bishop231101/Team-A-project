@@ -1,0 +1,81 @@
+{
+  "trial_id": "W12_LA01_baseline_double_bit_corruption_R1",
+  "corpus_id": "LA01",
+  "expected_secret": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+  "encoding_mode": "baseline",
+  "corruption_condition": "double_bit_corruption",
+  "repetition": 1,
+  "sent_zero_width_character_counts": {
+    "U+200B": 838,
+    "U+200C": 698,
+    "U+200D": 191,
+    "total": 1727
+  },
+  "retrieved_zero_width_character_counts": {
+    "U+200B": 838,
+    "U+200C": 698,
+    "U+200D": 191,
+    "total": 1727
+  },
+  "retention_percentage": 100.0,
+  "encoded_length": 1727,
+  "encoded_length_overhead_relative_to_baseline_percent": 0.0,
+  "corruption": {
+    "bit_seed": 481201,
+    "deletion_seed": 481202,
+    "logical_target": {
+      "bit_seed": 481201,
+      "frame_byte_index": 9,
+      "single_bit_position": 1,
+      "double_bit_positions": [
+        1,
+        5
+      ],
+      "coordinate_definition": "frame byte index and frame data-bit position, both zero-based",
+      "bit_seed_role": "recorded repetition-specific reproducibility seed; approved logical targets are fixed"
+    },
+    "affected_symbol_count": 2,
+    "mapped_locations": [
+      {
+        "physical_index": 82,
+        "frame_byte_index": 9,
+        "data_bit_position": 1,
+        "physical_position": 1
+      },
+      {
+        "physical_index": 86,
+        "frame_byte_index": 9,
+        "data_bit_position": 5,
+        "physical_position": 5
+      }
+    ]
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 838,
+      "U+200C": 698,
+      "U+200D": 191,
+      "total": 1727
+    },
+    "retrieved_counts": {
+      "U+200B": 838,
+      "U+200C": 698,
+      "U+200D": 191,
+      "total": 1727
+    },
+    "retention_percentage": 100.0,
+    "retention_above_100_percent": false,
+    "decoder_returned": false,
+    "exact_match": false,
+    "recovered_secret": null,
+    "decoder_error": "payload checksum does not match",
+    "failure_category": "checksum_corruption"
+  },
+  "recovered_secret": null,
+  "exact_match": false,
+  "outcome": "detected_failure",
+  "failure_detected": true,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "060dbcc48650e992ccc4b82b0a8bb35a83b5deafaedba09cc20efd69225f3977",
+  "damaged_encoded_sha256": "07a3db8dadbb7d8f2c8bd48134677fded6f23a38c5878f08622540feffe92f53"
+}

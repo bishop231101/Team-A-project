@@ -1,0 +1,56 @@
+{
+  "trial_id": "W12_LA01_baseline_no_corruption_R2",
+  "corpus_id": "LA01",
+  "expected_secret": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+  "encoding_mode": "baseline",
+  "corruption_condition": "no_corruption",
+  "repetition": 2,
+  "sent_zero_width_character_counts": {
+    "U+200B": 838,
+    "U+200C": 698,
+    "U+200D": 191,
+    "total": 1727
+  },
+  "retrieved_zero_width_character_counts": {
+    "U+200B": 838,
+    "U+200C": 698,
+    "U+200D": 191,
+    "total": 1727
+  },
+  "retention_percentage": 100.0,
+  "encoded_length": 1727,
+  "encoded_length_overhead_relative_to_baseline_percent": 0.0,
+  "corruption": {
+    "bit_seed": 481211,
+    "deletion_seed": 481212,
+    "affected_symbol_count": 0
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 838,
+      "U+200C": 698,
+      "U+200D": 191,
+      "total": 1727
+    },
+    "retrieved_counts": {
+      "U+200B": 838,
+      "U+200C": 698,
+      "U+200D": 191,
+      "total": 1727
+    },
+    "retention_percentage": 100.0,
+    "retention_above_100_percent": false,
+    "decoder_returned": true,
+    "exact_match": true,
+    "recovered_secret": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+    "decoder_error": null,
+    "failure_category": null
+  },
+  "recovered_secret": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+  "exact_match": true,
+  "outcome": "successful_recovery",
+  "failure_detected": false,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "060dbcc48650e992ccc4b82b0a8bb35a83b5deafaedba09cc20efd69225f3977",
+  "damaged_encoded_sha256": "060dbcc48650e992ccc4b82b0a8bb35a83b5deafaedba09cc20efd69225f3977"
+}

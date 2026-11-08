@@ -1,0 +1,76 @@
+{
+  "trial_id": "W12_LA01_hamming_single_bit_corruption_R3",
+  "corpus_id": "LA01",
+  "expected_secret": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+  "encoding_mode": "hamming",
+  "corruption_condition": "single_bit_corruption",
+  "repetition": 3,
+  "sent_zero_width_character_counts": {
+    "U+200B": 1286,
+    "U+200C": 1210,
+    "U+200D": 193,
+    "total": 2689
+  },
+  "retrieved_zero_width_character_counts": {
+    "U+200B": 1287,
+    "U+200C": 1209,
+    "U+200D": 193,
+    "total": 2689
+  },
+  "retention_percentage": 100.0,
+  "encoded_length": 2689,
+  "encoded_length_overhead_relative_to_baseline_percent": 55.70353213665315,
+  "corruption": {
+    "bit_seed": 481221,
+    "deletion_seed": 481222,
+    "logical_target": {
+      "bit_seed": 481221,
+      "frame_byte_index": 9,
+      "single_bit_position": 1,
+      "double_bit_positions": [
+        1,
+        5
+      ],
+      "coordinate_definition": "frame byte index and frame data-bit position, both zero-based",
+      "bit_seed_role": "recorded repetition-specific reproducibility seed; approved logical targets are fixed"
+    },
+    "affected_symbol_count": 1,
+    "mapped_locations": [
+      {
+        "physical_index": 132,
+        "frame_byte_index": 9,
+        "data_bit_position": 1,
+        "codeword_position": 4,
+        "codeword_position_one_based": 5
+      }
+    ]
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 1286,
+      "U+200C": 1210,
+      "U+200D": 193,
+      "total": 2689
+    },
+    "retrieved_counts": {
+      "U+200B": 1287,
+      "U+200C": 1209,
+      "U+200D": 193,
+      "total": 2689
+    },
+    "retention_percentage": 100.0,
+    "retention_above_100_percent": false,
+    "decoder_returned": true,
+    "exact_match": true,
+    "recovered_secret": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+    "decoder_error": null,
+    "failure_category": null
+  },
+  "recovered_secret": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+  "exact_match": true,
+  "outcome": "successful_recovery",
+  "failure_detected": false,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "d41e81dd0752b4bb92e421197a0b003a95d9c5eb9749d2a8a9e083ead127d582",
+  "damaged_encoded_sha256": "a8748d4bfba88e62ccac08e34704d7924daabb2b15e7e84c1651494efc756b67"
+}

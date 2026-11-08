@@ -1,0 +1,81 @@
+{
+  "trial_id": "W12_SA01_baseline_double_bit_corruption_R1",
+  "corpus_id": "SA01",
+  "expected_secret": "Hello",
+  "encoding_mode": "baseline",
+  "corruption_condition": "double_bit_corruption",
+  "repetition": 1,
+  "sent_zero_width_character_counts": {
+    "U+200B": 84,
+    "U+200C": 52,
+    "U+200D": 16,
+    "total": 152
+  },
+  "retrieved_zero_width_character_counts": {
+    "U+200B": 86,
+    "U+200C": 50,
+    "U+200D": 16,
+    "total": 152
+  },
+  "retention_percentage": 100.0,
+  "encoded_length": 152,
+  "encoded_length_overhead_relative_to_baseline_percent": 0.0,
+  "corruption": {
+    "bit_seed": 481201,
+    "deletion_seed": 481202,
+    "logical_target": {
+      "bit_seed": 481201,
+      "frame_byte_index": 9,
+      "single_bit_position": 1,
+      "double_bit_positions": [
+        1,
+        5
+      ],
+      "coordinate_definition": "frame byte index and frame data-bit position, both zero-based",
+      "bit_seed_role": "recorded repetition-specific reproducibility seed; approved logical targets are fixed"
+    },
+    "affected_symbol_count": 2,
+    "mapped_locations": [
+      {
+        "physical_index": 82,
+        "frame_byte_index": 9,
+        "data_bit_position": 1,
+        "physical_position": 1
+      },
+      {
+        "physical_index": 86,
+        "frame_byte_index": 9,
+        "data_bit_position": 5,
+        "physical_position": 5
+      }
+    ]
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 84,
+      "U+200C": 52,
+      "U+200D": 16,
+      "total": 152
+    },
+    "retrieved_counts": {
+      "U+200B": 86,
+      "U+200C": 50,
+      "U+200D": 16,
+      "total": 152
+    },
+    "retention_percentage": 100.0,
+    "retention_above_100_percent": false,
+    "decoder_returned": false,
+    "exact_match": false,
+    "recovered_secret": null,
+    "decoder_error": "payload checksum does not match",
+    "failure_category": "checksum_corruption"
+  },
+  "recovered_secret": null,
+  "exact_match": false,
+  "outcome": "detected_failure",
+  "failure_detected": true,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "eb39fd73ce867915c784cd8cd6ecf927e317761d64226d8428506e6d241cd802",
+  "damaged_encoded_sha256": "3576fe70dbd2c159ffba073317623476161f406bf6cca5a010ed833d67b630ef"
+}

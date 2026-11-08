@@ -1,0 +1,155 @@
+{
+  "trial_id": "W12_LA01_baseline_deletion_1_percent_R1",
+  "corpus_id": "LA01",
+  "expected_secret": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+  "encoding_mode": "baseline",
+  "corruption_condition": "deletion_1_percent",
+  "repetition": 1,
+  "sent_zero_width_character_counts": {
+    "U+200B": 838,
+    "U+200C": 698,
+    "U+200D": 191,
+    "total": 1727
+  },
+  "retrieved_zero_width_character_counts": {
+    "U+200B": 831,
+    "U+200C": 690,
+    "U+200D": 191,
+    "total": 1712
+  },
+  "retention_percentage": 99.13144180660105,
+  "encoded_length": 1727,
+  "encoded_length_overhead_relative_to_baseline_percent": 0.0,
+  "corruption": {
+    "deletion_seed": 481202,
+    "eligible_symbol_count_before": 1536,
+    "target_deletion_percentage": 1.0,
+    "rounding_rule": "nearest integer, ties rounded up (floor(n * percentage + 0.5))",
+    "target_symbol_removal_count": 15,
+    "affected_symbol_count": 15,
+    "actual_deletion_percentage": 0.9765625,
+    "removed_symbols": [
+      {
+        "physical_index": 180,
+        "symbol": "​",
+        "frame_byte_index": 20,
+        "data_bit_position": 0
+      },
+      {
+        "physical_index": 213,
+        "symbol": "​",
+        "frame_byte_index": 23,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 265,
+        "symbol": "​",
+        "frame_byte_index": 29,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 463,
+        "symbol": "‌",
+        "frame_byte_index": 51,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 619,
+        "symbol": "​",
+        "frame_byte_index": 68,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 1009,
+        "symbol": "‌",
+        "frame_byte_index": 112,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 1022,
+        "symbol": "​",
+        "frame_byte_index": 113,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 1031,
+        "symbol": "‌",
+        "frame_byte_index": 114,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 1036,
+        "symbol": "‌",
+        "frame_byte_index": 115,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 1163,
+        "symbol": "‌",
+        "frame_byte_index": 129,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 1330,
+        "symbol": "‌",
+        "frame_byte_index": 147,
+        "data_bit_position": 7
+      },
+      {
+        "physical_index": 1410,
+        "symbol": "‌",
+        "frame_byte_index": 156,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 1489,
+        "symbol": "‌",
+        "frame_byte_index": 165,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 1647,
+        "symbol": "​",
+        "frame_byte_index": 183,
+        "data_bit_position": 0
+      },
+      {
+        "physical_index": 1695,
+        "symbol": "​",
+        "frame_byte_index": 188,
+        "data_bit_position": 3
+      }
+    ],
+    "eligible_symbol_count_after": 1521,
+    "denominator_definition": "ZERO and ONE symbols only; separators and Hamming prefix excluded",
+    "bit_seed": 481201
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 838,
+      "U+200C": 698,
+      "U+200D": 191,
+      "total": 1727
+    },
+    "retrieved_counts": {
+      "U+200B": 831,
+      "U+200C": 690,
+      "U+200D": 191,
+      "total": 1712
+    },
+    "retention_percentage": 99.13144180660105,
+    "retention_above_100_percent": false,
+    "decoder_returned": false,
+    "exact_match": false,
+    "recovered_secret": null,
+    "decoder_error": "payload contains an incomplete or malformed byte block",
+    "failure_category": "structural_corruption"
+  },
+  "recovered_secret": null,
+  "exact_match": false,
+  "outcome": "detected_failure",
+  "failure_detected": true,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "060dbcc48650e992ccc4b82b0a8bb35a83b5deafaedba09cc20efd69225f3977",
+  "damaged_encoded_sha256": "4fb29d34989776046a6e840a5ad128b9ddc34a02a4bb83334ac6100236b8a49e"
+}

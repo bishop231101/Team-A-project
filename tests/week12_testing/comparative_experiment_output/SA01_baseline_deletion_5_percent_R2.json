@@ -1,0 +1,107 @@
+{
+  "trial_id": "W12_SA01_baseline_deletion_5_percent_R2",
+  "corpus_id": "SA01",
+  "expected_secret": "Hello",
+  "encoding_mode": "baseline",
+  "corruption_condition": "deletion_5_percent",
+  "repetition": 2,
+  "sent_zero_width_character_counts": {
+    "U+200B": 84,
+    "U+200C": 52,
+    "U+200D": 16,
+    "total": 152
+  },
+  "retrieved_zero_width_character_counts": {
+    "U+200B": 79,
+    "U+200C": 50,
+    "U+200D": 16,
+    "total": 145
+  },
+  "retention_percentage": 95.39473684210526,
+  "encoded_length": 152,
+  "encoded_length_overhead_relative_to_baseline_percent": 0.0,
+  "corruption": {
+    "deletion_seed": 481212,
+    "eligible_symbol_count_before": 136,
+    "target_deletion_percentage": 5.0,
+    "rounding_rule": "nearest integer, ties rounded up (floor(n * percentage + 0.5))",
+    "target_symbol_removal_count": 7,
+    "affected_symbol_count": 7,
+    "actual_deletion_percentage": 5.147058823529411,
+    "removed_symbols": [
+      {
+        "physical_index": 4,
+        "symbol": "‌",
+        "frame_byte_index": 0,
+        "data_bit_position": 4
+      },
+      {
+        "physical_index": 69,
+        "symbol": "​",
+        "frame_byte_index": 7,
+        "data_bit_position": 6
+      },
+      {
+        "physical_index": 84,
+        "symbol": "​",
+        "frame_byte_index": 9,
+        "data_bit_position": 3
+      },
+      {
+        "physical_index": 101,
+        "symbol": "‌",
+        "frame_byte_index": 11,
+        "data_bit_position": 2
+      },
+      {
+        "physical_index": 127,
+        "symbol": "​",
+        "frame_byte_index": 14,
+        "data_bit_position": 1
+      },
+      {
+        "physical_index": 131,
+        "symbol": "​",
+        "frame_byte_index": 14,
+        "data_bit_position": 5
+      },
+      {
+        "physical_index": 135,
+        "symbol": "​",
+        "frame_byte_index": 15,
+        "data_bit_position": 0
+      }
+    ],
+    "eligible_symbol_count_after": 129,
+    "denominator_definition": "ZERO and ONE symbols only; separators and Hamming prefix excluded",
+    "bit_seed": 481211
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 84,
+      "U+200C": 52,
+      "U+200D": 16,
+      "total": 152
+    },
+    "retrieved_counts": {
+      "U+200B": 79,
+      "U+200C": 50,
+      "U+200D": 16,
+      "total": 145
+    },
+    "retention_percentage": 95.39473684210526,
+    "retention_above_100_percent": false,
+    "decoder_returned": false,
+    "exact_match": false,
+    "recovered_secret": null,
+    "decoder_error": "payload contains an incomplete or malformed byte block",
+    "failure_category": "structural_corruption"
+  },
+  "recovered_secret": null,
+  "exact_match": false,
+  "outcome": "detected_failure",
+  "failure_detected": true,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "eb39fd73ce867915c784cd8cd6ecf927e317761d64226d8428506e6d241cd802",
+  "damaged_encoded_sha256": "ef81db1e52c387d7288fa46917c92bcfd346a724d12967d6f2f73104bf4d9dfb"
+}

@@ -1,0 +1,56 @@
+{
+  "trial_id": "W12_SU01_hamming_no_corruption_R2",
+  "corpus_id": "SU01",
+  "expected_secret": "Café",
+  "encoding_mode": "hamming",
+  "corruption_condition": "no_corruption",
+  "repetition": 2,
+  "sent_zero_width_character_counts": {
+    "U+200B": 133,
+    "U+200C": 88,
+    "U+200D": 18,
+    "total": 239
+  },
+  "retrieved_zero_width_character_counts": {
+    "U+200B": 133,
+    "U+200C": 88,
+    "U+200D": 18,
+    "total": 239
+  },
+  "retention_percentage": 100.0,
+  "encoded_length": 239,
+  "encoded_length_overhead_relative_to_baseline_percent": 57.236842105263165,
+  "corruption": {
+    "bit_seed": 481211,
+    "deletion_seed": 481212,
+    "affected_symbol_count": 0
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 133,
+      "U+200C": 88,
+      "U+200D": 18,
+      "total": 239
+    },
+    "retrieved_counts": {
+      "U+200B": 133,
+      "U+200C": 88,
+      "U+200D": 18,
+      "total": 239
+    },
+    "retention_percentage": 100.0,
+    "retention_above_100_percent": false,
+    "decoder_returned": true,
+    "exact_match": true,
+    "recovered_secret": "Café",
+    "decoder_error": null,
+    "failure_category": null
+  },
+  "recovered_secret": "Café",
+  "exact_match": true,
+  "outcome": "successful_recovery",
+  "failure_detected": false,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "8a261a28bbdf9c6073afde2eea9680c71f2b875fdcf9e756caa82ed40fa17d6a",
+  "damaged_encoded_sha256": "8a261a28bbdf9c6073afde2eea9680c71f2b875fdcf9e756caa82ed40fa17d6a"
+}
