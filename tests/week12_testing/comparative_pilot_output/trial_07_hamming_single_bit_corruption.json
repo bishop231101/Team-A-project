@@ -1,0 +1,65 @@
+{
+  "corpus_id": "SA01",
+  "expected_secret": "Hello",
+  "encoding_mode": "hamming",
+  "corruption_condition": "single_bit_corruption",
+  "repetition": 1,
+  "original_encoded_zero_width_character_count": {
+    "U+200B": 137,
+    "U+200C": 84,
+    "U+200D": 18,
+    "total": 239
+  },
+  "encoded_length_overhead_relative_to_baseline_percent": 57.236842105263165,
+  "corruption": {
+    "schedule": {
+      "seed": 481201,
+      "frame_byte_count": 17,
+      "frame_byte_index": 9,
+      "single_bit_position": 1,
+      "double_bit_positions": [
+        1,
+        5
+      ],
+      "coordinate_definition": "frame byte index and UTF-8 frame data bit position, zero-based"
+    },
+    "affected_symbol_count": 1,
+    "mapped_locations": [
+      {
+        "physical_index": 132,
+        "frame_byte_index": 9,
+        "data_bit_position": 1,
+        "codeword_position": 4,
+        "codeword_position_one_based": 5
+      }
+    ]
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 137,
+      "U+200C": 84,
+      "U+200D": 18,
+      "total": 239
+    },
+    "retrieved_counts": {
+      "U+200B": 138,
+      "U+200C": 83,
+      "U+200D": 18,
+      "total": 239
+    },
+    "retention_percentage": 100.0,
+    "retention_above_100_percent": false,
+    "decoder_returned": true,
+    "exact_match": true,
+    "recovered_secret": "Hello",
+    "decoder_error": null,
+    "failure_category": null
+  },
+  "outcome": "successful_recovery",
+  "recovery_exact": true,
+  "failure_detected": false,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "12d0b4a59762b03eb4562bee5dbf463bc5e8de65bfc5d60116f294f82bd7fd5d",
+  "damaged_encoded_sha256": "3556b147d73c570887de74172f49bdf107cb526e83265cef6482d93ee115453c",
+  "pilot_protocol": "Week 12 comparative experiment pilot; SA01; one repetition"
+}

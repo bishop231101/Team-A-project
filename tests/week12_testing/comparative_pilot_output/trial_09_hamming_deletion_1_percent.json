@@ -1,0 +1,71 @@
+{
+  "corpus_id": "SA01",
+  "expected_secret": "Hello",
+  "encoding_mode": "hamming",
+  "corruption_condition": "deletion_1_percent",
+  "repetition": 1,
+  "original_encoded_zero_width_character_count": {
+    "U+200B": 137,
+    "U+200C": 84,
+    "U+200D": 18,
+    "total": 239
+  },
+  "encoded_length_overhead_relative_to_baseline_percent": 57.236842105263165,
+  "corruption": {
+    "seed": 481202,
+    "eligible_symbol_count_before": 221,
+    "target_deletion_percentage": 1.0,
+    "rounding_rule": "nearest integer, ties rounded up (floor(n * percentage + 0.5))",
+    "target_symbol_removal_count": 2,
+    "affected_symbol_count": 2,
+    "actual_deletion_percentage": 0.904977375565611,
+    "removed_symbols": [
+      {
+        "physical_index": 56,
+        "symbol": "​",
+        "frame_byte_index": 3,
+        "codeword_position": 12,
+        "codeword_position_one_based": 13,
+        "logical_data_bit_position": null
+      },
+      {
+        "physical_index": 124,
+        "symbol": "​",
+        "frame_byte_index": 8,
+        "codeword_position": 10,
+        "codeword_position_one_based": 11,
+        "logical_data_bit_position": 6
+      }
+    ],
+    "eligible_symbol_count_after": 219,
+    "denominator_definition": "ZERO and ONE symbols only; separators and Hamming prefix excluded"
+  },
+  "decoder_result": {
+    "sent_counts": {
+      "U+200B": 137,
+      "U+200C": 84,
+      "U+200D": 18,
+      "total": 239
+    },
+    "retrieved_counts": {
+      "U+200B": 135,
+      "U+200C": 84,
+      "U+200D": 18,
+      "total": 237
+    },
+    "retention_percentage": 99.16317991631799,
+    "retention_above_100_percent": false,
+    "decoder_returned": false,
+    "exact_match": false,
+    "recovered_secret": null,
+    "decoder_error": "Hamming payload contains an incomplete or malformed codeword",
+    "failure_category": "error_correction_structure"
+  },
+  "outcome": "detected_failure",
+  "recovery_exact": false,
+  "failure_detected": true,
+  "incorrect_recovery_without_detection": false,
+  "encoded_sha256": "12d0b4a59762b03eb4562bee5dbf463bc5e8de65bfc5d60116f294f82bd7fd5d",
+  "damaged_encoded_sha256": "7545229f727d8a1daf6274813372e95ee9db3caa328cfb8f81f8b473e3012964",
+  "pilot_protocol": "Week 12 comparative experiment pilot; SA01; one repetition"
+}
