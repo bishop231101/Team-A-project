@@ -135,11 +135,11 @@ Following the comparative experiment integration, Ifeanyi ran the full Python re
 
 - **80 tests passed**
 - **546 subtests passed**
-- **Execution time:** 6.06 seconds
+- **Execution time:** 4.72 seconds
 - **Reported failures:** None
 - **Git status:** `main` up to date with `origin/main`; working tree clean at the time of the check
 
-![Final integrated Week 12 regression results](../docs/evidence/week12_final_regression_80_passed.jpg)
+![Final integrated Week 12 regression results](../docs/evidence/week12_final_regression_80_passed.png)
 
 *Figure 4. Final integrated regression run showing 80 passed tests and 546 passed subtests.*
 
