@@ -15,8 +15,7 @@ and three deterministic repetitions per combination (120 trials total).
 Bit targets are frame byte 9, bit 1 for single-bit corruption, and
 frame byte 9, bits 1 and 5 for double-bit corruption. Targets are
 mapped to representation-specific physical positions. These logical targets
-remain fixed across repetitions R1, R2, and R3; they do not change between
-repetitions.
+remain fixed across repetitions R1, R2, and R3.
 
 Deletion eligibility includes ZERO and ONE symbols, including Hamming
 parity symbols, and excludes separators and the two-symbol Hamming prefix.
