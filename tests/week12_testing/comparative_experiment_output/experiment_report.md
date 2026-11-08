@@ -14,10 +14,17 @@ and three deterministic repetitions per combination (120 trials total).
 
 Bit targets are frame byte 9, bit 1 for single-bit corruption, and
 frame byte 9, bits 1 and 5 for double-bit corruption. Targets are
-mapped to representation-specific physical positions.
+mapped to representation-specific physical positions. These logical targets
+remain fixed across repetitions R1, R2, and R3; they do not change between
+repetitions.
 
 Deletion eligibility includes ZERO and ONE symbols, including Hamming
 parity symbols, and excludes separators and the two-symbol Hamming prefix.
+Baseline and Hamming use the same requested deletion percentages
+(approximately 1% and 5%) and the same repetition-specific deletion seed for
+each paired trial. Their actual deleted-symbol counts and physical positions
+may differ because the modes have different encoded layouts and eligible
+deletion populations. The deletion patterns vary by seed across repetitions.
 Requested deletion counts use nearest-integer half-up rounding.
 
 ## Outcome totals
