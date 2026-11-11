@@ -1,14 +1,14 @@
 {
   "trial_id": "W11_Discord-LU02_R3",
-  "status": "ready_for_manual_transfer",
+  "status": "completed",
   "platform": "Discord",
   "platform_directory": "Discord",
   "operation": "send_and_retrieve",
   "corpus_id": "LU02",
   "repetition": 3,
   "repetition_policy": "reuse_encoded_input",
-  "tester": null,
-  "timestamp_utc": null,
+  "tester": "Tristan Koch",
+  "timestamp_utc": "2026-11-11T12:54:25Z",
   "codec_commit": "4134cec1d23be3ae7069440a3718e09069922bdc",
   "protocol_version": "1.0-week11-baseline",
   "cover_text": "Team 1 compatibility test.",
@@ -18,13 +18,36 @@
   "retrieved_path": "Discord/W11_Discord-LU02_R3/W11_Discord-LU02_R3_retrieved.txt",
   "record_path": "Discord/W11_Discord-LU02_R3/W11_Discord-LU02_R3.json",
   "evidence_paths": [
-    "Discord/W11_Discord-LU02_R3/evidence"
+    "Discord/W11_Discord-LU02_R3/evidence/W11_Discord-LU02_R3_terminal.png",
+    "Discord/W11_Discord-LU02_R3/evidence/W11_Discord-LU02_R3.png"
   ],
   "input_sha256": "229fa970c557014b69e328aefde0008f1811cfd30155c4c9f9a15a0331472dbf",
   "local_validation": {
     "passed": true,
     "exact_round_trip": true
   },
-  "measured_results": null,
-  "notes": []
+  "measured_results": {
+    "sent_counts": {
+      "U+200B": 656,
+      "U+200C": 624,
+      "U+200D": 159,
+      "total": 1439
+    },
+    "retrieved_counts": {
+      "U+200B": 656,
+      "U+200C": 624,
+      "U+200D": 159,
+      "total": 1439
+    },
+    "retention_percentage": 100.0,
+    "retention_above_100_percent": false,
+    "decoder_returned": true,
+    "exact_match": true,
+    "recovered_secret": "你好，世界！こんにちは。 你好，世界！こんにちは。 你好，世界！こんにちは。 你好，世界！こんにちは。 ",
+    "decoder_error": null,
+    "failure_category": null
+  },
+  "notes": ["Discord successfully preserved all zero-width characters in the LU02-R3 trial. All 1,439 characters were retained (656 U+200B, 624 U+200C, and 159 U+200D), resulting in 100% character retention. The decoder successfully recovered the original secret, '你好，世界！こんにちは。 你好，世界！こんにちは。 你好，世界！こんにちは。 你好，世界！こんにちは。 ', with an exact match. No decoder errors or payload corruption were detected."],
+  "analysis_status": "completed",
+  "analysis_errors": []
 }

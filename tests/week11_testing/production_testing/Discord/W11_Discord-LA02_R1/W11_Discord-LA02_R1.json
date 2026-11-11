@@ -1,13 +1,13 @@
 {
   "trial_id": "W11_Discord-LA02_R1",
-  "status": "ready_for_manual_transfer",
+  "status": "blocked",
   "platform": "Discord",
   "platform_directory": "Discord",
   "operation": "send_and_retrieve",
   "corpus_id": "LA02",
   "repetition": 1,
   "repetition_policy": "reuse_encoded_input",
-  "tester": null,
+  "tester": "Tristan Koch",
   "timestamp_utc": null,
   "codec_commit": "4134cec1d23be3ae7069440a3718e09069922bdc",
   "protocol_version": "1.0-week11-baseline",
@@ -18,7 +18,7 @@
   "retrieved_path": "Discord/W11_Discord-LA02_R1/W11_Discord-LA02_R1_retrieved.txt",
   "record_path": "Discord/W11_Discord-LA02_R1/W11_Discord-LA02_R1.json",
   "evidence_paths": [
-    "Discord/W11_Discord-LA02_R1/evidence"
+    "Discord/W11_Discord-LA02_R1/evidence/W11_Discord-LA02_unable-to-send.png"
   ],
   "input_sha256": "cfaf99c919aa92c1fdaa4c74c88ae0c00d96192882f1a98e59c6e01b2eb68455",
   "local_validation": {
@@ -26,5 +26,7 @@
     "exact_round_trip": true
   },
   "measured_results": null,
-  "notes": []
+  "notes": [
+    "Blocked before transfer: the standard Discord account rejected the original encoded LA02 sent payload because it exceeded Discord's message-size limit. Sending the unchanged payload would require Discord Nitro. The payload was not modified, shortened, or split. No message was sent, so no retrieved payload or decoder measurements were collected. The screenshot W11_Discord-LA02_unable-to-send.png is shared evidence for LA02 repetitions R1-R3. The normal analyzer was intentionally not run against the blank retrieved file."
+  ]
 }
