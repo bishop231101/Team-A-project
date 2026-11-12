@@ -1,14 +1,14 @@
 {
   "trial_id": "W11_Chrome_Browser_Console-LA02_R3",
-  "status": "ready_for_manual_transfer",
+  "status": "completed",
   "platform": "Browser Console",
   "platform_directory": "Google_Chrome_Browser_Console",
   "operation": "paste_and_copy_back",
   "corpus_id": "LA02",
   "repetition": 3,
   "repetition_policy": "reuse_encoded_input",
-  "tester": null,
-  "timestamp_utc": null,
+  "tester": "Henry Smith",
+  "timestamp_utc": "2026-11-12T15:30:11Z",
   "codec_commit": "4134cec1d23be3ae7069440a3718e09069922bdc",
   "protocol_version": "1.0-week11-baseline",
   "cover_text": "Team 1 compatibility test.",
@@ -18,13 +18,37 @@
   "retrieved_path": "Google_Chrome_Browser_Console/W11_Chrome_Browser_Console-LA02_R3/W11_Chrome_Browser_Console-LA02_R3_retrieved.txt",
   "record_path": "Google_Chrome_Browser_Console/W11_Chrome_Browser_Console-LA02_R3/W11_Chrome_Browser_Console-LA02_R3.json",
   "evidence_paths": [
-    "Google_Chrome_Browser_Console/W11_Chrome_Browser_Console-LA02_R3/evidence"
+    "Google_Chrome_Browser_Console/W11_Chrome_Browser_Console-LA02_R3/evidence/W11_Chrome_Browser_Console-LA02_R3_console.png"
   ],
   "input_sha256": "cfaf99c919aa92c1fdaa4c74c88ae0c00d96192882f1a98e59c6e01b2eb68455",
   "local_validation": {
     "passed": true,
     "exact_round_trip": true
   },
-  "measured_results": null,
-  "notes": []
+  "measured_results": {
+    "sent_counts": {
+      "U+200B": 1166,
+      "U+200C": 978,
+      "U+200D": 267,
+      "total": 2411
+    },
+    "retrieved_counts": {
+      "U+200B": 1166,
+      "U+200C": 978,
+      "U+200D": 267,
+      "total": 2411
+    },
+    "retention_percentage": 100.0,
+    "retention_above_100_percent": false,
+    "decoder_returned": true,
+    "exact_match": true,
+    "recovered_secret": "Team 1 checks message recovery, punctuation, and numbers 12345. Team 1 checks message recovery, punctuation, and numbers 12345. Team 1 checks message recovery, punctuation, and numbers 12345. Team 1 checks message recovery, punctuation, and numbers 12345. ",
+    "decoder_error": null,
+    "failure_category": null
+  },
+  "notes": [
+    "The encoded text was pasted into Google Chrome DevTools Console and copied back without manual correction."
+  ],
+  "analysis_status": "completed",
+  "analysis_errors": []
 }

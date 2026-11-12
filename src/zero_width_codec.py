@@ -32,7 +32,15 @@ _HAMMING_DATA_POSITIONS = (3, 5, 6, 7, 9, 10, 11, 12)
 
 
 class DecodeError(ValueError):
-    """Raised when an invisible frame is missing, malformed, or damaged."""
+    """Raised when an invisible frame is missing, malformed, or damaged.
+
+    ``category`` is a stable, machine-readable diagnostic identifier.  The
+    human-readable exception messages are preserved for backward compatibility.
+    """
+
+    def __init__(self, message: str, category: str = "decode_error") -> None:
+        super().__init__(message)
+        self.category = category
 
 
 class EmbedError(ValueError):
@@ -116,7 +124,7 @@ def extract_secret(stego_text: str) -> str:
 
     encoded = "".join(char for char in stego_text if char in _CODEC_CHARACTERS)
     if not encoded:
-        raise DecodeError("no zero-width payload was found")
+        raise DecodeError("no zero-width payload was found", "missing_payload")
 
     prefix_length = len(encoded) - len(encoded.lstrip(SEPARATOR))
     if prefix_length == _HAMMING_PREFIX_LENGTH:
@@ -131,39 +139,83 @@ def extract_secret(stego_text: str) -> str:
     return _decode_frame(frame)
 
 
+def diagnose_stego_text(stego_text: str) -> dict[str, object]:
+    """Return a structured decode result for logs and platform testing.
+
+    The function catches only expected :class:`DecodeError` failures. Type
+    errors and unexpected programming errors still propagate to the caller.
+    """
+    if not isinstance(stego_text, str):
+        raise TypeError("stego_text must be a string")
+
+    encoded = "".join(char for char in stego_text if char in _CODEC_CHARACTERS)
+    mode = _encoding_mode_from_payload(encoded)
+    try:
+        recovered_secret = extract_secret(stego_text)
+    except DecodeError as error:
+        return {
+            "success": False,
+            "encoding_mode": mode,
+            "recovered_secret": None,
+            "error_category": error.category,
+            "error_message": str(error),
+        }
+    return {
+        "success": True,
+        "encoding_mode": mode,
+        "recovered_secret": recovered_secret,
+        "error_category": None,
+        "error_message": None,
+    }
+
+
+def _encoding_mode_from_payload(encoded: str) -> str | None:
+    if not encoded:
+        return None
+    prefix_length = len(encoded) - len(encoded.lstrip(SEPARATOR))
+    if prefix_length == _HAMMING_PREFIX_LENGTH:
+        return "hamming"
+    if prefix_length >= _MIN_REPETITION_FACTOR:
+        return "repetition"
+    return "baseline"
+
+
 def _decode_standard(encoded: str) -> bytes:
     blocks = encoded.split(SEPARATOR)
     if any(len(block) != 8 for block in blocks):
-        raise DecodeError("payload contains an incomplete or malformed byte block")
+        raise DecodeError(
+            "payload contains an incomplete or malformed byte block",
+            "malformed_standard_block",
+        )
 
     try:
         return bytes(_decode_byte(block) for block in blocks)
     except ValueError as error:
-        raise DecodeError("payload contains an invalid bit value") from error
+        raise DecodeError("payload contains an invalid bit value", "invalid_bit_value") from error
 
 
 def _decode_frame(frame: bytes) -> str:
 
     minimum_frame_length = _HEADER_LENGTH + _CHECKSUM_LENGTH
     if len(frame) < minimum_frame_length:
-        raise DecodeError("payload frame is too short")
+        raise DecodeError("payload frame is too short", "frame_too_short")
     if frame[:4] != _MAGIC:
-        raise DecodeError("payload has an unrecognized format marker")
+        raise DecodeError("payload has an unrecognized format marker", "format_marker")
 
     payload_length = struct.unpack(">I", frame[4:8])[0]
     expected_length = _HEADER_LENGTH + payload_length + _CHECKSUM_LENGTH
     if len(frame) != expected_length:
-        raise DecodeError("payload length does not match its frame")
+        raise DecodeError("payload length does not match its frame", "length_mismatch")
 
     stored_checksum = struct.unpack(">I", frame[-_CHECKSUM_LENGTH:])[0]
     calculated_checksum = zlib.crc32(frame[:-_CHECKSUM_LENGTH]) & 0xFFFFFFFF
     if stored_checksum != calculated_checksum:
-        raise DecodeError("payload checksum does not match")
+        raise DecodeError("payload checksum does not match", "checksum_mismatch")
 
     try:
         return frame[_HEADER_LENGTH:-_CHECKSUM_LENGTH].decode("utf-8")
     except UnicodeDecodeError as error:
-        raise DecodeError("payload is not valid UTF-8") from error
+        raise DecodeError("payload is not valid UTF-8", "invalid_utf8") from error
 
 
 def _validate_repetition_factor(repetition_factor: int) -> None:
@@ -189,7 +241,10 @@ def _repetition_factor_from_prefix(encoded: str) -> int | None:
     try:
         _validate_repetition_factor(prefix_length)
     except (TypeError, ValueError) as error:
-        raise DecodeError("recovery payload has an invalid repetition prefix") from error
+        raise DecodeError(
+            "recovery payload has an invalid repetition prefix",
+            "invalid_repetition_prefix",
+        ) from error
     return prefix_length
 
 
@@ -208,18 +263,24 @@ def _decode_with_repetition(encoded: str, repetition_factor: int) -> bytes:
     if not groups or any(
         not minimum_group_length <= len(group) <= repetition_factor for group in groups
     ):
-        raise DecodeError("recovery payload contains a missing or malformed bit group")
+        raise DecodeError(
+            "recovery payload contains a missing or malformed bit group",
+            "malformed_repetition_group",
+        )
 
     bits = []
     for group in groups:
         zero_count = group.count(ZERO)
         one_count = group.count(ONE)
         if zero_count == one_count:
-            raise DecodeError("recovery payload has no majority bit value")
+            raise DecodeError("recovery payload has no majority bit value", "no_majority")
         bits.append("0" if zero_count > one_count else "1")
 
     if len(bits) % 8 != 0:
-        raise DecodeError("recovery payload does not contain complete bytes")
+        raise DecodeError(
+            "recovery payload does not contain complete bytes",
+            "incomplete_repetition_bytes",
+        )
     return bytes(int("".join(bits[index : index + 8]), 2) for index in range(0, len(bits), 8))
 
 
@@ -245,7 +306,10 @@ def _encode_hamming_byte(value: int) -> str:
 def _decode_with_hamming(encoded: str) -> bytes:
     codewords = encoded.split(SEPARATOR)
     if not codewords or any(len(codeword) != _HAMMING_CODEWORD_LENGTH for codeword in codewords):
-        raise DecodeError("Hamming payload contains an incomplete or malformed codeword")
+        raise DecodeError(
+            "Hamming payload contains an incomplete or malformed codeword",
+            "malformed_hamming_codeword",
+        )
     return bytes(_decode_hamming_codeword(codeword) for codeword in codewords)
 
 
@@ -255,7 +319,7 @@ def _decode_hamming_codeword(codeword: str) -> int:
         for character in codeword
     ]
     if -1 in positions:
-        raise ValueError("unknown bit character")
+        raise DecodeError("Hamming payload contains an invalid bit value", "invalid_bit_value")
 
     syndrome = 0
     for parity_position in _HAMMING_PARITY_POSITIONS:
@@ -272,10 +336,16 @@ def _decode_hamming_codeword(codeword: str) -> int:
 
     if syndrome and overall_mismatch:
         if syndrome > 12:
-            raise DecodeError("Hamming payload has an uncorrectable corruption pattern")
+            raise DecodeError(
+                "Hamming payload has an uncorrectable corruption pattern",
+                "hamming_uncorrectable_pattern",
+            )
         positions[syndrome] ^= 1
     elif syndrome and not overall_mismatch:
-        raise DecodeError("Hamming payload contains an uncorrectable double-bit error")
+        raise DecodeError(
+            "Hamming payload contains an uncorrectable double-bit error",
+            "hamming_double_bit_error",
+        )
     elif not syndrome and overall_mismatch:
         positions[13] ^= 1
 

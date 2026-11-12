@@ -1,14 +1,14 @@
 {
   "trial_id": "W11_Chrome_Browser_Console-LA01_R3",
-  "status": "ready_for_manual_transfer",
+  "status": "completed",
   "platform": "Browser Console",
   "platform_directory": "Google_Chrome_Browser_Console",
   "operation": "paste_and_copy_back",
   "corpus_id": "LA01",
   "repetition": 3,
   "repetition_policy": "reuse_encoded_input",
-  "tester": null,
-  "timestamp_utc": null,
+  "tester": "Henry Smith",
+  "timestamp_utc": "2026-11-12T15:26:37Z",
   "codec_commit": "4134cec1d23be3ae7069440a3718e09069922bdc",
   "protocol_version": "1.0-week11-baseline",
   "cover_text": "Team 1 compatibility test.",
@@ -18,13 +18,37 @@
   "retrieved_path": "Google_Chrome_Browser_Console/W11_Chrome_Browser_Console-LA01_R3/W11_Chrome_Browser_Console-LA01_R3_retrieved.txt",
   "record_path": "Google_Chrome_Browser_Console/W11_Chrome_Browser_Console-LA01_R3/W11_Chrome_Browser_Console-LA01_R3.json",
   "evidence_paths": [
-    "Google_Chrome_Browser_Console/W11_Chrome_Browser_Console-LA01_R3/evidence"
+    "Google_Chrome_Browser_Console/W11_Chrome_Browser_Console-LA01_R3/evidence/W11_Chrome_Browser_Console-LA01_R3_console.png"
   ],
   "input_sha256": "eba0fd821dddf2c68b674a79883a66b664e8ac0db1c63d6768bda9d67d94bab2",
   "local_validation": {
     "passed": true,
     "exact_round_trip": true
   },
-  "measured_results": null,
-  "notes": []
+  "measured_results": {
+    "sent_counts": {
+      "U+200B": 838,
+      "U+200C": 698,
+      "U+200D": 191,
+      "total": 1727
+    },
+    "retrieved_counts": {
+      "U+200B": 838,
+      "U+200C": 698,
+      "U+200D": 191,
+      "total": 1727
+    },
+    "retention_percentage": 100.0,
+    "retention_above_100_percent": false,
+    "decoder_returned": true,
+    "exact_match": true,
+    "recovered_secret": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+    "decoder_error": null,
+    "failure_category": null
+  },
+  "notes": [
+    "The encoded text was pasted into Google Chrome DevTools Console and copied back without manual correction."
+  ],
+  "analysis_status": "completed",
+  "analysis_errors": []
 }

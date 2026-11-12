@@ -13,6 +13,7 @@ from src.zero_width_codec import (
     ZERO,
     contains_codec_characters,
     count_codec_characters,
+    diagnose_stego_text,
     embed_secret,
     encode_secret,
     extract_secret,
@@ -40,6 +41,44 @@ class ZeroWidthCodecTests(unittest.TestCase):
     def test_missing_payload_is_rejected(self) -> None:
         with self.assertRaisesRegex(DecodeError, "no zero-width payload"):
             extract_secret("An ordinary message")
+
+    def test_decode_errors_include_stable_categories(self) -> None:
+        with self.assertRaises(DecodeError) as context:
+            extract_secret("An ordinary message")
+        self.assertEqual(context.exception.category, "missing_payload")
+
+        damaged = encode_secret("checksum")
+        position = next(index for index, char in enumerate(damaged) if char in {ZERO, ONE})
+        replacement = ONE if damaged[position] == ZERO else ZERO
+        damaged = damaged[:position] + replacement + damaged[position + 1 :]
+        with self.assertRaises(DecodeError) as context:
+            extract_secret(damaged)
+        self.assertEqual(context.exception.category, "format_marker")
+
+    def test_structured_diagnostics_report_success_and_expected_failure(self) -> None:
+        success = diagnose_stego_text(
+            embed_secret("Visible", "diagnostic secret", error_correction="hamming")
+        )
+        self.assertEqual(
+            success,
+            {
+                "success": True,
+                "encoding_mode": "hamming",
+                "recovered_secret": "diagnostic secret",
+                "error_category": None,
+                "error_message": None,
+            },
+        )
+
+        failure = diagnose_stego_text("ordinary visible text")
+        self.assertFalse(failure["success"])
+        self.assertIsNone(failure["encoding_mode"])
+        self.assertEqual(failure["error_category"], "missing_payload")
+        self.assertIn("no zero-width payload", str(failure["error_message"]))
+
+    def test_structured_diagnostics_do_not_hide_programming_errors(self) -> None:
+        with self.assertRaises(TypeError):
+            diagnose_stego_text(None)  # type: ignore[arg-type]
 
     def test_truncated_payload_is_rejected(self) -> None:
         encoded = encode_secret("damage check")
