@@ -1,14 +1,14 @@
 {
   "trial_id": "W11_Telegram_Web-SU02_R2",
-  "status": "ready_for_manual_transfer",
+  "status": "completed",
   "platform": "Telegram Web",
   "platform_directory": "Telegram_Web",
   "operation": "send_and_retrieve",
   "corpus_id": "SU02",
   "repetition": 2,
   "repetition_policy": "reuse_encoded_input",
-  "tester": null,
-  "timestamp_utc": null,
+  "tester": "Tristan Koch",
+  "timestamp_utc": "2026-11-12T00:58:16Z",
   "codec_commit": "4134cec1d23be3ae7069440a3718e09069922bdc",
   "protocol_version": "1.0-week11-baseline",
   "cover_text": "Team 1 compatibility test.",
@@ -18,13 +18,36 @@
   "retrieved_path": "Telegram_Web/W11_Telegram_Web-SU02_R2/W11_Telegram_Web-SU02_R2_retrieved.txt",
   "record_path": "Telegram_Web/W11_Telegram_Web-SU02_R2/W11_Telegram_Web-SU02_R2.json",
   "evidence_paths": [
-    "Telegram_Web/W11_Telegram_Web-SU02_R2/evidence"
+    "Telegram_Web/W11_Telegram_Web-SU02_R2/evidence/W11_Telegram_Web-SU02_R2_terminal.png",
+    "Telegram_Web/W11_Telegram_Web-SU02_R2/evidence/W11_Telegram_Web-SU02_R2.png"
   ],
   "input_sha256": "849b7b3f3b8d72ad4a3b1782aff8ce3bcbdc68e7581286aebbb0b803fcf9be42",
   "local_validation": {
     "passed": true,
     "exact_round_trip": true
   },
-  "measured_results": null,
-  "notes": []
+  "measured_results": {
+    "sent_counts": {
+      "U+200B": 85,
+      "U+200C": 59,
+      "U+200D": 17,
+      "total": 161
+    },
+    "retrieved_counts": {
+      "U+200B": 85,
+      "U+200C": 59,
+      "U+200D": 17,
+      "total": 161
+    },
+    "retention_percentage": 100.0,
+    "retention_above_100_percent": false,
+    "decoder_returned": true,
+    "exact_match": true,
+    "recovered_secret": "你好",
+    "decoder_error": null,
+    "failure_category": null
+  },
+  "notes": ["Telegram Web SU02 R2 completed successfully. All zero-width characters were retained with 100.0% retention: U+200B (85), U+200C (59), and U+200D (17), for a total of 161 characters. The decoder returned successfully, and the recovered secret exactly matched the original: '你好'. No decoder errors or failure categories were reported."],
+  "analysis_status": "completed",
+  "analysis_errors": []
 }
