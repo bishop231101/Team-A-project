@@ -1,14 +1,14 @@
 {
   "trial_id": "W11_Telegram_Web-LA02_R1",
-  "status": "ready_for_manual_transfer",
+  "status": "completed",
   "platform": "Telegram Web",
   "platform_directory": "Telegram_Web",
   "operation": "send_and_retrieve",
   "corpus_id": "LA02",
   "repetition": 1,
   "repetition_policy": "reuse_encoded_input",
-  "tester": null,
-  "timestamp_utc": null,
+  "tester": "Tristan Koch",
+  "timestamp_utc": "2026-11-11T23:34:56Z",
   "codec_commit": "4134cec1d23be3ae7069440a3718e09069922bdc",
   "protocol_version": "1.0-week11-baseline",
   "cover_text": "Team 1 compatibility test.",
@@ -18,13 +18,36 @@
   "retrieved_path": "Telegram_Web/W11_Telegram_Web-LA02_R1/W11_Telegram_Web-LA02_R1_retrieved.txt",
   "record_path": "Telegram_Web/W11_Telegram_Web-LA02_R1/W11_Telegram_Web-LA02_R1.json",
   "evidence_paths": [
-    "Telegram_Web/W11_Telegram_Web-LA02_R1/evidence"
+    "Telegram_Web/W11_Telegram_Web-LA02_R1/evidence/W11_Telegram_Web-LA02_R1_terminal.png",
+    "Telegram_Web/W11_Telegram_Web-LA02_R1/evidence/W11_Telegram_Web-LA02_R1.png"
   ],
   "input_sha256": "cfaf99c919aa92c1fdaa4c74c88ae0c00d96192882f1a98e59c6e01b2eb68455",
   "local_validation": {
     "passed": true,
     "exact_round_trip": true
   },
-  "measured_results": null,
-  "notes": []
+  "measured_results": {
+    "sent_counts": {
+      "U+200B": 1166,
+      "U+200C": 978,
+      "U+200D": 267,
+      "total": 2411
+    },
+    "retrieved_counts": {
+      "U+200B": 1166,
+      "U+200C": 978,
+      "U+200D": 267,
+      "total": 2411
+    },
+    "retention_percentage": 100.0,
+    "retention_above_100_percent": false,
+    "decoder_returned": true,
+    "exact_match": true,
+    "recovered_secret": "Team 1 checks message recovery, punctuation, and numbers 12345. Team 1 checks message recovery, punctuation, and numbers 12345. Team 1 checks message recovery, punctuation, and numbers 12345. Team 1 checks message recovery, punctuation, and numbers 12345. ",
+    "decoder_error": null,
+    "failure_category": null
+  },
+  "notes": ["LA02 R1 completed successfully with 100.0% character retention. All zero-width characters were preserved (U+200B: 1,166, U+200C: 978, U+200D: 267; total: 2,411). The decoder successfully recovered the exact original secret: 'Team 1 checks message recovery, punctuation, and numbers 12345. ' repeated four times. No decoder errors or failure categories were reported."],
+  "analysis_status": "completed",
+  "analysis_errors": []
 }
