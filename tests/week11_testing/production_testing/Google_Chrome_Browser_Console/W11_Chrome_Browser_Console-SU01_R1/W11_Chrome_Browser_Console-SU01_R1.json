@@ -1,14 +1,14 @@
 {
   "trial_id": "W11_Chrome_Browser_Console-SU01_R1",
-  "status": "ready_for_manual_transfer",
+  "status": "completed",
   "platform": "Browser Console",
   "platform_directory": "Google_Chrome_Browser_Console",
   "operation": "paste_and_copy_back",
   "corpus_id": "SU01",
   "repetition": 1,
   "repetition_policy": "reuse_encoded_input",
-  "tester": null,
-  "timestamp_utc": null,
+  "tester": "Henry Smith",
+  "timestamp_utc": "2026-11-12T15:00:36Z",
   "codec_commit": "4134cec1d23be3ae7069440a3718e09069922bdc",
   "protocol_version": "1.0-week11-baseline",
   "cover_text": "Team 1 compatibility test.",
@@ -18,13 +18,37 @@
   "retrieved_path": "Google_Chrome_Browser_Console/W11_Chrome_Browser_Console-SU01_R1/W11_Chrome_Browser_Console-SU01_R1_retrieved.txt",
   "record_path": "Google_Chrome_Browser_Console/W11_Chrome_Browser_Console-SU01_R1/W11_Chrome_Browser_Console-SU01_R1.json",
   "evidence_paths": [
-    "Google_Chrome_Browser_Console/W11_Chrome_Browser_Console-SU01_R1/evidence"
+    "Google_Chrome_Browser_Console/W11_Chrome_Browser_Console-SU01_R1/evidence/W11_Chrome_Browser_Console-SU01_R1_console.png"
   ],
   "input_sha256": "e7ab46d673e706f6d6ffdd00e646eab4184be0e31ad8477db34bef53c110432a",
   "local_validation": {
     "passed": true,
     "exact_round_trip": true
   },
-  "measured_results": null,
-  "notes": []
+  "measured_results": {
+    "sent_counts": {
+      "U+200B": 79,
+      "U+200C": 57,
+      "U+200D": 16,
+      "total": 152
+    },
+    "retrieved_counts": {
+      "U+200B": 79,
+      "U+200C": 57,
+      "U+200D": 16,
+      "total": 152
+    },
+    "retention_percentage": 100.0,
+    "retention_above_100_percent": false,
+    "decoder_returned": true,
+    "exact_match": true,
+    "recovered_secret": "Café",
+    "decoder_error": null,
+    "failure_category": null
+  },
+  "notes": [
+    "The encoded text was pasted into Google Chrome DevTools Console and copied back without manual correction."
+  ],
+  "analysis_status": "completed",
+  "analysis_errors": []
 }
