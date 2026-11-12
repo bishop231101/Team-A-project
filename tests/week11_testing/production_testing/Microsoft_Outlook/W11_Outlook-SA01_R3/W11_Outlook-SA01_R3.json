@@ -1,14 +1,14 @@
 {
   "trial_id": "W11_Outlook-SA01_R3",
-  "status": "ready_for_manual_transfer",
+  "status": "completed",
   "platform": "Microsoft Outlook",
   "platform_directory": "Microsoft_Outlook",
   "operation": "send_and_retrieve",
   "corpus_id": "SA01",
   "repetition": 3,
   "repetition_policy": "reuse_encoded_input",
-  "tester": null,
-  "timestamp_utc": null,
+  "tester": "Ifeanyi Emeka",
+  "timestamp_utc": "2026-11-11T21:30:00Z",
   "codec_commit": "4134cec1d23be3ae7069440a3718e09069922bdc",
   "protocol_version": "1.0-week11-baseline",
   "cover_text": "Team 1 compatibility test.",
@@ -18,13 +18,36 @@
   "retrieved_path": "Microsoft_Outlook/W11_Outlook-SA01_R3/W11_Outlook-SA01_R3_retrieved.txt",
   "record_path": "Microsoft_Outlook/W11_Outlook-SA01_R3/W11_Outlook-SA01_R3.json",
   "evidence_paths": [
-    "Microsoft_Outlook/W11_Outlook-SA01_R3/evidence"
+    "Microsoft_Outlook/W11_Outlook-SA01_R3/evidence/SA01_R3_analysis.png",
+    "Microsoft_Outlook/W11_Outlook-SA01_R3/evidence/SA01_R3_outlook_email.png"
   ],
   "input_sha256": "956563d0d87a072df79208b7d8a689b530a9cfc2734b321a403b3e3cce2eee07",
   "local_validation": {
     "passed": true,
     "exact_round_trip": true
   },
-  "measured_results": null,
-  "notes": []
+  "measured_results": {
+    "sent_counts": {
+      "U+200B": 84,
+      "U+200C": 52,
+      "U+200D": 16,
+      "total": 152
+    },
+    "retrieved_counts": {
+      "U+200B": 84,
+      "U+200C": 52,
+      "U+200D": 16,
+      "total": 152
+    },
+    "retention_percentage": 100.0,
+    "retention_above_100_percent": false,
+    "decoder_returned": true,
+    "exact_match": true,
+    "recovered_secret": "Hello",
+    "decoder_error": null,
+    "failure_category": null
+  },
+  "notes": [],
+  "analysis_status": "completed",
+  "analysis_errors": []
 }
