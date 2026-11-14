@@ -10,7 +10,7 @@ This document consolidates the official production-platform records on the Week 
 
 ## 2. Production-testing methodology
 
-Each production corpus input was reused across three platform repetitions. A completed trial had an actual platform interaction and an analyzable result. A blocked trial was stopped by a documented platform limitation. Pending records remain in the trial-level CSV but are excluded from completed-trial denominators. Retention is calculated from aggregate retrieved counts divided by aggregate sent counts. Missing measurements are preserved as nulls.
+Each production corpus input was reused across three platform repetitions. A completed trial had an actual platform interaction and an analyzable result. A blocked trial was stopped by a documented platform limitation. The final source set contains no pending records. Retention is calculated from aggregate retrieved counts divided by aggregate sent counts. Missing measurements for blocked trials are preserved as nulls.
 
 ## 3. Production results by platform
 
@@ -22,19 +22,19 @@ Each production corpus input was reused across three platform repetitions. A com
 | Discord | 24 | 21 | 3 | 21 | 0 | 100.00% | 100.00% | 3 blocked |
 | Telegram Web | 24 | 24 | 0 | 24 | 0 | 100.00% | 100.00% | Complete |
 | Browser Console | 24 | 24 | 0 | 24 | 0 | 100.00% | 100.00% | Complete |
-| Microsoft Outlook | 24 | 21 | 0 | 17 | 4 | 80.95% | 90.80% | 3 pending |
+| Microsoft Outlook | 24 | 24 | 0 | 19 | 5 | 79.17% | 90.27% | Complete |
 
-The production dataset has 162 completed trials, 110 exact recoveries, and 52 failed recoveries, for a 67.90% completed-trial exact recovery rate. Discord LA02 R1–R3 are blocked before transfer because the unchanged encoded payload exceeded the standard account message-size limit. Outlook is merged and partially validated, but SU02 R1–R3 remain `ready_for_manual_transfer`.
+The production dataset has 165 completed trials, 112 exact recoveries, and 53 failed recoveries, for a 67.88% completed-trial exact recovery rate. Discord LA02 R1–R3 are blocked before transfer because the unchanged encoded payload exceeded the standard account message-size limit. All Outlook SU02 records are now completed and included in the finalized statistics.
 
-Gmail retained 0.00% of U+200B, 10.19% of U+200C, and 12.00% of U+200D. Its completed failures were structural or incomplete-payload failures. Microsoft Word retained none of the encoded characters. Notepad++, Telegram Web, Browser Console, and completed Discord trials retained all three symbols and recovered exactly in every completed trial. Outlook retained 90.89% U+200B, 90.67% U+200C, and 90.88% U+200D, but four completed trials still failed exact recovery.
+Gmail retained 0.00% of U+200B, 10.19% of U+200C, and 12.00% of U+200D. Its completed failures were structural or incomplete-payload failures. Microsoft Word retained none of the encoded characters. Notepad++, Telegram Web, Browser Console, and completed Discord trials retained all three symbols and recovered exactly in every completed trial. Outlook retained 90.32% U+200B, 90.19% U+200C, and 90.37% U+200D, with five completed failed recoveries.
 
 ## 4. Retention and recovery analysis
 
-Retention and exact recovery aligned for the fully preserving platforms and for Gmail and Word, but partial retention did not guarantee exact recovery. Outlook retained most characters yet had four failed recoveries. Gmail retained some U+200C and U+200D while losing all U+200B and failing every completed decode. These results apply only to the documented workflows, corpus, and repetitions.
+Retention and exact recovery aligned for the fully preserving platforms and for Gmail and Word, but partial retention did not guarantee exact recovery. Outlook retained most characters yet had five failed recoveries. Gmail retained some U+200C and U+200D while losing all U+200B and failing every completed decode. These results apply only to the documented workflows, corpus, and repetitions.
 
 ## 5. Blocked trials and limitations
 
-The three Discord LA02 trials were not decoder failures: no message was sent and no retrieved payload was available. The three pending Outlook records have no measured results and are not treated as zero retention. No unverified technical cause is asserted for Outlook failures.
+The three Discord LA02 trials were not decoder failures: no message was sent and no retrieved payload was available. The restored Outlook SU02 records are completed. SU02 R1 and R2 are exact recoveries with 100% retention; SU02 R3 is a completed failed recovery with complete payload removal and 0% retention. No unverified technical cause is asserted for Outlook failures.
 
 ## 6. Separate Baseline-versus-Hamming experiment
 
@@ -66,11 +66,11 @@ Baseline's overall recovery rate was 20% (12/60). Hamming's was 40% (24/60). Ham
 
 The measured trade-off was roughly 56% additional encoded length for correction of the tested single-bit corruption. Hamming did not withstand the tested double-bit or deletion conditions.
 
-## 8. Chart placeholders
+## 8. Charts and interpretations
 
 ### Chart 1 — Character Retention by Platform
 
-![**Recovery rate by platform**](../tests/week13_testing/chart_data/character-retention-by-platform-.png) This chart compares aggregate retention for U+200B, U+200C, and U+200D across the seven tested platforms. Notepad++, completed Discord trials, Telegram Web, and Browser Console retained all three characters at 100%. Gmail retained 0.00% of U+200B, 10.19% of U+200C, and 12.00% of U+200D, while Microsoft Word retained 0% for every character. Outlook showed smaller but consistent losses across the three types, retaining 90.32% of U+200B, 90.19% of U+200C, and 90.37% of U+200D.
+![**Character Retention by Platform**](../tests/week13_testing/chart_data/character-retention-by-platform-.png) This chart compares aggregate retention for U+200B, U+200C, and U+200D across the seven tested platforms. Notepad++, completed Discord trials, Telegram Web, and Browser Console retained all three characters at 100%. Gmail retained 0.00% of U+200B, 10.19% of U+200C, and 12.00% of U+200D, while Microsoft Word retained 0% for every character. Outlook showed smaller but consistent losses across the three types, retaining 90.32% of U+200B, 90.19% of U+200C, and 90.37% of U+200D.
 
 **Takeaway:** Platform behavior differed substantially by application, and Gmail's complete loss of U+200B was especially consequential because retention was uneven across character types. Outlook preserved most of the payload but still lost enough characters to affect exact decoding.
 
@@ -102,12 +102,12 @@ Discord's three LA02 trials were blocked before transfer by the platform message
 
 ## 9. Conclusions and unresolved items
 
-The production evidence shows strong preservation in Notepad++, completed Discord trials, Telegram Web, and Browser Console; complete loss in Word; severe loss in Gmail; and partial success in Outlook. Hamming doubled the observed comparative recovery rate from 20% to 40% by correcting the tested single-bit corruption, at a measured length overhead of approximately 56%. Outlook still needs three authoritative SU02 transfer records before its planned 24-trial set is complete. The actual five chart images must be created externally and inserted at the labeled placeholders.
+The production evidence shows strong preservation in Notepad++, completed Discord trials, Telegram Web, and Browser Console; complete loss in Word; severe loss in Gmail; and partial success in Outlook. Hamming doubled the observed comparative recovery rate from 20% to 40% by correcting the tested single-bit corruption, at a measured length overhead of approximately 56%. The production set is complete except for the three documented Discord blocks. The five chart images are included in the chart-data directory and linked above.
 
 ## 10. Reproducibility references
 
 - Production records: `tests/week11_testing/production_testing/`
-- Manifest: `tests/week11_testing/production_manifest.json`
+- Planning manifest: `tests/week11_testing/production_manifest.json` (prepared-record status template; final statuses are taken from the individual production JSON records and consolidated CSVs)
 - Comparative methodology: `docs/week12_comparative_experiment_methodology.md`
 - Comparative runner and records: `tests/week12_testing/comparative_experiment.py` and `tests/week12_testing/comparative_experiment_output/`
 - Consolidation script: `tests/week13_testing/consolidate_week13_results.ps1`
