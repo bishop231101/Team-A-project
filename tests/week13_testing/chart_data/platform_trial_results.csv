@@ -1,0 +1,169 @@
+"TrialID","Platform","CorpusID","Repetition","TrialStatus","ExactRecoveryResult","SentTotal","RetrievedTotal","OverallRetentionPercentage","U200BSent","U200BRetrieved","U200BRetentionPercentage","U200CSent","U200CRetrieved","U200CRetentionPercentage","U200DSent","U200DRetrieved","U200DRetentionPercentage","FailureCategory","DecoderError"
+"W11_Chrome_Browser_Console-LA01_R1","Browser Console","LA01","1","completed","True","1727","1727","100","838","838","100","698","698","100","191","191","100",,
+"W11_Chrome_Browser_Console-LA01_R2","Browser Console","LA01","2","completed","True","1727","1727","100","838","838","100","698","698","100","191","191","100",,
+"W11_Chrome_Browser_Console-LA01_R3","Browser Console","LA01","3","completed","True","1727","1727","100","838","838","100","698","698","100","191","191","100",,
+"W11_Chrome_Browser_Console-LA02_R1","Browser Console","LA02","1","completed","True","2411","2411","100","1166","1166","100","978","978","100","267","267","100",,
+"W11_Chrome_Browser_Console-LA02_R2","Browser Console","LA02","2","completed","True","2411","2411","100","1166","1166","100","978","978","100","267","267","100",,
+"W11_Chrome_Browser_Console-LA02_R3","Browser Console","LA02","3","completed","True","2411","2411","100","1166","1166","100","978","978","100","267","267","100",,
+"W11_Chrome_Browser_Console-LU01_R1","Browser Console","LU01","1","completed","True","1187","1187","100","615","615","100","441","441","100","131","131","100",,
+"W11_Chrome_Browser_Console-LU01_R2","Browser Console","LU01","2","completed","True","1187","1187","100","615","615","100","441","441","100","131","131","100",,
+"W11_Chrome_Browser_Console-LU01_R3","Browser Console","LU01","3","completed","True","1187","1187","100","615","615","100","441","441","100","131","131","100",,
+"W11_Chrome_Browser_Console-LU02_R1","Browser Console","LU02","1","completed","True","1439","1439","100","656","656","100","624","624","100","159","159","100",,
+"W11_Chrome_Browser_Console-LU02_R2","Browser Console","LU02","2","completed","True","1439","1439","100","656","656","100","624","624","100","159","159","100",,
+"W11_Chrome_Browser_Console-LU02_R3","Browser Console","LU02","3","completed","True","1439","1439","100","656","656","100","624","624","100","159","159","100",,
+"W11_Chrome_Browser_Console-SA01_R1","Browser Console","SA01","1","completed","True","152","152","100","84","84","100","52","52","100","16","16","100",,
+"W11_Chrome_Browser_Console-SA01_R2","Browser Console","SA01","2","completed","True","152","152","100","84","84","100","52","52","100","16","16","100",,
+"W11_Chrome_Browser_Console-SA01_R3","Browser Console","SA01","3","completed","True","152","152","100","84","84","100","52","52","100","16","16","100",,
+"W11_Chrome_Browser_Console-SA02_R1","Browser Console","SA02","1","completed","True","188","188","100","104","104","100","64","64","100","20","20","100",,
+"W11_Chrome_Browser_Console-SA02_R2","Browser Console","SA02","2","completed","True","188","188","100","104","104","100","64","64","100","20","20","100",,
+"W11_Chrome_Browser_Console-SA02_R3","Browser Console","SA02","3","completed","True","188","188","100","104","104","100","64","64","100","20","20","100",,
+"W11_Chrome_Browser_Console-SU01_R1","Browser Console","SU01","1","completed","True","152","152","100","79","79","100","57","57","100","16","16","100",,
+"W11_Chrome_Browser_Console-SU01_R2","Browser Console","SU01","2","completed","True","152","152","100","79","79","100","57","57","100","16","16","100",,
+"W11_Chrome_Browser_Console-SU01_R3","Browser Console","SU01","3","completed","True","152","152","100","79","79","100","57","57","100","16","16","100",,
+"W11_Chrome_Browser_Console-SU02_R1","Browser Console","SU02","1","completed","True","161","161","100","85","85","100","59","59","100","17","17","100",,
+"W11_Chrome_Browser_Console-SU02_R2","Browser Console","SU02","2","completed","True","161","161","100","85","85","100","59","59","100","17","17","100",,
+"W11_Chrome_Browser_Console-SU02_R3","Browser Console","SU02","3","completed","True","161","161","100","85","85","100","59","59","100","17","17","100",,
+"W11_Discord-LA01_R1","Discord","LA01","1","completed","True","1727","1727","100","838","838","100","698","698","100","191","191","100",,
+"W11_Discord-LA01_R2","Discord","LA01","2","completed","True","1727","1727","100","838","838","100","698","698","100","191","191","100",,
+"W11_Discord-LA01_R3","Discord","LA01","3","completed","True","1727","1727","100","838","838","100","698","698","100","191","191","100",,
+"W11_Discord-LA02_R1","Discord","LA02","1","blocked",,,,,,,,,,,,,,,
+"W11_Discord-LA02_R2","Discord","LA02","2","blocked",,,,,,,,,,,,,,,
+"W11_Discord-LA02_R3","Discord","LA02","3","blocked",,,,,,,,,,,,,,,
+"W11_Discord-LU01_R1","Discord","LU01","1","completed","True","1187","1187","100","615","615","100","441","441","100","131","131","100",,
+"W11_Discord-LU01_R2","Discord","LU01","2","completed","True","1187","1187","100","615","615","100","441","441","100","131","131","100",,
+"W11_Discord-LU01_R3","Discord","LU01","3","completed","True","1187","1187","100","615","615","100","441","441","100","131","131","100",,
+"W11_Discord-LU02_R1","Discord","LU02","1","completed","True","1439","1439","100","656","656","100","624","624","100","159","159","100",,
+"W11_Discord-LU02_R2","Discord","LU02","2","completed","True","1439","1439","100","656","656","100","624","624","100","159","159","100",,
+"W11_Discord-LU02_R3","Discord","LU02","3","completed","True","1439","1439","100","656","656","100","624","624","100","159","159","100",,
+"W11_Discord-SA01_R1","Discord","SA01","1","completed","True","152","152","100","84","84","100","52","52","100","16","16","100",,
+"W11_Discord-SA01_R2","Discord","SA01","2","completed","True","152","152","100","84","84","100","52","52","100","16","16","100",,
+"W11_Discord-SA01_R3","Discord","SA01","3","completed","True","152","152","100","84","84","100","52","52","100","16","16","100",,
+"W11_Discord-SA02_R1","Discord","SA02","1","completed","True","188","188","100","104","104","100","64","64","100","20","20","100",,
+"W11_Discord-SA02_R2","Discord","SA02","2","completed","True","188","188","100","104","104","100","64","64","100","20","20","100",,
+"W11_Discord-SA02_R3","Discord","SA02","3","completed","True","188","188","100","104","104","100","64","64","100","20","20","100",,
+"W11_Discord-SU01_R1","Discord","SU01","1","completed","True","152","152","100","79","79","100","57","57","100","16","16","100",,
+"W11_Discord-SU01_R2","Discord","SU01","2","completed","True","152","152","100","79","79","100","57","57","100","16","16","100",,
+"W11_Discord-SU01_R3","Discord","SU01","3","completed","True","152","152","100","79","79","100","57","57","100","16","16","100",,
+"W11_Discord-SU02_R1","Discord","SU02","1","completed","True","161","161","100","85","85","100","59","59","100","17","17","100",,
+"W11_Discord-SU02_R2","Discord","SU02","2","completed","True","161","161","100","85","85","100","59","59","100","17","17","100",,
+"W11_Discord-SU02_R3","Discord","SU02","3","completed","True","161","161","100","85","85","100","59","59","100","17","17","100",,
+"W11_Gmail-LA01_R1","Gmail","LA01","1","completed","False","1727","25","1.447596988998263","838","0","0","698","18","2.5787965616045847","191","7","3.6649214659685865","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-LA01_R2","Gmail","LA01","2","completed","False","1727","25","1.447596988998263","838","0","0","698","18","2.5787965616045847","191","7","3.6649214659685865","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-LA01_R3","Gmail","LA01","3","completed","False","1727","25","1.447596988998263","838","0","0","698","18","2.5787965616045847","191","7","3.6649214659685865","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-LA02_R1","Gmail","LA02","1","completed","False","2411","25","1.0369141435089175","1166","0","0","978","17","1.738241308793456","267","8","2.9962546816479403","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-LA02_R2","Gmail","LA02","2","completed","False","2411","25","1.0369141435089175","1166","0","0","978","17","1.738241308793456","267","8","2.9962546816479403","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-LA02_R3","Gmail","LA02","3","completed","False","2411","25","1.0369141435089175","1166","0","0","978","17","1.738241308793456","267","8","2.9962546816479403","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-LU01_R1","Gmail","LU01","1","completed","False","1187","25","2.1061499578770007","615","0","0","441","18","4.081632653061225","131","7","5.343511450381679","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-LU01_R2","Gmail","LU01","2","completed","False","1187","25","2.1061499578770007","615","0","0","441","18","4.081632653061225","131","7","5.343511450381679","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-LU01_R3","Gmail","LU01","3","completed","False","1187","25","2.1061499578770007","615","0","0","441","18","4.081632653061225","131","7","5.343511450381679","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-LU02_R1","Gmail","LU02","1","completed","False","1439","25","1.7373175816539264","656","0","0","624","18","2.8846153846153846","159","7","4.40251572327044","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-LU02_R2","Gmail","LU02","2","completed","False","1439","25","1.7373175816539264","656","0","0","624","18","2.8846153846153846","159","7","4.40251572327044","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-LU02_R3","Gmail","LU02","3","completed","False","1439","25","1.7373175816539264","656","0","0","624","18","2.8846153846153846","159","7","4.40251572327044","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-SA01_R1","Gmail","SA01","1","completed","False","152","68","44.73684210526316","84","0","0","52","52","100","16","16","100","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-SA01_R2","Gmail","SA01","2","completed","False","152","68","44.73684210526316","84","0","0","52","52","100","16","16","100","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-SA01_R3","Gmail","SA01","3","completed","False","152","68","44.73684210526316","84","0","0","52","52","100","16","16","100","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-SA02_R1","Gmail","SA02","1","completed","False","188","84","44.680851063829785","104","0","0","64","64","100","20","20","100","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-SA02_R2","Gmail","SA02","2","completed","False","188","84","44.680851063829785","104","0","0","64","64","100","20","20","100","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-SA02_R3","Gmail","SA02","3","completed","False","188","84","44.680851063829785","104","0","0","64","64","100","20","20","100","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-SU01_R1","Gmail","SU01","1","completed","False","152","73","48.026315789473685","79","0","0","57","57","100","16","16","100","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-SU01_R2","Gmail","SU01","2","completed","False","152","73","48.026315789473685","79","0","0","57","57","100","16","16","100","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-SU01_R3","Gmail","SU01","3","completed","False","152","73","48.026315789473685","79","0","0","57","57","100","16","16","100","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-SU02_R1","Gmail","SU02","1","completed","False","161","76","47.20496894409938","85","0","0","59","59","100","17","17","100","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-SU02_R2","Gmail","SU02","2","completed","False","161","76","47.20496894409938","85","0","0","59","59","100","17","17","100","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Gmail-SU02_R3","Gmail","SU02","3","completed","False","161","76","47.20496894409938","85","0","0","59","59","100","17","17","100","structural_corruption","payload contains an incomplete or malformed byte block"
+"W11_Outlook-LA01_R1","Microsoft Outlook","LA01","1","completed","True","1727","1727","100","838","838","100","698","698","100","191","191","100",,
+"W11_Outlook-LA01_R2","Microsoft Outlook","LA01","2","completed","True","1727","1727","100","838","838","100","698","698","100","191","191","100",,
+"W11_Outlook-LA01_R3","Microsoft Outlook","LA01","3","completed","True","1727","1727","100","838","838","100","698","698","100","191","191","100",,
+"W11_Outlook-LA02_R1","Microsoft Outlook","LA02","1","completed","True","2411","2411","100","1166","1166","100","978","978","100","267","267","100",,
+"W11_Outlook-LA02_R2","Microsoft Outlook","LA02","2","completed","True","2411","2411","100","1166","1166","100","978","978","100","267","267","100",,
+"W11_Outlook-LA02_R3","Microsoft Outlook","LA02","3","completed","True","2411","2411","100","1166","1166","100","978","978","100","267","267","100",,
+"W11_Outlook-LU01_R1","Microsoft Outlook","LU01","1","completed","True","1187","1187","100","615","615","100","441","441","100","131","131","100",,
+"W11_Outlook-LU01_R2","Microsoft Outlook","LU01","2","completed","True","1187","1187","100","615","615","100","441","441","100","131","131","100",,
+"W11_Outlook-LU01_R3","Microsoft Outlook","LU01","3","completed","True","1187","1187","100","615","615","100","441","441","100","131","131","100",,
+"W11_Outlook-LU02_R1","Microsoft Outlook","LU02","1","completed","True","1439","1439","100","656","656","100","624","624","100","159","159","100",,
+"W11_Outlook-LU02_R2","Microsoft Outlook","LU02","2","completed","True","1439","1439","100","656","656","100","624","624","100","159","159","100",,
+"W11_Outlook-LU02_R3","Microsoft Outlook","LU02","3","completed","False","1439","0","0","656","0","0","624","0","0","159","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Outlook-SA01_R1","Microsoft Outlook","SA01","1","completed","True","152","152","100","84","84","100","52","52","100","16","16","100",,
+"W11_Outlook-SA01_R2","Microsoft Outlook","SA01","2","completed","True","152","152","100","84","84","100","52","52","100","16","16","100",,
+"W11_Outlook-SA01_R3","Microsoft Outlook","SA01","3","completed","True","152","152","100","84","84","100","52","52","100","16","16","100",,
+"W11_Outlook-SA02_R1","Microsoft Outlook","SA02","1","completed","False","188","0","0","104","0","0","64","0","0","20","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Outlook-SA02_R2","Microsoft Outlook","SA02","2","completed","False","188","0","0","104","0","0","64","0","0","20","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Outlook-SA02_R3","Microsoft Outlook","SA02","3","completed","False","188","0","0","104","0","0","64","0","0","20","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Outlook-SU01_R1","Microsoft Outlook","SU01","1","completed","True","152","152","100","79","79","100","57","57","100","16","16","100",,
+"W11_Outlook-SU01_R2","Microsoft Outlook","SU01","2","completed","True","152","152","100","79","79","100","57","57","100","16","16","100",,
+"W11_Outlook-SU01_R3","Microsoft Outlook","SU01","3","completed","True","152","152","100","79","79","100","57","57","100","16","16","100",,
+"W11_Outlook-SU02_R1","Microsoft Outlook","SU02","1","completed","True","161","161","100","85","85","100","59","59","100","17","17","100",,
+"W11_Outlook-SU02_R2","Microsoft Outlook","SU02","2","completed","True","161","161","100","85","85","100","59","59","100","17","17","100",,
+"W11_Outlook-SU02_R3","Microsoft Outlook","SU02","3","completed","False","161","0","0","85","0","0","59","0","0","17","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-LA01_R1","Microsoft Word","LA01","1","completed","False","1727","0","0","838","0","0","698","0","0","191","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-LA01_R2","Microsoft Word","LA01","2","completed","False","1727","0","0","838","0","0","698","0","0","191","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-LA01_R3","Microsoft Word","LA01","3","completed","False","1727","0","0","838","0","0","698","0","0","191","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-LA02_R1","Microsoft Word","LA02","1","completed","False","2411","0","0","1166","0","0","978","0","0","267","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-LA02_R2","Microsoft Word","LA02","2","completed","False","2411","0","0","1166","0","0","978","0","0","267","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-LA02_R3","Microsoft Word","LA02","3","completed","False","2411","0","0","1166","0","0","978","0","0","267","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-LU01_R1","Microsoft Word","LU01","1","completed","False","1187","0","0","615","0","0","441","0","0","131","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-LU01_R2","Microsoft Word","LU01","2","completed","False","1187","0","0","615","0","0","441","0","0","131","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-LU01_R3","Microsoft Word","LU01","3","completed","False","1187","0","0","615","0","0","441","0","0","131","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-LU02_R1","Microsoft Word","LU02","1","completed","False","1439","0","0","656","0","0","624","0","0","159","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-LU02_R2","Microsoft Word","LU02","2","completed","False","1439","0","0","656","0","0","624","0","0","159","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-LU02_R3","Microsoft Word","LU02","3","completed","False","1439","0","0","656","0","0","624","0","0","159","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-SA01_R1","Microsoft Word","SA01","1","completed","False","152","0","0","84","0","0","52","0","0","16","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-SA01_R2","Microsoft Word","SA01","2","completed","False","152","0","0","84","0","0","52","0","0","16","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-SA01_R3","Microsoft Word","SA01","3","completed","False","152","0","0","84","0","0","52","0","0","16","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-SA02_R1","Microsoft Word","SA02","1","completed","False","188","0","0","104","0","0","64","0","0","20","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-SA02_R2","Microsoft Word","SA02","2","completed","False","188","0","0","104","0","0","64","0","0","20","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-SA02_R3","Microsoft Word","SA02","3","completed","False","188","0","0","104","0","0","64","0","0","20","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-SU01_R1","Microsoft Word","SU01","1","completed","False","152","0","0","79","0","0","57","0","0","16","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-SU01_R2","Microsoft Word","SU01","2","completed","False","152","0","0","79","0","0","57","0","0","16","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-SU01_R3","Microsoft Word","SU01","3","completed","False","152","0","0","79","0","0","57","0","0","16","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-SU02_R1","Microsoft Word","SU02","1","completed","False","161","0","0","85","0","0","59","0","0","17","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-SU02_R2","Microsoft Word","SU02","2","completed","False","161","0","0","85","0","0","59","0","0","17","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Word-SU02_R3","Microsoft Word","SU02","3","completed","False","161","0","0","85","0","0","59","0","0","17","0","0","complete_payload_removal","no zero-width payload was found"
+"W11_Notepad++-LA01_R1","Notepad++","LA01","1","completed","True","1727","1727","100","838","838","100","698","698","100","191","191","100",,
+"W11_Notepad++-LA01_R2","Notepad++","LA01","2","completed","True","1727","1727","100","838","838","100","698","698","100","191","191","100",,
+"W11_Notepad++-LA01_R3","Notepad++","LA01","3","completed","True","1727","1727","100","838","838","100","698","698","100","191","191","100",,
+"W11_Notepad++-LA02_R1","Notepad++","LA02","1","completed","True","2411","2411","100","1166","1166","100","978","978","100","267","267","100",,
+"W11_Notepad++-LA02_R2","Notepad++","LA02","2","completed","True","2411","2411","100","1166","1166","100","978","978","100","267","267","100",,
+"W11_Notepad++-LA02_R3","Notepad++","LA02","3","completed","True","2411","2411","100","1166","1166","100","978","978","100","267","267","100",,
+"W11_Notepad++-LU01_R1","Notepad++","LU01","1","completed","True","1187","1187","100","615","615","100","441","441","100","131","131","100",,
+"W11_Notepad++-LU01_R2","Notepad++","LU01","2","completed","True","1187","1187","100","615","615","100","441","441","100","131","131","100",,
+"W11_Notepad++-LU01_R3","Notepad++","LU01","3","completed","True","1187","1187","100","615","615","100","441","441","100","131","131","100",,
+"W11_Notepad++-LU02_R1","Notepad++","LU02","1","completed","True","1439","1439","100","656","656","100","624","624","100","159","159","100",,
+"W11_Notepad++-LU02_R2","Notepad++","LU02","2","completed","True","1439","1439","100","656","656","100","624","624","100","159","159","100",,
+"W11_Notepad++-LU02_R3","Notepad++","LU02","3","completed","True","1439","1439","100","656","656","100","624","624","100","159","159","100",,
+"W11_Notepad++-SA01_R1","Notepad++","SA01","1","completed","True","152","152","100","84","84","100","52","52","100","16","16","100",,
+"W11_Notepad++-SA01_R2","Notepad++","SA01","2","completed","True","152","152","100","84","84","100","52","52","100","16","16","100",,
+"W11_Notepad++-SA01_R3","Notepad++","SA01","3","completed","True","152","152","100","84","84","100","52","52","100","16","16","100",,
+"W11_Notepad++-SA02_R1","Notepad++","SA02","1","completed","True","188","188","100","104","104","100","64","64","100","20","20","100",,
+"W11_Notepad++-SA02_R2","Notepad++","SA02","2","completed","True","188","188","100","104","104","100","64","64","100","20","20","100",,
+"W11_Notepad++-SA02_R3","Notepad++","SA02","3","completed","True","188","188","100","104","104","100","64","64","100","20","20","100",,
+"W11_Notepad++-SU01_R1","Notepad++","SU01","1","completed","True","152","152","100","79","79","100","57","57","100","16","16","100",,
+"W11_Notepad++-SU01_R2","Notepad++","SU01","2","completed","True","152","152","100","79","79","100","57","57","100","16","16","100",,
+"W11_Notepad++-SU01_R3","Notepad++","SU01","3","completed","True","152","152","100","79","79","100","57","57","100","16","16","100",,
+"W11_Notepad++-SU02_R1","Notepad++","SU02","1","completed","True","161","161","100","85","85","100","59","59","100","17","17","100",,
+"W11_Notepad++-SU02_R2","Notepad++","SU02","2","completed","True","161","161","100","85","85","100","59","59","100","17","17","100",,
+"W11_Notepad++-SU02_R3","Notepad++","SU02","3","completed","True","161","161","100","85","85","100","59","59","100","17","17","100",,
+"W11_Telegram_Web-LA01_R1","Telegram Web","LA01","1","completed","True","1727","1727","100","838","838","100","698","698","100","191","191","100",,
+"W11_Telegram_Web-LA01_R2","Telegram Web","LA01","2","completed","True","1727","1727","100","838","838","100","698","698","100","191","191","100",,
+"W11_Telegram_Web-LA01_R3","Telegram Web","LA01","3","completed","True","1727","1727","100","838","838","100","698","698","100","191","191","100",,
+"W11_Telegram_Web-LA02_R1","Telegram Web","LA02","1","completed","True","2411","2411","100","1166","1166","100","978","978","100","267","267","100",,
+"W11_Telegram_Web-LA02_R2","Telegram Web","LA02","2","completed","True","2411","2411","100","1166","1166","100","978","978","100","267","267","100",,
+"W11_Telegram_Web-LA02_R3","Telegram Web","LA02","3","completed","True","2411","2411","100","1166","1166","100","978","978","100","267","267","100",,
+"W11_Telegram_Web-LU01_R1","Telegram Web","LU01","1","completed","True","1187","1187","100","615","615","100","441","441","100","131","131","100",,
+"W11_Telegram_Web-LU01_R2","Telegram Web","LU01","2","completed","True","1187","1187","100","615","615","100","441","441","100","131","131","100",,
+"W11_Telegram_Web-LU01_R3","Telegram Web","LU01","3","completed","True","1187","1187","100","615","615","100","441","441","100","131","131","100",,
+"W11_Telegram_Web-LU02_R1","Telegram Web","LU02","1","completed","True","1439","1439","100","656","656","100","624","624","100","159","159","100",,
+"W11_Telegram_Web-LU02_R2","Telegram Web","LU02","2","completed","True","1439","1439","100","656","656","100","624","624","100","159","159","100",,
+"W11_Telegram_Web-LU02_R3","Telegram Web","LU02","3","completed","True","1439","1439","100","656","656","100","624","624","100","159","159","100",,
+"W11_Telegram_Web-SA01_R1","Telegram Web","SA01","1","completed","True","152","152","100","84","84","100","52","52","100","16","16","100",,
+"W11_Telegram_Web-SA01_R2","Telegram Web","SA01","2","completed","True","152","152","100","84","84","100","52","52","100","16","16","100",,
+"W11_Telegram_Web-SA01_R3","Telegram Web","SA01","3","completed","True","152","152","100","84","84","100","52","52","100","16","16","100",,
+"W11_Telegram_Web-SA02_R1","Telegram Web","SA02","1","completed","True","188","188","100","104","104","100","64","64","100","20","20","100",,
+"W11_Telegram_Web-SA02_R2","Telegram Web","SA02","2","completed","True","188","188","100","104","104","100","64","64","100","20","20","100",,
+"W11_Telegram_Web-SA02_R3","Telegram Web","SA02","3","completed","True","188","188","100","104","104","100","64","64","100","20","20","100",,
+"W11_Telegram_Web-SU01_R1","Telegram Web","SU01","1","completed","True","152","152","100","79","79","100","57","57","100","16","16","100",,
+"W11_Telegram_Web-SU01_R2","Telegram Web","SU01","2","completed","True","152","152","100","79","79","100","57","57","100","16","16","100",,
+"W11_Telegram_Web-SU01_R3","Telegram Web","SU01","3","completed","True","152","152","100","79","79","100","57","57","100","16","16","100",,
+"W11_Telegram_Web-SU02_R1","Telegram Web","SU02","1","completed","True","161","161","100","85","85","100","59","59","100","17","17","100",,
+"W11_Telegram_Web-SU02_R2","Telegram Web","SU02","2","completed","True","161","161","100","85","85","100","59","59","100","17","17","100",,
+"W11_Telegram_Web-SU02_R3","Telegram Web","SU02","3","completed","True","161","161","100","85","85","100","59","59","100","17","17","100",,

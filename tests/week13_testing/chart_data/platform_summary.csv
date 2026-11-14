@@ -1,0 +1,8 @@
+"Platform","PlannedTrials","CompletedTrials","BlockedTrials","ExactRecoveries","FailedRecoveries","ExactRecoveryRate","AggregateOverallCharacterRetention","U200BRetention","U200CRetention","U200DRetention","DataStatus"
+"Gmail","24","24","0","0","24","0","5.4064985843332884","0","10.191725529767911","11.995104039167687","Complete"
+"Notepad++","24","24","0","24","0","100","100","100","100","100","Complete"
+"Microsoft Word","24","24","0","0","24","0","0","0","0","0","Complete"
+"Discord","24","21","3","21","0","100","100","100","100","100","Complete with blocked trials: 3"
+"Telegram Web","24","24","0","24","0","100","100","100","100","100","Complete"
+"Browser Console","24","24","0","24","0","100","100","100","100","100","Complete"
+"Microsoft Outlook","24","24","0","19","5","79.16666666666667","90.27459440025167","90.3225806451613","90.18948312591098","90.37127702978376","Complete"
