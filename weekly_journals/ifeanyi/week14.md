@@ -27,11 +27,15 @@ I independently executed the project's automated regression suite during Week 14
 
 ## 3. Testing and Verification
 
-Testing activities and verified results will be documented as they are completed.
+During Week 14, I ran the project's automated regression suite using `python -m pytest -q`. All 83 tests and 546 subtests passed in 5.20 seconds, with no reported failures.
+
+This verification confirmed that the existing automated tests continued to pass as we prepared for the final project deliverables. The test results were also documented in the Week 14 progress report.
 
 ## 4. Challenges and Lessons Learned
 
-To be updated based on actual Week 14 challenges and lessons.
+During Week 14, I ran the project's automated regression suite using `python -m pytest -q`. All 83 tests and 546 subtests passed in 5.20 seconds, with no reported failures.
+
+This verification confirmed that the existing automated tests continued to pass as we prepared for the final project deliverables. The test results were also documented in the Week 14 progress report.
 
 ## 5. Leadership and Team Coordination
 
