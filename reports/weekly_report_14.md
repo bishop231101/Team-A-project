@@ -54,7 +54,24 @@ For each test, record:
 - Any failures or limitations.
 - A screenshot with an explanation.
 
-**Status:** Week 14 testing evidence pending.
+### Week 14 Regression Testing
+
+The integrated project was tested using:
+
+`python -m pytest -q`
+
+Results:
+- 83 tests passed.
+- 546 subtests passed.
+- Execution time: 5.20 seconds.
+- No failures were reported.
+
+These results confirm that the existing automated
+regression suite continues to pass during Week 14.
+
+![Week 14 Regression Results](../docs/evidence/week14_regression_83_passed.png)
+
+*Figure: Week 14 automated regression test results.*
 
 ## 5. Lessons Learned
 
