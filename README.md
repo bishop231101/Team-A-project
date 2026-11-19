@@ -171,3 +171,17 @@ rejection in a representative codeword, false-success prevention, damaged
 format markers and separators, a large Unicode boundary payload, and exact
 encoded-length overhead. See `docs/week12_henry_hamming_stability.md` for the
 verified results and limitations.
+
+## Week 14 final codec verification
+
+Run Henry's final compatibility and Hamming checks with:
+
+```powershell
+python -m pytest tests/test_week14_final_quality.py -q
+python tests/week14_testing/verify_henry_final_codec.py
+```
+
+These checks freeze the released baseline, repetition, and Hamming formats;
+verify backward-compatible decoding; and confirm stable diagnostics for
+correctable and uncorrectable Hamming cases. See
+`docs/week14_henry_final_code_review.md` for the final review and limitations.
