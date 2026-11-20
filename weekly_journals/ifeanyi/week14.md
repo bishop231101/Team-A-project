@@ -31,11 +31,13 @@ During Week 14, I ran the project's automated regression suite using `python -m 
 
 This verification confirmed that the existing automated tests continued to pass as we prepared for the final project deliverables. The test results were also documented in the Week 14 progress report.
 
+I independently reviewed Henry's contribution, executed his verification scripts, merged the changes, and reran the complete regression suite.
+
 ## 4. Challenges and Lessons Learned
 
-During Week 14, I ran the project's automated regression suite using `python -m pytest -q`. All 83 tests and 546 subtests passed in 5.20 seconds, with no reported failures.
+One challenge during Week 14 was verifying Henry's new contribution before integrating it into the main project. The new testing files were initially unavailable on my local branch, so I had to fetch the remote branch and review the changes separately.
 
-This verification confirmed that the existing automated tests continued to pass as we prepared for the final project deliverables. The test results were also documented in the Week 14 progress report.
+I learned the importance of verifying individual contributions before merging them. After reviewing Henry's work and running his verification scripts, I integrated the changes and confirmed that the full regression suite passed 87 tests and 549 subtests without failures. This process reinforced the importance of careful integration, testing, and documentation.
 
 ## 5. Leadership and Team Coordination
 
