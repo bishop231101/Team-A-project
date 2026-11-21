@@ -267,8 +267,11 @@ The production evidence shows strong preservation and exact recovery in Notepad+
 - Consolidation script: `tests/week13_testing/consolidate_week13_results.ps1`
 - Chart-ready datasets: `tests/week13_testing/chart_data/`
 "@
-if ($doc.Length -gt 0) {
-    Set-Content -Path (Join-Path $repo 'docs\week13_results.md') -Value $doc -Encoding utf8
+$resultsPath = Join-Path $repo 'docs\week13_results.md'
+if (Test-Path -LiteralPath $resultsPath) {
+    Write-Output "Preserved existing Week 13 Results document and finalized chart references: $resultsPath"
+} elseif ($doc.Length -gt 0) {
+    Set-Content -Path $resultsPath -Value $doc -Encoding utf8
 }
 
 $journal = @"

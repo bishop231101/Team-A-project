@@ -8,7 +8,7 @@ The production records and the comparative experiment records were analyzed sepa
 
 The reported results are based on the finalized production trial JSON records, the finalized comparative Baseline-versus-Hamming JSON records, and the seven consolidated CSV files in `tests/week13_testing/chart_data/`. These source records provide the underlying trial outcomes, aggregate statistics, and chart data presented below.
 
-Separately from the experimental trials, the latest [Week 13 team report](../reports/weekly_report_13.md) documents a final implementation-validation run using `python -m pytest -q`: 83 tests and 546 subtests passed with no reported failures. This regression result verifies the recorded software test run and is not combined with the production or comparative trial totals.
+Separately from the experimental trials, the latest Week 14 regression run using `python -m pytest -q` passed 87 tests and 549 subtests with no reported failures. This regression result verifies the current software test run and is not combined with the production or comparative trial totals.
 
 ## 2. Initial Codec and Recovery Development
 
