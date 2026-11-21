@@ -82,7 +82,9 @@ The measured trade-off was roughly 56% additional encoded length for correction 
 
 ### Chart 3 — Production Platform Comparison
 
-![**Production Platform Comparison**](../tests/week13_testing/chart_data/production-platform-comparison-.png) This chart combines trial status, exact recovery, and aggregate character retention for the production platforms. Across 168 planned records, 165 were completed, 112 achieved exact recovery, and 53 failed; the completed-trial recovery rate was 67.88%. Notepad++, Telegram Web, Browser Console, and completed Discord trials combined 100% retention with 100% exact recovery, whereas Gmail had 5.41% aggregate retention and 0/24 exact recoveries, and Word had 0% retention and 0/24 exact recoveries. Outlook illustrates the difference between preservation and decoding most clearly: it retained 90.27% overall but recovered exactly in 19/24 trials (79.17%).
+![**Production Platform Comparison**](../tests/week13_testing/chart_data/production-platform-comparison-panel-a-.png)
+![**Production Platform Comparison**](../tests/week13_testing/chart_data/production-platform-comparison-panel-b-.png)
+These charts showcase trial status, exact recovery, and aggregate character retention for the production platforms. Across 168 planned records, 165 were completed, 112 achieved exact recovery, and 53 failed; the completed-trial recovery rate was 67.88%. Notepad++, Telegram Web, Browser Console, and completed Discord trials combined 100% retention with 100% exact recovery, whereas Gmail had 5.41% aggregate retention and 0/24 exact recoveries, and Word had 0% retention and 0/24 exact recoveries. Outlook illustrates the difference between preservation and decoding most clearly: it retained 90.27% overall but recovered exactly in 19/24 trials (79.17%).
 
 Discord's three LA02 trials were blocked before transfer by the platform message-size limitation, so they are shown as blocked and are not included in the failed-recovery count or completed-trial denominator.
 
@@ -90,13 +92,16 @@ Discord's three LA02 trials were blocked before transfer by the platform message
 
 ### Chart 4 — Baseline vs. Hamming Recovery by Corruption Condition
 
-![**Baseline vs. Hamming Recovery by Corruption Condition**](../tests/week13_testing/chart_data/baseline-vs.-hamming-recovery-by-corruption-condition-.png) This chart summarizes the separate 120-record Baseline-versus-Hamming experiment, with 12 trials for each method and corruption condition. Without corruption, both Baseline and Hamming recovered 12/12 trials (100%). Under single-bit corruption, Baseline recovered 0/12 while Hamming recovered 12/12 (100%); under double-bit corruption, approximately 1% deletion, and approximately 5% deletion, both methods recovered 0/12, with failures detected and no undetected errors.
-
+![**Baseline vs. Hamming Recovery by Corruption Condition**](../tests/week13_testing/chart_data/baseline-vs.-hamming-recovery-by-corruption-condition-panel-a-.png) 
+![**Baseline vs. Hamming Recovery by Corruption Condition**](../tests/week13_testing/chart_data/baseline-vs.-hamming-recovery-by-corruption-condition-panel-b-.png)
+This chart summarizes the separate 120-record Baseline-versus-Hamming experiment, with 12 trials for each method and corruption condition. Without corruption, both Baseline and Hamming recovered 12/12 trials (100%). Under single-bit corruption, Baseline recovered 0/12 while Hamming recovered 12/12 (100%); under double-bit corruption, approximately 1% deletion, and approximately 5% deletion, both methods recovered 0/12, with failures detected and no undetected errors.
 **Takeaway:** Hamming provided a clear advantage for the tested single-bit error, but the experiment did not show protection against double-bit corruption or deletion. These findings are separate from the production-platform results and are limited to three repetitions per condition.
 
 ### Chart 5 — Hamming Encoding Overhead
 
-![**Hamming Encoding Overhead**](../tests/week13_testing/chart_data/hamming-encoding-overhead-.png) This chart compares the encoded lengths produced by Baseline and Hamming for each corpus message. Hamming increased SA01 and SU01 from 152 to 239 characters, a 57.24% overhead; LA01 increased from 1,727 to 2,689 characters, a 55.70% overhead; and LU01 increased from 1,187 to 1,849 characters, a 55.77% overhead.
+![**Hamming Encoding Overhead**](../tests/week13_testing/chart_data/hamming-encoding-overhead-panel-a-.png)
+![**Hamming Encoding Overhead**](../tests/week13_testing/chart_data/hamming-encoding-overhead-panel-b-.png)
+This chart compares the encoded lengths produced by Baseline and Hamming for each corpus message. Hamming increased SA01 and SU01 from 152 to 239 characters, a 57.24% overhead; LA01 increased from 1,727 to 2,689 characters, a 55.70% overhead; and LU01 increased from 1,187 to 1,849 characters, a 55.77% overhead.
 
 **Takeaway:** Hamming's additional parity information increased encoded length by approximately 55.70%–57.24% in this corpus. That space cost supported perfect recovery under the tested single-bit corruption, so the project trade-off is improved single-bit robustness in exchange for substantially larger payloads.
 

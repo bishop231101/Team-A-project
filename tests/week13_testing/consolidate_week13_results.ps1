@@ -188,21 +188,21 @@ Production testing reused the encoded input for each corpus ID across three repe
 |---|---:|---:|---:|---:|---:|---:|---:|---|
 $table
 
-The finalized production set has 162 completed trials, 110 exact recoveries, and 52 failed recoveries, for an overall completed-trial exact recovery rate of 67.90%. Three Discord LA02 trials are blocked because the unchanged encoded payload exceeded the standard account's message-size limit. Three Outlook SU02 trials remain `ready_for_manual_transfer`; they are visible in the trial dataset but are not included in completed statistics. Outlook is therefore merged and partially validated, not fully complete.
+The finalized production set has 165 completed trials, 112 exact recoveries, and 53 failed recoveries, for an overall completed-trial exact recovery rate of 67.88%. Three Discord LA02 trials are blocked because the unchanged encoded payload exceeded the standard Discord message-size limit; they have no decoder measurements and are excluded from completed-trial denominators. No production trials remain pending. Microsoft Outlook is fully complete with 24 completed trials, 19 exact recoveries, and 5 failed recoveries. Its exact-recovery rate is 19/24 (79.17%), while aggregate character retention is 90.27% (U+200B: 90.32%, U+200C: 90.19%, U+200D: 90.37%).
 
-Gmail failed all 24 completed recoveries. Its aggregate overall retention was 5.41%, with U+200B at 0.00%, U+200C at 10.19%, and U+200D at 12.00%; the completed failures were structural corruption or incomplete payload failures. Microsoft Word failed all 24 completed recoveries with 0.00% aggregate retention. Notepad++, Telegram Web, and Browser Console each achieved 24/24 exact recoveries and 100.00% aggregate retention for every zero-width character. Discord achieved 21/21 exact recoveries among completed trials and 100.00% retention, while its three LA02 trials were blocked. Outlook achieved 17/21 exact recoveries among completed trials. Its aggregate overall retention was 90.80%, with U+200B at 90.89%, U+200C at 90.67%, and U+200D at 90.88%.
+Gmail failed all 24 completed recoveries. Its aggregate overall retention was 5.41%, with U+200B at 0.00%, U+200C at 10.19%, and U+200D at 12.00%; the completed failures were structural corruption or incomplete payload failures. Microsoft Word failed all 24 completed recoveries with 0.00% aggregate retention. Notepad++, Telegram Web, and Browser Console each achieved 24/24 exact recoveries and 100.00% aggregate retention for every zero-width character. Discord achieved 21/21 exact recoveries among completed trials and 100.00% retention, while its three LA02 trials were blocked. Outlook achieved 19/24 exact recoveries among its 24 completed trials, for a 79.17% exact-recovery rate. Its aggregate overall retention was 90.27%, with U+200B at 90.32%, U+200C at 90.19%, and U+200D at 90.37%.
 
 ## 4. Character-retention analysis
 
-Character retention and exact recovery aligned for the fully preserving platforms and for Gmail and Word, but retention alone was not sufficient to guarantee exact recovery. Outlook retained most zero-width characters yet had four failed recoveries, showing that partial loss can be incompatible with exact decoding. Gmail retained a small fraction of U+200C and U+200D but lost all U+200B characters and could not decode any completed trial. The symbol-level CSV preserves the sent and retrieved numerators and denominators for independent charting.
+Character retention and exact recovery aligned for the fully preserving platforms and for Gmail and Word, but retention alone was not sufficient to guarantee exact recovery. Outlook retained most zero-width characters yet had five failed recoveries, showing that partial loss can be incompatible with exact decoding. Gmail retained a small fraction of U+200C and U+200D but lost all U+200B characters and could not decode any completed trial. The symbol-level CSV preserves the sent and retrieved numerators and denominators for independent charting.
 
 ## 5. Exact-recovery analysis and cross-platform comparison
 
-The highest completed-trial results were 100% for Notepad++, Telegram Web, and Browser Console, followed by Discord at 100% of its 21 completed trials and Outlook at 80.95% of its 21 completed trials. Gmail and Microsoft Word achieved 0%. These are results for the documented workflows and corpus set, not universal compatibility guarantees. The Discord block is reported separately from decoder failure, and Outlook's three pending records remain outside all finalized recovery and retention denominators.
+The highest completed-trial results were 100% for Notepad++, Telegram Web, and Browser Console, followed by Discord at 100% of its 21 completed trials and Outlook at 79.17% of its 24 completed trials. Gmail and Microsoft Word achieved 0%. These are results for the documented workflows and corpus set, not universal compatibility guarantees. The three Discord LA02 blocks are reported separately from decoder failures; all 24 Outlook trials are completed and included in the finalized denominators.
 
 ## 6. Blocked trials and platform limitations
 
-Discord LA02 R1–R3 were blocked before transfer because the encoded payload exceeded the standard account message-size limit. The records state that the payload was not shortened, split, or otherwise modified. No decoder measurements were collected. Outlook SU02 R1–R3 have authoritative records with `ready_for_manual_transfer` status and no measured results; they require completion before Outlook can be reported as a full 24-trial platform.
+Discord LA02 R1–R3 were blocked before transfer because the unchanged encoded payload exceeded the standard Discord message-size limit. The records state that the payload was not shortened, split, or otherwise modified. No decoder measurements were collected, so these records are excluded from completed-trial denominators and are not decoder failures. Microsoft Outlook is fully complete: all 24 records have authoritative measured results, including SU02 R1 and R2 exact recoveries and SU02 R3 failed recovery.
 
 ## 7. Separate Baseline-versus-Hamming experiment
 
@@ -234,7 +234,7 @@ Hamming's measured overhead ranged from 55.70% to 57.24% across the four corpus 
 
 ### Chart 3 — Production Platform Comparison
 
-**Placeholder:** Insert chart here. Use `platform_summary.csv`, columns `Platform`, `CompletedTrials`, `BlockedTrials`, `ExactRecoveries`, `FailedRecoveries`, and the retention columns. The chart should make the Discord blocked trials and Outlook pending records visible as data-status limitations.
+**Placeholder:** Insert chart here. Use `platform_summary.csv`, columns `Platform`, `CompletedTrials`, `BlockedTrials`, `ExactRecoveries`, `FailedRecoveries`, and the retention columns. The chart should make the three Discord blocked trials visible as a data-status limitation and show Outlook's completed 19/24 exact-recovery result alongside its 90.27% aggregate retention.
 
 ### Chart 4 — Baseline vs. Hamming Recovery by Corruption Condition
 
@@ -246,12 +246,12 @@ Hamming's measured overhead ranged from 55.70% to 57.24% across the four corpus 
 
 ## 10. Conclusions
 
-The production evidence shows strong preservation and exact recovery in Notepad++, Discord completed trials, Telegram Web, and the Chrome Browser Console, complete loss in Microsoft Word, and severe loss in Gmail. Outlook is partially successful but remains incomplete because three records are still pending. Character retention is a necessary observable for exact recovery in these trials, but partial retention does not ensure exact recovery. Separately, the comparative experiment supports a limited result: Hamming doubled the observed overall recovery rate from 20% to 40% by correcting the tested single-bit corruption, at a measured encoded-length overhead of roughly 56%, but it did not withstand the tested double-bit or deletion conditions.
+The production evidence shows strong preservation and exact recovery in Notepad++, completed Discord trials, Telegram Web, and the Chrome Browser Console, complete loss in Microsoft Word, and severe loss in Gmail. Outlook was fully completed and achieved 19/24 exact recoveries (79.17%) with 90.27% aggregate character retention. Character retention is a necessary observable for exact recovery in these trials, but partial retention does not ensure exact recovery. Separately, the comparative experiment supports a limited result: Hamming doubled the observed overall recovery rate from 20% to 40% by correcting the tested single-bit corruption, at a measured encoded-length overhead of roughly 56%, but it did not withstand the tested double-bit or deletion conditions.
 
 ## 11. Limitations and unresolved items
 
 - The production results cover the repository's documented workflows, corpus messages, and three repetitions per corpus message.
-- Outlook requires three pending SU02 transfers before its planned 24-trial set is complete.
+- Outlook's 24-trial set is complete; its five failed recoveries remain part of the finalized results and should not be reclassified as pending.
 - Discord's three blocked LA02 trials are platform-limited and are not decoder failures.
 - The comparative experiment has three repetitions per condition and should not be generalized beyond the tested corpus and deterministic corruption schedules.
 - No suspected technical cause for Outlook failures is asserted beyond the measured records and their documented outcomes.
@@ -283,9 +283,9 @@ $journal = @"
 
 I audited the current Week 13 branch and consolidated the official production-platform trial records directly from the individual JSON files. The branch includes the merged Outlook contribution and corrected Outlook evidence. I reviewed the production records for Gmail, Notepad++, Microsoft Word, Discord, Telegram Web, Browser Console, and Microsoft Outlook, along with the production manifest, platform guides, compatibility documentation, and recent Week 13 commits.
 
-The production audit found 168 planned records: 162 completed, 3 Discord trials blocked before transfer, and 3 Outlook trials still marked `ready_for_manual_transfer`. The completed records contain 110 exact recoveries and 52 failed recoveries. I kept the three pending Outlook records in the trial-level dataset but excluded them from completed-trial recovery and retention denominators. I also kept the three Discord LA02 records separate from decoder failures because their source records document a message-size limitation before transfer.
+The production audit found 168 planned records: 165 completed, 3 Discord trials blocked before transfer, and no pending records. The completed records contain 112 exact recoveries and 53 failed recoveries. I kept the three Discord LA02 records separate from decoder failures because their source records document a message-size limitation before transfer; they have no decoder measurements and are excluded from completed-trial recovery and retention denominators.
 
-I independently recalculated aggregate retention from sent and retrieved symbol counts. Notepad++, Discord completed trials, Telegram Web, and Browser Console retained all three zero-width symbols and achieved exact recovery in every completed trial. Gmail retained 5.41% overall and achieved no exact recoveries. Microsoft Word retained 0.00% and achieved no exact recoveries. Outlook retained 90.80% overall and achieved 17 exact recoveries among 21 completed trials. These results are documented without attributing an unproven technical cause to Outlook failures.
+I independently recalculated aggregate retention from sent and retrieved symbol counts. Notepad++, Discord completed trials, Telegram Web, and Browser Console retained all three zero-width symbols and achieved exact recovery in every completed trial. Gmail retained 5.41% overall and achieved no exact recoveries. Microsoft Word retained 0.00% and achieved no exact recoveries. Outlook retained 90.27% overall and achieved 19 exact recoveries among 24 completed trials, with symbol retention of 90.32% for U+200B, 90.19% for U+200C, and 90.37% for U+200D. These results are documented without attributing an unproven technical cause to Outlook failures.
 
 I separately audited the Week 12 Baseline-versus-Hamming experiment. All 120 individual records are present and consistent with the documented 36 successful recoveries, 84 detected failures, and 0 undetected errors. Baseline succeeded in all no-corruption trials and failed under every tested corruption condition. Hamming succeeded in all no-corruption and single-bit-corruption trials and failed under double-bit corruption and both deletion conditions. I recalculated the corpus-level Hamming overhead values from the encoded lengths.
 
@@ -295,7 +295,7 @@ I generated seven chart-ready CSV files under `tests/week13_testing/chart_data/`
 
 - Confirmed 168 unique production trial IDs and 120 unique comparative trial IDs.
 - Confirmed no duplicate records in either dataset.
-- Reconciled production counts as 162 completed + 3 blocked + 3 pending = 168 planned.
+- Reconciled production counts as 165 completed + 3 blocked + 0 pending = 168 planned.
 - Confirmed blocked and pending trials have null measurements and are excluded from completed denominators.
 - Recalculated symbol-level and overall aggregate retention from source counts.
 - Recalculated exact-recovery totals from individual trial classifications.
@@ -305,7 +305,7 @@ I generated seven chart-ready CSV files under `tests/week13_testing/chart_data/`
 
 ## Limitations and next steps
 
-Outlook is merged but not fully complete: SU02 repetitions R1–R3 still need authoritative transfer records and evidence. The comparative experiment uses three repetitions per condition, so its conclusions are limited to the tested corpus and deterministic corruption schedules. The actual chart images still need to be created externally and inserted into the five labeled placeholders in `docs/week13_results.md`.
+Outlook is fully complete with authoritative transfer records and evidence for all 24 trials. The comparative experiment uses three repetitions per condition, so its conclusions are limited to the tested corpus and deterministic corruption schedules. The actual chart images still need to be created externally and inserted into the five labeled placeholders in `docs/week13_results.md`.
 "@
 if ($journal.Length -gt 0) {
     Set-Content -Path (Join-Path $repo 'weekly_journals\tristan\week13.md') -Value $journal -Encoding utf8
