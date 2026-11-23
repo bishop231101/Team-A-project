@@ -41,7 +41,6 @@ I also experienced illness during this week, which affected the amount of time I
 
 ## Next Steps
 
-- Commit the completed Results and Evaluation documentation changes and open a pull request for team review.
-- Allow the team to review both documents and provide feedback on the reported results, interpretations, clarity, or any areas that may need further explanation.
-- Address requested corrections or make any additional edits identified during the review process before the documentation is incorporated into the final academic report.
+- The completed Results and Evaluation documents have been committed and submitted through a pull request for team review.
+- Address any requested corrections or feedback identified during the team review before the documentation is incorporated into the final academic report.
 - Continue coordinating with the team on the remaining final report and presentation work as health permits.

@@ -222,27 +222,9 @@ $overTable
 
 Hamming's measured overhead ranged from 55.70% to 57.24% across the four corpus messages. The trade-off in this experiment was additional encoded length in exchange for successful correction of the tested single-bit corruption. Hamming did not recover from the tested double-bit corruption or the approximately 1% and 5% deletion conditions.
 
-## 9. Chart placeholders
+## 9. Chart data sources
 
-### Chart 1 — Character Retention by Platform
-
-**Placeholder:** Insert chart here. Use `platform_retention_by_symbol.csv`, columns `Platform`, `Character`, and `AggregateRetentionPercentage`. The chart should show that Notepad++, Discord completed trials, Telegram Web, and Browser Console retained all three symbols, while Gmail and Word did not; Outlook retained most but not all characters.
-
-### Chart 2 — Exact Recovery Rate by Platform
-
-**Placeholder:** Insert chart here. Use `platform_recovery_summary.csv`, columns `Platform`, `ExactRecoveries`, `CompletedTrials`, and `ExactRecoveryPercentage`. The chart should exclude blocked and pending records from the denominator and make the zero-recovery Gmail/Word results distinct from the fully successful completed-platform results.
-
-### Chart 3 — Production Platform Comparison
-
-**Placeholder:** Insert chart here. Use `platform_summary.csv`, columns `Platform`, `CompletedTrials`, `BlockedTrials`, `ExactRecoveries`, `FailedRecoveries`, and the retention columns. The chart should make the three Discord blocked trials visible as a data-status limitation and show Outlook's completed 19/24 exact-recovery result alongside its 90.27% aggregate retention.
-
-### Chart 4 — Baseline vs. Hamming Recovery by Corruption Condition
-
-**Placeholder:** Insert chart here. Use `comparative_recovery_summary.csv`, columns `EncodingMethod`, `CorruptionCondition`, and `RecoveryPercentage`. The chart should show Hamming's improvement only for the tested single-bit corruption, with both methods failing the double-bit and deletion conditions.
-
-### Chart 5 — Hamming Encoding Overhead
-
-**Placeholder:** Insert chart here. Use `hamming_overhead.csv`, columns `CorpusID`, `BaselineEncodedLength`, `HammingEncodedLength`, and `HammingOverheadPercentage`. The chart should show the approximately 55.70%–57.24% length increase across corpus messages.
+The seven CSV files exported above are the machine-generated chart data sources. Finalized PNG exports and manually maintained chart descriptions are managed separately and are not generated or replaced by this consolidation script.
 
 ## 10. Conclusions
 
@@ -267,12 +249,8 @@ The production evidence shows strong preservation and exact recovery in Notepad+
 - Consolidation script: `tests/week13_testing/consolidate_week13_results.ps1`
 - Chart-ready datasets: `tests/week13_testing/chart_data/`
 "@
-$resultsPath = Join-Path $repo 'docs\week13_results.md'
-if (Test-Path -LiteralPath $resultsPath) {
-    Write-Output "Preserved existing Week 13 Results document and finalized chart references: $resultsPath"
-} elseif ($doc.Length -gt 0) {
-    Set-Content -Path $resultsPath -Value $doc -Encoding utf8
-}
+# The generated report text is intentionally not written. docs/week13_results.md
+# is manually maintained so finalized charts, references, and descriptions are preserved.
 
 $journal = @"
 # Week 13 Individual Journal — Tristan Koch
@@ -292,7 +270,7 @@ I independently recalculated aggregate retention from sent and retrieved symbol 
 
 I separately audited the Week 12 Baseline-versus-Hamming experiment. All 120 individual records are present and consistent with the documented 36 successful recoveries, 84 detected failures, and 0 undetected errors. Baseline succeeded in all no-corruption trials and failed under every tested corruption condition. Hamming succeeded in all no-corruption and single-bit-corruption trials and failed under double-bit corruption and both deletion conditions. I recalculated the corpus-level Hamming overhead values from the encoded lengths.
 
-I generated seven chart-ready CSV files under `tests/week13_testing/chart_data/` for platform summaries, production trial results, symbol retention, platform recovery, comparative recovery, comparative trial results, and Hamming overhead. I created `docs/week13_results.md` with the methodology, verified results, limitations, separate comparative analysis, five chart placeholders, and reproducibility references.
+I generated seven chart-ready CSV files under `tests/week13_testing/chart_data/` for platform summaries, production trial results, symbol retention, platform recovery, comparative recovery, comparative trial results, and Hamming overhead. The finalized Results document and chart exports are maintained separately from this CSV consolidation step.
 
 ## Validation performed
 
@@ -308,10 +286,9 @@ I generated seven chart-ready CSV files under `tests/week13_testing/chart_data/`
 
 ## Limitations and next steps
 
-Outlook is fully complete with authoritative transfer records and evidence for all 24 trials. The comparative experiment uses three repetitions per condition, so its conclusions are limited to the tested corpus and deterministic corruption schedules. The actual chart images still need to be created externally and inserted into the five labeled placeholders in `docs/week13_results.md`.
+Outlook is fully complete with authoritative transfer records and evidence for all 24 trials. The comparative experiment uses three repetitions per condition, so its conclusions are limited to the tested corpus and deterministic corruption schedules. Finalized chart images and their descriptions are maintained separately from this consolidation script.
 "@
-if ($journal.Length -gt 0) {
-    Set-Content -Path (Join-Path $repo 'weekly_journals\tristan\week13.md') -Value $journal -Encoding utf8
-}
+# The generated journal text is intentionally not written. Weekly journals are
+# manually maintained documentation and are outside this consolidation step.
 
 Write-Output ("Generated 7 CSV files from {0} production and {1} comparative records." -f $prod.Count, $comp.Count)
