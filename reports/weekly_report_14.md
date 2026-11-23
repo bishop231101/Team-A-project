@@ -85,6 +85,10 @@ All three runs completed with no reported failures. The post-integration run and
 
 *Figure 1. The earlier independent Week 14 regression run completed in 5.20 seconds with 83 tests and 546 subtests passed.*
 
+![Final local regression rerun showing 87 tests and 549 subtests passed](../docs/evidence/week14_regression_87_rerun.png)
+
+*Figure 2. The final local rerun passed 87 tests and 549 subtests in 5.30 seconds, reproducing the post-integration pass counts.*
+
 ## 5. Lessons Learned
 
 Running targeted checks before integration helped verify the specific codec behaviors affected by the changes. Running the full suite after integration provided broader coverage of the project, and repeating the suite confirmed that the passing totals were reproducible.
