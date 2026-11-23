@@ -10,6 +10,8 @@ Evaluate and document how different applications handle zero-width Unicode chara
 
 ## 2. Existing Production-Testing Results
 
+*The following platform snapshot is an earlier preliminary result set; the final seven-platform verification and totals appear below.*
+
 | Platform | Trials | Exact Recovery | Observed Behavior |
 |---|---:|---:|---|
 | Gmail | 24 completed | 0/24 (0%) | Zero-width character stripping prevented exact recovery. |
@@ -40,39 +42,6 @@ The three blocked Discord LA02 trials have no retrieved payload or decoder measu
 Microsoft Outlook was evaluated using all 24 trial records. All 24 have completed analysis. Nineteen trials achieved exact recovery and five failed exact recovery. Aggregate retention was 90.27%, with U+200B at 90.32%, U+200C at 90.19%, and U+200D at 90.37%.
 
 The restored SU02 records are included in these totals: SU02 R1 and R2 achieved exact recovery with 100% retention, while SU02 R3 was a completed failed recovery with complete payload removal and 0% retention. No suspected technical cause is asserted beyond the recorded outcomes.
-
-### Updated Week 13 Compatibility Verification — November 12, 2026
-
-An independent PowerShell audit of the production-testing JSON records identified 168 planned trials across seven platforms. Of these, 150 were completed, 15 Microsoft Outlook trials remained pending manual transfer, and three Discord trials were blocked.
-
-Among the 150 completed trials, 99 achieved exact secret recovery, representing a 66.00% exact recovery rate.
-
-| Platform | Planned | Completed | Exact Recoveries | Pending/Blocked |
-|---|---:|---:|---:|---:|
-| Discord | 24 | 21 | 21 | 3 blocked |
-| Gmail | 24 | 24 | 0 | 0 |
-| Browser Console | 24 | 24 | 24 | 0 |
-| Microsoft Outlook | 24 | 9 | 6 | 15 pending |
-| Microsoft Word | 24 | 24 | 0 | 0 |
-| Notepad++ | 24 | 24 | 24 | 0 |
-| Telegram Web | 24 | 24 | 24 | 0 |
-| **Total** | **168** | **150** | **99** | **18** |
-
-The verification identified three blocked Discord LA02 trials and 15 Microsoft Outlook trials with `ready_for_manual_transfer` status. No other incomplete records were identified.
-
-These findings are based on the recorded production-testing results. They describe the tested application workflows and should not be interpreted as universal compatibility guarantees.
-
-The remaining Outlook trials will be incorporated into the final statistics after testing, analysis, and evidence verification are completed.
-
-### Microsoft Outlook Compatibility Verification
-
-Microsoft Outlook was evaluated using 24 prepared trial records. Nine trials have completed analysis, while 15 remain pending manual transfer and retrieval.
-
-Of the nine completed trials, six achieved exact recovery with 100% character retention, while three failed exact recovery with 0% retention.
-
-An additional verification of the 15 pending records confirmed that their JSON files contain no measured results and their retrieved-text files are empty (0 bytes). These records remain pending and are excluded from the completed-trial success rate.
-
-The completed Outlook trials therefore achieved a 66.67% exact recovery rate (6 of 9). These findings apply only to the tested Outlook workflows and should not be interpreted as universal Outlook compatibility.
 
 ## 3. Interpretation
 
